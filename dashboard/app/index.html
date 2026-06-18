@@ -15,24 +15,24 @@
     <div class="brand">
       <span class="leaf">🍁</span>
       <div>
-        <strong>Metaresearch Dashboard</strong>
-        <span class="brand-sub">Canada · pilot</span>
+        <strong data-i18n="brand.title">Metaresearch Dashboard</strong>
+        <span class="brand-sub" data-i18n="brand.sub">Canada · pilot</span>
       </div>
     </div>
 
     <nav class="nav" id="nav">
-      <a href="#overview" class="active">Overview</a>
-      <a href="#trends">Publication trends</a>
-      <a href="#institutions">Institutions</a>
-      <a href="#network">Collaboration network</a>
-      <a href="#topics">Topics &amp; fields</a>
-      <a href="#about">About &amp; methods</a>
+      <a href="#overview" class="active" data-i18n="nav.overview">Overview</a>
+      <a href="#trends" data-i18n="nav.trends">Publication trends</a>
+      <a href="#institutions" data-i18n="nav.institutions">Institutions</a>
+      <a href="#network" data-i18n="nav.network">Collaboration network</a>
+      <a href="#topics" data-i18n="nav.topics">Topics &amp; fields</a>
+      <a href="#about" data-i18n="nav.about">About &amp; methods</a>
     </nav>
 
     <div class="filters" id="filters">
-      <h3>Filters</h3>
+      <h3 data-i18n="filters.title">Filters</h3>
 
-      <label class="f-label">Years
+      <label class="f-label"><span data-i18n="filters.years">Years</span>
         <div class="f-range">
           <select id="f-year-min"></select>
           <span>–</span>
@@ -41,74 +41,78 @@
       </label>
 
       <fieldset class="f-group">
-        <legend>Open access status</legend>
+        <legend data-i18n="filters.oa">Open access status</legend>
         <div id="f-oa"></div>
       </fieldset>
 
-      <label class="f-label">Language
+      <label class="f-label"><span data-i18n="filters.language">Language</span>
         <select id="f-language"></select>
       </label>
 
-      <label class="f-label">Output type
+      <label class="f-label"><span data-i18n="filters.type">Output type</span>
         <select id="f-type"></select>
       </label>
 
       <label class="f-check">
-        <input type="checkbox" id="f-oa-only" /> Open access only
+        <input type="checkbox" id="f-oa-only" /> <span data-i18n="filters.oaonly">Open access only</span>
       </label>
 
-      <button class="btn-reset" id="btn-reset">Reset filters</button>
+      <button class="btn-reset" id="btn-reset" data-i18n="filters.reset">Reset filters</button>
     </div>
 
     <div class="sidebar-actions">
       <div class="match-count" id="match-count">— works</div>
-      <button class="btn-download" id="btn-download">⬇ Download filtered CSV</button>
+      <button class="btn-download" id="btn-download" data-i18n="actions.download">⬇ Download filtered CSV</button>
     </div>
 
     <a class="repo-link" href="https://github.com/esantos2ua/metaResearchDataChallenge"
-       target="_blank" rel="noopener">↗ Project on GitHub</a>
+       target="_blank" rel="noopener" data-i18n="repo.link">↗ Project on GitHub</a>
   </aside>
 
   <!-- ============================ MAIN ============================ -->
   <div class="main-col">
     <header class="topbar">
       <div>
-        <h1>Canadian Metaresearch Dashboard</h1>
-        <p class="subtitle">
+        <h1 data-i18n="header.title">Canadian Metaresearch Dashboard</h1>
+        <p class="subtitle" data-i18n-html="header.subtitle">
           An open, reproducible view of Canada's metaresearch landscape, built on
           <a href="https://openalex.org/" target="_blank" rel="noopener">OpenAlex</a> ·
           inspired by <a href="https://open.coki.ac/" target="_blank" rel="noopener">COKI</a>.
         </p>
       </div>
       <div class="topbar-right">
+        <div class="lang-toggle" id="lang-toggle" role="group" aria-label="Language / Langue">
+          <button data-lang="en" class="active">EN</button>
+          <button data-lang="fr">FR</button>
+        </div>
         <a class="gh-button" href="https://github.com/esantos2ua/metaResearchDataChallenge"
            target="_blank" rel="noopener" aria-label="GitHub repository">
           <svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
           GitHub
         </a>
-        <span class="pilot-badge">PILOT · real OpenAlex data</span>
+        <span class="pilot-badge" data-i18n="header.pilot">PILOT · real OpenAlex data</span>
       </div>
     </header>
 
-    <button class="filters-toggle" id="filters-toggle">☰ Menu &amp; filters</button>
+    <button class="filters-toggle" id="filters-toggle" data-i18n="filtersToggle">☰ Menu &amp; filters</button>
 
     <main class="content" id="content">
-      <p id="loading">Loading data…</p>
+      <p id="loading" data-i18n="loading">Loading data…</p>
 
       <div id="dash" hidden>
         <!-- OVERVIEW -->
         <section id="overview" class="section">
-          <h2 class="section-title">Overview</h2>
+          <h2 class="section-title" data-i18n="sec.overview">Overview</h2>
           <div class="kpi-grid" id="kpis"></div>
           <div class="card-grid">
             <div class="card">
-              <h3>Open access status</h3>
-              <p class="card-desc">How outputs are made open (gold, green, diamond, hybrid, bronze, closed).</p>
+              <h3 data-i18n="card.oa.title">Open access status</h3>
+              <p class="card-desc" data-i18n="card.oa.desc">How outputs are made open (gold, green, diamond, hybrid, bronze, closed).</p>
               <canvas id="oaChart"></canvas>
             </div>
             <div class="card">
-              <h3>Open vs. closed</h3>
-              <p class="card-desc">Share of the (filtered) corpus that is openly accessible.</p>
+              <h3 data-i18n="card.isoa.title">Open vs. closed</h3>
+              <p class="card-desc" data-i18n="card.isoa.desc">Share of the (filtered) corpus that is openly accessible.</p>
               <canvas id="isOaChart"></canvas>
             </div>
           </div>
@@ -116,33 +120,33 @@
 
         <!-- TRENDS -->
         <section id="trends" class="section">
-          <h2 class="section-title">Publication trends</h2>
+          <h2 class="section-title" data-i18n="sec.trends">Publication trends</h2>
           <div class="card wide">
-            <h3>Outputs per year</h3>
-            <p class="card-desc">Metaresearch outputs over time (filtered).</p>
+            <h3 data-i18n="card.year.title">Outputs per year</h3>
+            <p class="card-desc" data-i18n="card.year.desc">Metaresearch outputs over time (filtered).</p>
             <canvas id="yearChart"></canvas>
           </div>
         </section>
 
         <!-- INSTITUTIONS -->
         <section id="institutions" class="section">
-          <h2 class="section-title">Institutions</h2>
+          <h2 class="section-title" data-i18n="sec.institutions">Institutions</h2>
           <div class="card wide">
-            <h3>Top institutions</h3>
-            <p class="card-desc">Canadian institutions producing the most metaresearch (filtered).</p>
+            <h3 data-i18n="card.inst.title">Top institutions</h3>
+            <p class="card-desc" data-i18n="card.inst.desc">Canadian institutions producing the most metaresearch (filtered).</p>
             <canvas id="instChart"></canvas>
           </div>
         </section>
 
         <!-- NETWORK -->
         <section id="network" class="section">
-          <h2 class="section-title">Collaboration network</h2>
+          <h2 class="section-title" data-i18n="sec.network">Collaboration network</h2>
           <div class="card wide">
-            <h3>Institutional co-authorship network</h3>
+            <h3 data-i18n="card.net.title">Institutional co-authorship network</h3>
             <p class="card-desc">
-              Co-authorship ties between institutions. Node size = output; edge thickness = shared works.
-              <span class="net-legend"><span class="dot ca"></span>Canadian
-              <span class="dot intl"></span>International</span>
+              <span data-i18n="card.net.desc">Co-authorship ties between institutions. Node size = output; edge thickness = shared works.</span>
+              <span class="net-legend"><span class="dot ca"></span><span data-i18n="legend.ca">Canadian</span>
+              <span class="dot intl"></span><span data-i18n="legend.intl">International</span></span>
             </p>
             <div id="networkChart" class="network-canvas"></div>
             <p class="muted" id="network-note"></p>
@@ -151,19 +155,19 @@
 
         <!-- TOPICS -->
         <section id="topics" class="section">
-          <h2 class="section-title">Topics &amp; fields</h2>
+          <h2 class="section-title" data-i18n="sec.topics">Topics &amp; fields</h2>
           <div class="card-grid">
             <div class="card wide">
-              <h3>Top topics</h3>
-              <p class="card-desc">Primary OpenAlex topics within the (filtered) corpus.</p>
+              <h3 data-i18n="card.topic.title">Top topics</h3>
+              <p class="card-desc" data-i18n="card.topic.desc">Primary OpenAlex topics within the (filtered) corpus.</p>
               <canvas id="topicChart"></canvas>
             </div>
             <div class="card">
-              <h3>Output types</h3>
+              <h3 data-i18n="card.type.title">Output types</h3>
               <canvas id="typeChart"></canvas>
             </div>
             <div class="card">
-              <h3>Languages</h3>
+              <h3 data-i18n="card.lang.title">Languages</h3>
               <canvas id="langChart"></canvas>
             </div>
           </div>
@@ -171,11 +175,11 @@
 
         <!-- ABOUT -->
         <section id="about" class="section">
-          <h2 class="section-title">About &amp; methods</h2>
+          <h2 class="section-title" data-i18n="sec.about">About &amp; methods</h2>
           <div class="card">
             <p id="methods-note"></p>
-            <p>Corpus filter (OpenAlex): <code id="filter-str"></code></p>
-            <p class="muted">
+            <p><span data-i18n="about.filter">Corpus filter (OpenAlex):</span> <code id="filter-str"></code></p>
+            <p class="muted" data-i18n-html="about.body">
               Pilot mock-up demonstrating the dashboard stack. The corpus definition
               (concepts/keywords, "Canadian" criteria) is intentionally simple and will be refined per
               <a href="https://github.com/esantos2ua/metaResearchDataChallenge/blob/main/docs/METHODOLOGY.md"
@@ -190,6 +194,7 @@
   </div>
 </div>
 
+<script src="i18n.js"></script>
 <script src="dashboard.js"></script>
 </body>
 </html>

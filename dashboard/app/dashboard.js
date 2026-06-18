@@ -20,6 +20,51 @@ Chart.defaults.font.family = getComputedStyle(document.body).fontFamily;
 Chart.defaults.color = "#5c6b7a";
 
 // ----------------------------------------------------------------------------
+// i18n (English / French)
+// ----------------------------------------------------------------------------
+let LANG = localStorage.getItem("lang") || "en";
+function lookup(key) {
+  const v = (I18N[LANG] && I18N[LANG][key]);
+  return v !== undefined ? v : I18N.en[key];
+}
+function t(key) { const v = lookup(key); return v !== undefined ? v : key; }
+function tf(key, fallback) { const v = lookup(key); return v !== undefined ? v : fallback; }
+const langLabel = (k) => tf("lang." + k, k || "Unknown");
+const oaLabel = (k) => tf("oa." + k, k);
+const typeLabel = (k) => tf("type." + k, k);
+
+function applyStatic() {
+  document.documentElement.lang = LANG;
+  document.title = t("header.title");
+  document.querySelectorAll("[data-i18n]").forEach((el) => { el.textContent = t(el.dataset.i18n); });
+  document.querySelectorAll("[data-i18n-html]").forEach((el) => { el.innerHTML = t(el.dataset.i18nHtml); });
+}
+
+function relabelFilters() {
+  const langSel = document.getElementById("f-language");
+  if (langSel && langSel.options.length) {
+    langSel.options[0].text = t("filters.allLanguages");
+    [...langSel.options].slice(1).forEach((o) => { o.text = `${langLabel(o.value)} (${langCounts.get(o.value)})`; });
+  }
+  const typeSel = document.getElementById("f-type");
+  if (typeSel && typeSel.options.length) {
+    typeSel.options[0].text = t("filters.allTypes");
+    [...typeSel.options].slice(1).forEach((o) => { o.text = `${typeLabel(o.value)} (${typeCounts.get(o.value)})`; });
+  }
+  document.querySelectorAll("#f-oa .oa-name").forEach((s) => { s.textContent = oaLabel(s.dataset.k); });
+}
+
+function setLang(lang) {
+  LANG = lang;
+  localStorage.setItem("lang", lang);
+  document.querySelectorAll("#lang-toggle button").forEach((b) =>
+    b.classList.toggle("active", b.dataset.lang === lang));
+  applyStatic();
+  relabelFilters();
+  if (ALL.length) apply();
+}
+
+// ----------------------------------------------------------------------------
 // State
 // ----------------------------------------------------------------------------
 let ALL = [];          // all records
@@ -27,6 +72,8 @@ let META = {};
 const charts = {};     // id -> Chart instance
 let network = null;    // vis.Network instance
 let netData = null;    // {nodes, edges} DataSets
+let langCounts = new Map();   // language code -> count (for filter labels)
+let typeCounts = new Map();   // output type -> count (for filter labels)
 
 const filters = {
   yearMin: null, yearMax: null,
@@ -61,7 +108,7 @@ const filters = {
 
   buildFilterControls();
   wireUI();
-  apply();
+  setLang(LANG);   // applies static text, relabels filters, and runs apply()
 })();
 
 // ----------------------------------------------------------------------------
@@ -80,29 +127,29 @@ function buildFilterControls() {
   }
   yMin.value = minY; yMax.value = maxY;
 
-  // OA status checkboxes
+  // OA status checkboxes (label text in a span so it can be re-translated)
   const oaBox = document.getElementById("f-oa");
   const present = new Set(ALL.map((r) => r.oa_status));
   OA_ORDER.filter((s) => present.has(s)).forEach((s) => {
-    const id = `oa-${s}`;
     const wrap = document.createElement("label");
-    wrap.innerHTML = `<input type="checkbox" id="${id}" value="${s}" checked> ${s}`;
+    wrap.innerHTML = `<input type="checkbox" id="oa-${s}" value="${s}" checked> ` +
+      `<span class="oa-name" data-k="${s}">${oaLabel(s)}</span>`;
     oaBox.appendChild(wrap);
   });
 
-  // Language
+  // Language (counts cached for re-labelling on language switch)
   const langSel = document.getElementById("f-language");
-  langSel.appendChild(new Option("All languages", "all"));
-  const langCounts = countBy(ALL, (r) => r.language);
+  langSel.appendChild(new Option(t("filters.allLanguages"), "all"));
+  langCounts = countBy(ALL, (r) => r.language);
   [...langCounts.entries()].sort((a, b) => b[1] - a[1]).forEach(([k, n]) =>
     langSel.appendChild(new Option(`${langLabel(k)} (${n})`, k)));
 
   // Type
   const typeSel = document.getElementById("f-type");
-  typeSel.appendChild(new Option("All types", "all"));
-  const typeCounts = countBy(ALL, (r) => r.type);
+  typeSel.appendChild(new Option(t("filters.allTypes"), "all"));
+  typeCounts = countBy(ALL, (r) => r.type);
   [...typeCounts.entries()].sort((a, b) => b[1] - a[1]).forEach(([k, n]) =>
-    typeSel.appendChild(new Option(`${k} (${n})`, k)));
+    typeSel.appendChild(new Option(`${typeLabel(k)} (${n})`, k)));
 }
 
 function wireUI() {
@@ -119,6 +166,10 @@ function wireUI() {
   });
   document.getElementById("btn-reset").onclick = resetFilters;
   document.getElementById("btn-download").onclick = downloadCSV;
+
+  // Language toggle
+  document.querySelectorAll("#lang-toggle button").forEach((b) =>
+    (b.onclick = () => setLang(b.dataset.lang)));
 
   // Mobile sidebar toggle
   const sidebar = document.getElementById("sidebar");
@@ -173,7 +224,8 @@ let _filtered = [];
 function apply() {
   _filtered = currentFiltered();
   const n = _filtered.length;
-  document.getElementById("match-count").innerHTML = `<b>${fmt(n)}</b> of ${fmt(ALL.length)} works`;
+  document.getElementById("match-count").innerHTML =
+    t("matchCount").replace("{n}", fmt(n)).replace("{m}", fmt(ALL.length));
   renderKpis(_filtered);
   renderCharts(_filtered);
   renderNetwork(_filtered);
@@ -189,10 +241,10 @@ function renderKpis(recs) {
   const years = recs.map((r) => r.year).filter(Boolean);
   const span = years.length ? `${Math.min(...years)}–${Math.max(...years)}` : "—";
   const kpis = [
-    { value: fmt(recs.length), label: "Works (filtered)" },
-    { value: oaPct + "%", label: "Open access" },
-    { value: fmt(cites), label: "Total citations" },
-    { value: span, label: "Years" },
+    { value: fmt(recs.length), label: t("kpi.works") },
+    { value: oaPct + "%", label: t("kpi.oa") },
+    { value: fmt(cites), label: t("kpi.citations") },
+    { value: span, label: t("kpi.years") },
   ];
   document.getElementById("kpis").innerHTML = kpis
     .map((k) => `<div class="kpi"><div class="value">${k.value}</div><div class="label">${k.label}</div></div>`)
@@ -203,11 +255,11 @@ function renderCharts(recs) {
   // OA status
   const oaCounts = countBy(recs, (r) => r.oa_status);
   const oaKeys = OA_ORDER.filter((k) => oaCounts.has(k));
-  doughnut("oaChart", oaKeys, oaKeys.map((k) => oaCounts.get(k)), oaKeys.map((k) => OA_COLOR[k]));
+  doughnut("oaChart", oaKeys.map(oaLabel), oaKeys.map((k) => oaCounts.get(k)), oaKeys.map((k) => OA_COLOR[k]));
 
   // Open vs closed
   const open = recs.filter((r) => r.is_oa).length;
-  doughnut("isOaChart", ["Open", "Closed"], [open, recs.length - open], ["#2e9e5b", "#8a9aa8"]);
+  doughnut("isOaChart", [t("chart.open"), t("chart.closed")], [open, recs.length - open], ["#2e9e5b", "#8a9aa8"]);
 
   // Year trend
   const byYear = countBy(recs, (r) => r.year);
@@ -228,12 +280,12 @@ function renderCharts(recs) {
   hbar("topicChart", topTopics.map((e) => shortName(e[0])), topTopics.map((e) => e[1]));
 
   // Types
-  const typeCounts = [...countBy(recs, (r) => r.type).entries()].sort((a, b) => b[1] - a[1]);
-  doughnut("typeChart", typeCounts.map((e) => e[0]), typeCounts.map((e) => e[1]), SERIES);
+  const typeAgg = [...countBy(recs, (r) => r.type).entries()].sort((a, b) => b[1] - a[1]);
+  doughnut("typeChart", typeAgg.map((e) => typeLabel(e[0])), typeAgg.map((e) => e[1]), SERIES);
 
   // Languages
-  const langCounts = [...countBy(recs, (r) => r.language).entries()].sort((a, b) => b[1] - a[1]);
-  doughnut("langChart", langCounts.map((e) => langLabel(e[0])), langCounts.map((e) => e[1]), SERIES);
+  const langAgg = [...countBy(recs, (r) => r.language).entries()].sort((a, b) => b[1] - a[1]);
+  doughnut("langChart", langAgg.map((e) => langLabel(e[0])), langAgg.map((e) => e[1]), SERIES);
 }
 
 // ----------------------------------------------------------------------------
@@ -296,18 +348,16 @@ function renderNetwork(recs) {
     network.setOptions({ physics: { enabled: true, stabilization: { iterations: 200 } } });
   }
 
-  document.getElementById("network-note").textContent =
-    `${nodes.length} institutions shown (top ${TOP_N_NODES} by output), ${edges.length} ties ` +
-    `with ≥ ${MIN_EDGE_WEIGHT} shared works. Drag nodes to explore; scroll to zoom.`;
+  document.getElementById("network-note").textContent = t("networkNote")
+    .replace("{n}", nodes.length).replace("{N}", TOP_N_NODES)
+    .replace("{e}", edges.length).replace("{w}", MIN_EDGE_WEIGHT);
 }
 
 // ----------------------------------------------------------------------------
 // CSV export of the filtered subset
 // ----------------------------------------------------------------------------
 function downloadCSV() {
-  const cols = ["id", "title", "year", "type", "language", "cited_by_count",
-    "is_oa", "oa_status", "topic", "field", "institutions", "countries"];
-  const rows = [cols.join(",")];
+  const rows = [t("csv.cols")];
   _filtered.forEach((r) => {
     const insts = r.institutions.map((i) => i.name).join("; ");
     const countries = [...new Set(r.institutions.map((i) => i.country).filter(Boolean))].join("; ");
@@ -361,11 +411,8 @@ function countBy(arr, keyFn) {
   arr.forEach((x) => { const k = keyFn(x); m.set(k, (m.get(k) || 0) + 1); });
   return m;
 }
-const fmt = (n) => Number(n).toLocaleString("en-CA");
+const fmt = (n) => Number(n).toLocaleString(LANG === "fr" ? "fr-CA" : "en-CA");
 const shortName = (s) => (s && s.length > 40 ? s.slice(0, 38) + "…" : s);
-const LANGS = { en: "English", fr: "French", es: "Spanish", de: "German", pt: "Portuguese",
-  ru: "Russian", it: "Italian", nl: "Dutch", unknown: "Unknown" };
-const langLabel = (k) => LANGS[k] || (k || "Unknown");
 function csvCell(v) {
   const s = String(v ?? "");
   return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
