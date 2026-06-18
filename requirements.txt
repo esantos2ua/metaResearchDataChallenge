@@ -1,0 +1,12 @@
+# Pin exact versions before running the pipeline (e.g. `pip freeze > requirements.txt`).
+pyyaml
+requests
+pandas
+pyarrow
+python-dotenv
+# Analysis
+scikit-learn
+networkx
+bertopic        # topic modeling (optional; or gensim/sklearn LDA)
+# Notebooks
+jupyterlab

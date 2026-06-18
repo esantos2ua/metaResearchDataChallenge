@@ -1,0 +1,39 @@
+# Versioned definition of the Canadian metaresearch corpus.
+# Editing this file changes the corpus definition — commit changes with a clear message.
+
+# OpenAlex topic / concept IDs that constitute "metaresearch".
+# Fill with verified OpenAlex IDs (https://api.openalex.org/topics).
+topics:
+  # - T#####  # Metascience
+  # - C#####  # Bibliometrics / scientometrics
+  # - C#####  # Science & technology studies
+  # - C#####  # Research integrity / reproducibility
+  # - C#####  # Scholarly communication
+  # - C#####  # Open science
+
+# Lexical filters (title/abstract), English + French.
+keywords:
+  en:
+    - metascience
+    - metaresearch
+    - meta-research
+    - bibliometric
+    - scientometric
+    - research integrity
+    - reproducibility
+    - open science
+  fr:
+    - métascience
+    - métarecherche
+    - bibliométrie
+    - intégrité de la recherche
+    - reproductibilité
+    - science ouverte
+
+# "Canadian" definition for the primary corpus.
+country: CA
+canadian_definition: any_author_institution   # alternatives: first_author | corresponding | any_coauthor | funder
+
+# Time window.
+from_publication_date: "2000-01-01"
+to_publication_date: null   # null = snapshot date

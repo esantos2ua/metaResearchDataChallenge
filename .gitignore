@@ -1,0 +1,42 @@
+# Data — raw pulls and large artifacts are not committed
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+*.csv.gz
+*.parquet
+*.jsonl
+*.db
+*.sqlite
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.ipynb_checkpoints/
+.python-version
+
+# R
+.Rproj.user/
+.Rhistory
+.RData
+.Renviron
+
+# Node / dashboard
+node_modules/
+dist/
+build/
+.next/
+
+# Secrets / config
+.env
+.env.local
+*.key
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
