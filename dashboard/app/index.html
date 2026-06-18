@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Canadian Metaresearch Dashboard — Pilot</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vis-network@9.1.9/standalone/umd/vis-network.min.js"></script>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -64,6 +65,18 @@
         </div>
 
         <div class="card wide">
+          <h2>Institutional collaboration network</h2>
+          <p class="card-desc">
+            Co-authorship ties between institutions on Canadian metaresearch outputs.
+            Node size = output volume; edge thickness = shared works.
+            <span class="net-legend"><span class="dot ca"></span>Canadian
+            <span class="dot intl"></span>International</span>
+          </p>
+          <div id="networkChart" class="network-canvas"></div>
+          <p class="muted" id="network-note"></p>
+        </div>
+
+        <div class="card wide">
           <h2>Thematic map — top topics</h2>
           <p class="card-desc">Primary OpenAlex topics within the corpus.</p>
           <canvas id="topicChart"></canvas>
@@ -91,5 +104,6 @@
   </footer>
 
   <script src="dashboard.js"></script>
+  <script src="network.js"></script>
 </body>
 </html>
