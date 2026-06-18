@@ -9,101 +9,187 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="wrap">
-      <h1>🍁 Canadian Metaresearch Dashboard</h1>
-      <p class="subtitle">
-        An open, reproducible view of Canada's metaresearch landscape, built on
-        <a href="https://openalex.org/" target="_blank" rel="noopener">OpenAlex</a>.
-        Inspired by the <a href="https://open.coki.ac/" target="_blank" rel="noopener">COKI Open Access Dashboard</a>.
-      </p>
-      <p class="pilot-badge">PILOT MOCK-UP · real OpenAlex data</p>
-    </div>
-  </header>
-
-  <main class="wrap" id="app">
-    <p id="loading">Loading data…</p>
-
-    <section id="content" hidden>
-      <!-- KPI cards -->
-      <div class="kpi-grid" id="kpis"></div>
-
-      <div class="card-grid">
-        <div class="card">
-          <h2>Open access status</h2>
-          <p class="card-desc">How are these outputs made open? (gold, green, diamond, hybrid, bronze, closed)</p>
-          <canvas id="oaChart"></canvas>
-        </div>
-
-        <div class="card">
-          <h2>Open vs. closed</h2>
-          <p class="card-desc">Share of the corpus that is openly accessible.</p>
-          <canvas id="isOaChart"></canvas>
-        </div>
-
-        <div class="card wide">
-          <h2>Publication trend</h2>
-          <p class="card-desc">Metaresearch outputs per year (Canadian-affiliated).</p>
-          <canvas id="yearChart"></canvas>
-        </div>
-
-        <div class="card wide">
-          <h2>Top institutions</h2>
-          <p class="card-desc">Canadian institutions producing the most metaresearch.</p>
-          <canvas id="instChart"></canvas>
-        </div>
-
-        <div class="card">
-          <h2>Output types</h2>
-          <canvas id="typeChart"></canvas>
-        </div>
-
-        <div class="card">
-          <h2>Languages</h2>
-          <p class="card-desc">Coverage of English vs. French and others.</p>
-          <canvas id="langChart"></canvas>
-        </div>
-
-        <div class="card wide">
-          <h2>Institutional collaboration network</h2>
-          <p class="card-desc">
-            Co-authorship ties between institutions on Canadian metaresearch outputs.
-            Node size = output volume; edge thickness = shared works.
-            <span class="net-legend"><span class="dot ca"></span>Canadian
-            <span class="dot intl"></span>International</span>
-          </p>
-          <div id="networkChart" class="network-canvas"></div>
-          <p class="muted" id="network-note"></p>
-        </div>
-
-        <div class="card wide">
-          <h2>Thematic map — top topics</h2>
-          <p class="card-desc">Primary OpenAlex topics within the corpus.</p>
-          <canvas id="topicChart"></canvas>
-        </div>
+<div class="layout">
+  <!-- ============================ SIDEBAR ============================ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <span class="leaf">🍁</span>
+      <div>
+        <strong>Metaresearch Dashboard</strong>
+        <span class="brand-sub">Canada · pilot</span>
       </div>
-
-      <section class="methods card">
-        <h2>About this pilot</h2>
-        <p id="methods-note"></p>
-        <p>Corpus filter (OpenAlex): <code id="filter-str"></code></p>
-        <p class="muted">
-          This is a mock-up to demonstrate the dashboard stack. The corpus definition
-          (concepts/keywords, "Canadian" criteria) is intentionally simple and will be
-          refined per <a href="https://github.com/esantos2ua/metaResearchDataChallenge/blob/main/docs/METHODOLOGY.md" target="_blank" rel="noopener">docs/METHODOLOGY.md</a>.
-          Data &amp; documentation: CC BY 4.0 · Code: MIT.
-        </p>
-      </section>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="wrap">
-      Source: OpenAlex · <a href="https://github.com/esantos2ua/metaResearchDataChallenge" target="_blank" rel="noopener">GitHub repository</a>
     </div>
-  </footer>
 
-  <script src="dashboard.js"></script>
-  <script src="network.js"></script>
+    <nav class="nav" id="nav">
+      <a href="#overview" class="active">Overview</a>
+      <a href="#trends">Publication trends</a>
+      <a href="#institutions">Institutions</a>
+      <a href="#network">Collaboration network</a>
+      <a href="#topics">Topics &amp; fields</a>
+      <a href="#about">About &amp; methods</a>
+    </nav>
+
+    <div class="filters" id="filters">
+      <h3>Filters</h3>
+
+      <label class="f-label">Years
+        <div class="f-range">
+          <select id="f-year-min"></select>
+          <span>–</span>
+          <select id="f-year-max"></select>
+        </div>
+      </label>
+
+      <fieldset class="f-group">
+        <legend>Open access status</legend>
+        <div id="f-oa"></div>
+      </fieldset>
+
+      <label class="f-label">Language
+        <select id="f-language"></select>
+      </label>
+
+      <label class="f-label">Output type
+        <select id="f-type"></select>
+      </label>
+
+      <label class="f-check">
+        <input type="checkbox" id="f-oa-only" /> Open access only
+      </label>
+
+      <button class="btn-reset" id="btn-reset">Reset filters</button>
+    </div>
+
+    <div class="sidebar-actions">
+      <div class="match-count" id="match-count">— works</div>
+      <button class="btn-download" id="btn-download">⬇ Download filtered CSV</button>
+    </div>
+
+    <a class="repo-link" href="https://github.com/esantos2ua/metaResearchDataChallenge"
+       target="_blank" rel="noopener">↗ Project on GitHub</a>
+  </aside>
+
+  <!-- ============================ MAIN ============================ -->
+  <div class="main-col">
+    <header class="topbar">
+      <div>
+        <h1>Canadian Metaresearch Dashboard</h1>
+        <p class="subtitle">
+          An open, reproducible view of Canada's metaresearch landscape, built on
+          <a href="https://openalex.org/" target="_blank" rel="noopener">OpenAlex</a> ·
+          inspired by <a href="https://open.coki.ac/" target="_blank" rel="noopener">COKI</a>.
+        </p>
+      </div>
+      <div class="topbar-right">
+        <a class="gh-button" href="https://github.com/esantos2ua/metaResearchDataChallenge"
+           target="_blank" rel="noopener" aria-label="GitHub repository">
+          <svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          GitHub
+        </a>
+        <span class="pilot-badge">PILOT · real OpenAlex data</span>
+      </div>
+    </header>
+
+    <button class="filters-toggle" id="filters-toggle">☰ Menu &amp; filters</button>
+
+    <main class="content" id="content">
+      <p id="loading">Loading data…</p>
+
+      <div id="dash" hidden>
+        <!-- OVERVIEW -->
+        <section id="overview" class="section">
+          <h2 class="section-title">Overview</h2>
+          <div class="kpi-grid" id="kpis"></div>
+          <div class="card-grid">
+            <div class="card">
+              <h3>Open access status</h3>
+              <p class="card-desc">How outputs are made open (gold, green, diamond, hybrid, bronze, closed).</p>
+              <canvas id="oaChart"></canvas>
+            </div>
+            <div class="card">
+              <h3>Open vs. closed</h3>
+              <p class="card-desc">Share of the (filtered) corpus that is openly accessible.</p>
+              <canvas id="isOaChart"></canvas>
+            </div>
+          </div>
+        </section>
+
+        <!-- TRENDS -->
+        <section id="trends" class="section">
+          <h2 class="section-title">Publication trends</h2>
+          <div class="card wide">
+            <h3>Outputs per year</h3>
+            <p class="card-desc">Metaresearch outputs over time (filtered).</p>
+            <canvas id="yearChart"></canvas>
+          </div>
+        </section>
+
+        <!-- INSTITUTIONS -->
+        <section id="institutions" class="section">
+          <h2 class="section-title">Institutions</h2>
+          <div class="card wide">
+            <h3>Top institutions</h3>
+            <p class="card-desc">Canadian institutions producing the most metaresearch (filtered).</p>
+            <canvas id="instChart"></canvas>
+          </div>
+        </section>
+
+        <!-- NETWORK -->
+        <section id="network" class="section">
+          <h2 class="section-title">Collaboration network</h2>
+          <div class="card wide">
+            <h3>Institutional co-authorship network</h3>
+            <p class="card-desc">
+              Co-authorship ties between institutions. Node size = output; edge thickness = shared works.
+              <span class="net-legend"><span class="dot ca"></span>Canadian
+              <span class="dot intl"></span>International</span>
+            </p>
+            <div id="networkChart" class="network-canvas"></div>
+            <p class="muted" id="network-note"></p>
+          </div>
+        </section>
+
+        <!-- TOPICS -->
+        <section id="topics" class="section">
+          <h2 class="section-title">Topics &amp; fields</h2>
+          <div class="card-grid">
+            <div class="card wide">
+              <h3>Top topics</h3>
+              <p class="card-desc">Primary OpenAlex topics within the (filtered) corpus.</p>
+              <canvas id="topicChart"></canvas>
+            </div>
+            <div class="card">
+              <h3>Output types</h3>
+              <canvas id="typeChart"></canvas>
+            </div>
+            <div class="card">
+              <h3>Languages</h3>
+              <canvas id="langChart"></canvas>
+            </div>
+          </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section id="about" class="section">
+          <h2 class="section-title">About &amp; methods</h2>
+          <div class="card">
+            <p id="methods-note"></p>
+            <p>Corpus filter (OpenAlex): <code id="filter-str"></code></p>
+            <p class="muted">
+              Pilot mock-up demonstrating the dashboard stack. The corpus definition
+              (concepts/keywords, "Canadian" criteria) is intentionally simple and will be refined per
+              <a href="https://github.com/esantos2ua/metaResearchDataChallenge/blob/main/docs/METHODOLOGY.md"
+                 target="_blank" rel="noopener">docs/METHODOLOGY.md</a>.
+              All charts, the network, and the CSV export update with the filters on the left.
+              Data &amp; documentation: CC BY 4.0 · Code: MIT.
+            </p>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="dashboard.js"></script>
 </body>
 </html>

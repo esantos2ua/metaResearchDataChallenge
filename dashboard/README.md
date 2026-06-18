@@ -3,32 +3,35 @@
 Interactive, open-access dashboard for exploring the Canadian metaresearch landscape —
 inspired by the [COKI Open Access Dashboard](https://open.coki.ac/).
 
-## Planned views
+**Live:** <https://esantos2ua.github.io/metaResearchDataChallenge/>
 
-- **Overview** — corpus size, time trends, OA share.
-- **Openness & transparency** — OA status, preprints, data/code availability.
-- **Citations & bibliometrics** — citation distributions, impact by field/year.
-- **Topics** — thematic map of the field (topic model).
-- **Networks** — co-authorship and institutional collaboration.
-- **Representation** — institution type, region, language (EN/FR), career-stage proxies.
+## Features (pilot)
 
-## Tech (pilot)
+- **Sidebar navigation** across views: Overview, Publication trends, Institutions,
+  Collaboration network, Topics & fields, About.
+- **Interactive filters** — year range, open-access status, language, output type, and an
+  "open access only" toggle. Every chart, the collaboration network, and the KPIs re-aggregate
+  live as filters change.
+- **Download filtered CSV** — export exactly the subset currently in view (COKI-style).
+- **Views:** OA status & open-vs-closed, publication trend, top Canadian institutions,
+  institutional co-authorship **network** (vis-network), topics, output types, languages.
 
-A **static-first stack** (plain HTML/CSS/JS + [Chart.js](https://www.chartjs.org/) via CDN) that
-reads a pre-computed aggregate JSON from `app/data/`. No build step, no backend — cheap to host
-(e.g. GitHub Pages) and fully reproducible. This pilot validates the approach; we may later migrate
-to Observable Framework / Quarto if the view set grows.
+## Tech
+
+A **static-first stack** (plain HTML/CSS/JS + [Chart.js](https://www.chartjs.org/) and
+[vis-network](https://visjs.github.io/vis-network/) via CDN). The app loads a single
+**record-level dataset** (`app/data/records.json`, one row per work) and does all filtering,
+aggregation, network construction, and CSV export **client-side**. No build step, no backend —
+cheap to host (GitHub Pages) and fully reproducible. No author-level personal data beyond
+public OpenAlex institutional affiliations is shipped.
 
 ## Run the pilot locally
 
 ```bash
-# 1. Build the facet aggregates (OA, trends, institutions, topics, languages)
-OPENALEX_EMAIL=you@example.org python3 scripts/extraction/build_dashboard_data.py
+# 1. Build the record-level dataset (powers all views, filters, and CSV export)
+OPENALEX_EMAIL=you@example.org python3 scripts/extraction/build_records.py
 
-# 2. Build the institutional collaboration network (cursor-pages the corpus)
-OPENALEX_EMAIL=you@example.org python3 scripts/extraction/build_network_data.py
-
-# 3. Serve the app (charts fetch JSON, so a file:// open won't work)
+# 2. Serve the app (it fetches JSON, so a file:// open won't work)
 cd dashboard/app && python3 -m http.server 8000
 # open http://localhost:8000
 ```
@@ -38,7 +41,14 @@ The current pilot corpus is **Canadian-affiliated works tagged with metaresearch
 open science) — ~2,400 works. Refine the definition in
 [`scripts/extraction/query_config.yaml`](../scripts/extraction/query_config.yaml).
 
-## Data contract
+### Alternative aggregate builders
 
-`scripts/analysis/run_analyses.py` writes aggregated, privacy-respecting JSON/CSV that the
-dashboard consumes. No raw author-level data ships to the client.
+`build_dashboard_data.py` (facet aggregates) and `build_network_data.py` (precomputed network)
+demonstrate a server-side aggregation approach using the OpenAlex `group_by` API. They are kept
+as reference; the live dashboard uses the record-level `build_records.py` so it can filter and
+export dynamically.
+
+## Data flow
+
+`build_records.py` → `app/data/records.json` → dashboard (client-side aggregation + CSV export).
+A push to `main` touching `dashboard/app/**` redeploys the live site via GitHub Actions.
