@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Canadian Metaresearch Dashboard — Pilot</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <h1>🍁 Canadian Metaresearch Dashboard</h1>
+      <p class="subtitle">
+        An open, reproducible view of Canada's metaresearch landscape, built on
+        <a href="https://openalex.org/" target="_blank" rel="noopener">OpenAlex</a>.
+        Inspired by the <a href="https://open.coki.ac/" target="_blank" rel="noopener">COKI Open Access Dashboard</a>.
+      </p>
+      <p class="pilot-badge">PILOT MOCK-UP · real OpenAlex data</p>
+    </div>
+  </header>
+
+  <main class="wrap" id="app">
+    <p id="loading">Loading data…</p>
+
+    <section id="content" hidden>
+      <!-- KPI cards -->
+      <div class="kpi-grid" id="kpis"></div>
+
+      <div class="card-grid">
+        <div class="card">
+          <h2>Open access status</h2>
+          <p class="card-desc">How are these outputs made open? (gold, green, diamond, hybrid, bronze, closed)</p>
+          <canvas id="oaChart"></canvas>
+        </div>
+
+        <div class="card">
+          <h2>Open vs. closed</h2>
+          <p class="card-desc">Share of the corpus that is openly accessible.</p>
+          <canvas id="isOaChart"></canvas>
+        </div>
+
+        <div class="card wide">
+          <h2>Publication trend</h2>
+          <p class="card-desc">Metaresearch outputs per year (Canadian-affiliated).</p>
+          <canvas id="yearChart"></canvas>
+        </div>
+
+        <div class="card wide">
+          <h2>Top institutions</h2>
+          <p class="card-desc">Canadian institutions producing the most metaresearch.</p>
+          <canvas id="instChart"></canvas>
+        </div>
+
+        <div class="card">
+          <h2>Output types</h2>
+          <canvas id="typeChart"></canvas>
+        </div>
+
+        <div class="card">
+          <h2>Languages</h2>
+          <p class="card-desc">Coverage of English vs. French and others.</p>
+          <canvas id="langChart"></canvas>
+        </div>
+
+        <div class="card wide">
+          <h2>Thematic map — top topics</h2>
+          <p class="card-desc">Primary OpenAlex topics within the corpus.</p>
+          <canvas id="topicChart"></canvas>
+        </div>
+      </div>
+
+      <section class="methods card">
+        <h2>About this pilot</h2>
+        <p id="methods-note"></p>
+        <p>Corpus filter (OpenAlex): <code id="filter-str"></code></p>
+        <p class="muted">
+          This is a mock-up to demonstrate the dashboard stack. The corpus definition
+          (concepts/keywords, "Canadian" criteria) is intentionally simple and will be
+          refined per <a href="../../docs/METHODOLOGY.md">docs/METHODOLOGY.md</a>.
+          Data &amp; documentation: CC BY 4.0 · Code: MIT.
+        </p>
+      </section>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      Source: OpenAlex · <a href="https://github.com/esantos2ua/metaResearchDataChallenge" target="_blank" rel="noopener">GitHub repository</a>
+    </div>
+  </footer>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>

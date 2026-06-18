@@ -1,0 +1,687 @@
+{
+  "meta": {
+    "source": "OpenAlex",
+    "base_filter": "institutions.country_code:ca,concepts.id:C178315738|C105345328|C525823164|C2994190893|C2777462167|C2778149293",
+    "concepts": {
+      "C178315738": "Bibliometrics",
+      "C105345328": "Citation analysis",
+      "C525823164": "Scientometrics",
+      "C2994190893": "Research integrity",
+      "C2777462167": "Scholarly communication",
+      "C2778149293": "Open science"
+    },
+    "total_works": 2391,
+    "note": "Pilot mock-up corpus. Refine concept/keyword definition for full study."
+  },
+  "oa_status": [
+    {
+      "key": "closed",
+      "name": "closed",
+      "count": 798
+    },
+    {
+      "key": "gold",
+      "name": "gold",
+      "count": 548
+    },
+    {
+      "key": "green",
+      "name": "green",
+      "count": 406
+    },
+    {
+      "key": "diamond",
+      "name": "diamond",
+      "count": 353
+    },
+    {
+      "key": "hybrid",
+      "name": "hybrid",
+      "count": 196
+    },
+    {
+      "key": "bronze",
+      "name": "bronze",
+      "count": 90
+    }
+  ],
+  "year": [
+    {
+      "key": "1950",
+      "name": "1950",
+      "count": 1
+    },
+    {
+      "key": "1951",
+      "name": "1951",
+      "count": 1
+    },
+    {
+      "key": "1954",
+      "name": "1954",
+      "count": 1
+    },
+    {
+      "key": "1969",
+      "name": "1969",
+      "count": 3
+    },
+    {
+      "key": "1970",
+      "name": "1970",
+      "count": 1
+    },
+    {
+      "key": "1971",
+      "name": "1971",
+      "count": 1
+    },
+    {
+      "key": "1972",
+      "name": "1972",
+      "count": 1
+    },
+    {
+      "key": "1977",
+      "name": "1977",
+      "count": 1
+    },
+    {
+      "key": "1978",
+      "name": "1978",
+      "count": 2
+    },
+    {
+      "key": "1979",
+      "name": "1979",
+      "count": 5
+    },
+    {
+      "key": "1981",
+      "name": "1981",
+      "count": 1
+    },
+    {
+      "key": "1982",
+      "name": "1982",
+      "count": 2
+    },
+    {
+      "key": "1983",
+      "name": "1983",
+      "count": 2
+    },
+    {
+      "key": "1984",
+      "name": "1984",
+      "count": 4
+    },
+    {
+      "key": "1985",
+      "name": "1985",
+      "count": 2
+    },
+    {
+      "key": "1986",
+      "name": "1986",
+      "count": 1
+    },
+    {
+      "key": "1987",
+      "name": "1987",
+      "count": 2
+    },
+    {
+      "key": "1988",
+      "name": "1988",
+      "count": 4
+    },
+    {
+      "key": "1989",
+      "name": "1989",
+      "count": 2
+    },
+    {
+      "key": "1990",
+      "name": "1990",
+      "count": 4
+    },
+    {
+      "key": "1991",
+      "name": "1991",
+      "count": 5
+    },
+    {
+      "key": "1992",
+      "name": "1992",
+      "count": 5
+    },
+    {
+      "key": "1993",
+      "name": "1993",
+      "count": 11
+    },
+    {
+      "key": "1994",
+      "name": "1994",
+      "count": 3
+    },
+    {
+      "key": "1995",
+      "name": "1995",
+      "count": 6
+    },
+    {
+      "key": "1996",
+      "name": "1996",
+      "count": 4
+    },
+    {
+      "key": "1997",
+      "name": "1997",
+      "count": 12
+    },
+    {
+      "key": "1998",
+      "name": "1998",
+      "count": 4
+    },
+    {
+      "key": "1999",
+      "name": "1999",
+      "count": 4
+    },
+    {
+      "key": "2000",
+      "name": "2000",
+      "count": 6
+    },
+    {
+      "key": "2001",
+      "name": "2001",
+      "count": 4
+    },
+    {
+      "key": "2002",
+      "name": "2002",
+      "count": 10
+    },
+    {
+      "key": "2003",
+      "name": "2003",
+      "count": 9
+    },
+    {
+      "key": "2004",
+      "name": "2004",
+      "count": 18
+    },
+    {
+      "key": "2005",
+      "name": "2005",
+      "count": 18
+    },
+    {
+      "key": "2006",
+      "name": "2006",
+      "count": 34
+    },
+    {
+      "key": "2007",
+      "name": "2007",
+      "count": 22
+    },
+    {
+      "key": "2008",
+      "name": "2008",
+      "count": 31
+    },
+    {
+      "key": "2009",
+      "name": "2009",
+      "count": 38
+    },
+    {
+      "key": "2010",
+      "name": "2010",
+      "count": 35
+    },
+    {
+      "key": "2011",
+      "name": "2011",
+      "count": 36
+    },
+    {
+      "key": "2012",
+      "name": "2012",
+      "count": 56
+    },
+    {
+      "key": "2013",
+      "name": "2013",
+      "count": 63
+    },
+    {
+      "key": "2014",
+      "name": "2014",
+      "count": 81
+    },
+    {
+      "key": "2015",
+      "name": "2015",
+      "count": 90
+    },
+    {
+      "key": "2016",
+      "name": "2016",
+      "count": 85
+    },
+    {
+      "key": "2017",
+      "name": "2017",
+      "count": 113
+    },
+    {
+      "key": "2018",
+      "name": "2018",
+      "count": 109
+    },
+    {
+      "key": "2019",
+      "name": "2019",
+      "count": 142
+    },
+    {
+      "key": "2020",
+      "name": "2020",
+      "count": 153
+    },
+    {
+      "key": "2021",
+      "name": "2021",
+      "count": 180
+    },
+    {
+      "key": "2022",
+      "name": "2022",
+      "count": 143
+    },
+    {
+      "key": "2023",
+      "name": "2023",
+      "count": 181
+    },
+    {
+      "key": "2024",
+      "name": "2024",
+      "count": 116
+    },
+    {
+      "key": "2025",
+      "name": "2025",
+      "count": 270
+    },
+    {
+      "key": "2026",
+      "name": "2026",
+      "count": 253
+    }
+  ],
+  "type": [
+    {
+      "key": "https://openalex.org/types/article",
+      "name": "article",
+      "count": 1788
+    },
+    {
+      "key": "https://openalex.org/types/preprint",
+      "name": "preprint",
+      "count": 198
+    },
+    {
+      "key": "https://openalex.org/types/review",
+      "name": "review",
+      "count": 165
+    },
+    {
+      "key": "https://openalex.org/types/book-chapter",
+      "name": "book-chapter",
+      "count": 69
+    },
+    {
+      "key": "https://openalex.org/types/editorial",
+      "name": "editorial",
+      "count": 40
+    },
+    {
+      "key": "https://openalex.org/types/report",
+      "name": "report",
+      "count": 31
+    },
+    {
+      "key": "https://openalex.org/types/other",
+      "name": "other",
+      "count": 26
+    },
+    {
+      "key": "https://openalex.org/types/dataset",
+      "name": "dataset",
+      "count": 24
+    },
+    {
+      "key": "https://openalex.org/types/letter",
+      "name": "letter",
+      "count": 22
+    },
+    {
+      "key": "https://openalex.org/types/book",
+      "name": "book",
+      "count": 9
+    },
+    {
+      "key": "https://openalex.org/types/erratum",
+      "name": "erratum",
+      "count": 8
+    },
+    {
+      "key": "https://openalex.org/types/peer-review",
+      "name": "peer-review",
+      "count": 5
+    },
+    {
+      "key": "https://openalex.org/types/dissertation",
+      "name": "dissertation",
+      "count": 3
+    },
+    {
+      "key": "https://openalex.org/types/paratext",
+      "name": "paratext",
+      "count": 3
+    }
+  ],
+  "institutions": [
+    {
+      "key": "https://openalex.org/I185261750",
+      "name": "University of Toronto",
+      "count": 284
+    },
+    {
+      "key": "https://openalex.org/I141945490",
+      "name": "University of British Columbia",
+      "count": 195
+    },
+    {
+      "key": "https://openalex.org/I5023651",
+      "name": "McGill University",
+      "count": 192
+    },
+    {
+      "key": "https://openalex.org/I70931966",
+      "name": "Université de Montréal",
+      "count": 183
+    },
+    {
+      "key": "https://openalex.org/I153718931",
+      "name": "University of Ottawa",
+      "count": 154
+    },
+    {
+      "key": "https://openalex.org/I154425047",
+      "name": "University of Alberta",
+      "count": 152
+    },
+    {
+      "key": "https://openalex.org/I125749732",
+      "name": "Western University",
+      "count": 131
+    },
+    {
+      "key": "https://openalex.org/I168635309",
+      "name": "University of Calgary",
+      "count": 125
+    },
+    {
+      "key": "https://openalex.org/I159129438",
+      "name": "Université du Québec à Montréal",
+      "count": 115
+    },
+    {
+      "key": "https://openalex.org/I98251732",
+      "name": "McMaster University",
+      "count": 106
+    },
+    {
+      "key": "https://openalex.org/I18014758",
+      "name": "Simon Fraser University",
+      "count": 84
+    },
+    {
+      "key": "https://openalex.org/I192455969",
+      "name": "York University",
+      "count": 80
+    },
+    {
+      "key": "https://openalex.org/I2800722420",
+      "name": "Ottawa Hospital",
+      "count": 77
+    },
+    {
+      "key": "https://openalex.org/I4388482656",
+      "name": "Ottawa Hospital Research Institute",
+      "count": 65
+    },
+    {
+      "key": "https://openalex.org/I129902397",
+      "name": "Dalhousie University",
+      "count": 61
+    }
+  ],
+  "concepts": [
+    {
+      "key": "https://openalex.org/C41008148",
+      "name": "Computer science",
+      "count": 1979
+    },
+    {
+      "key": "https://openalex.org/C17744445",
+      "name": "Political science",
+      "count": 1469
+    },
+    {
+      "key": "https://openalex.org/C161191863",
+      "name": "Library science",
+      "count": 1239
+    },
+    {
+      "key": "https://openalex.org/C199539241",
+      "name": "Law",
+      "count": 1146
+    },
+    {
+      "key": "https://openalex.org/C178315738",
+      "name": "Bibliometrics",
+      "count": 944
+    },
+    {
+      "key": "https://openalex.org/C144024400",
+      "name": "Sociology",
+      "count": 892
+    },
+    {
+      "key": "https://openalex.org/C2522767166",
+      "name": "Data science",
+      "count": 824
+    },
+    {
+      "key": "https://openalex.org/C136764020",
+      "name": "World Wide Web",
+      "count": 744
+    },
+    {
+      "key": "https://openalex.org/C71924100",
+      "name": "Medicine",
+      "count": 722
+    },
+    {
+      "key": "https://openalex.org/C2778805511",
+      "name": "Citation",
+      "count": 649
+    },
+    {
+      "key": "https://openalex.org/C39549134",
+      "name": "Public relations",
+      "count": 598
+    },
+    {
+      "key": "https://openalex.org/C15744967",
+      "name": "Psychology",
+      "count": 591
+    },
+    {
+      "key": "https://openalex.org/C151719136",
+      "name": "Publishing",
+      "count": 588
+    },
+    {
+      "key": "https://openalex.org/C2778149293",
+      "name": "Open science",
+      "count": 577
+    },
+    {
+      "key": "https://openalex.org/C127413603",
+      "name": "Engineering",
+      "count": 539
+    }
+  ],
+  "languages": [
+    {
+      "key": "https://openalex.org/languages/en",
+      "name": "English",
+      "count": 2248
+    },
+    {
+      "key": "https://openalex.org/languages/fr",
+      "name": "French",
+      "count": 4
+    },
+    {
+      "key": "https://openalex.org/languages/pt",
+      "name": "Portuguese",
+      "count": 2
+    },
+    {
+      "key": "https://openalex.org/languages/de",
+      "name": "German",
+      "count": 1
+    },
+    {
+      "key": "https://openalex.org/languages/es",
+      "name": "Spanish",
+      "count": 1
+    },
+    {
+      "key": "https://openalex.org/languages/id",
+      "name": "Indonesian",
+      "count": 1
+    },
+    {
+      "key": "https://openalex.org/languages/ng",
+      "name": "Ndonga",
+      "count": 1
+    },
+    {
+      "key": "https://openalex.org/languages/ru",
+      "name": "Russian",
+      "count": 1
+    }
+  ],
+  "is_oa": [
+    {
+      "key": "1",
+      "name": "true",
+      "count": 1593
+    },
+    {
+      "key": "0",
+      "name": "false",
+      "count": 798
+    }
+  ],
+  "topics": [
+    {
+      "key": "https://openalex.org/T10102",
+      "name": "scientometrics and bibliometrics research",
+      "count": 386
+    },
+    {
+      "key": "https://openalex.org/T11937",
+      "name": "Research Data Management Practices",
+      "count": 136
+    },
+    {
+      "key": "https://openalex.org/T11492",
+      "name": "Academic integrity and plagiarism",
+      "count": 115
+    },
+    {
+      "key": "https://openalex.org/T10206",
+      "name": "Meta-analysis and systematic reviews",
+      "count": 72
+    },
+    {
+      "key": "https://openalex.org/T13607",
+      "name": "Academic Publishing and Open Access",
+      "count": 68
+    },
+    {
+      "key": "https://openalex.org/T11986",
+      "name": "Scientific Computing and Data Management",
+      "count": 55
+    },
+    {
+      "key": "https://openalex.org/T11636",
+      "name": "Artificial Intelligence in Healthcare and Education",
+      "count": 36
+    },
+    {
+      "key": "https://openalex.org/T10582",
+      "name": "Ethics in Clinical Research",
+      "count": 33
+    },
+    {
+      "key": "https://openalex.org/T12478",
+      "name": "Wikis in Education and Collaboration",
+      "count": 29
+    },
+    {
+      "key": "https://openalex.org/T13516",
+      "name": "Publishing and Scholarly Communication",
+      "count": 26
+    },
+    {
+      "key": "https://openalex.org/T12168",
+      "name": "Health and Medical Research Impacts",
+      "count": 25
+    },
+    {
+      "key": "https://openalex.org/T12027",
+      "name": "Social Media in Health Education",
+      "count": 24
+    },
+    {
+      "key": "https://openalex.org/T10241",
+      "name": "Functional Brain Connectivity Studies",
+      "count": 22
+    },
+    {
+      "key": "https://openalex.org/T13976",
+      "name": "Web visibility and informetrics",
+      "count": 22
+    },
+    {
+      "key": "https://openalex.org/T11813",
+      "name": "Library Collection Development and Digital Resources",
+      "count": 20
+    }
+  ]
+}

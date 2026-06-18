@@ -1,0 +1,75 @@
+:root {
+  --bg: #f6f8fa;
+  --surface: #ffffff;
+  --ink: #1b2733;
+  --muted: #5c6b7a;
+  --accent: #c8102e;     /* Canadian red */
+  --accent-soft: #e8f0fe;
+  --border: #e3e8ee;
+  --radius: 12px;
+  --shadow: 0 1px 3px rgba(16, 24, 40, 0.08), 0 1px 2px rgba(16, 24, 40, 0.04);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+.wrap { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+.site-header {
+  background: linear-gradient(135deg, #ffffff 0%, #fff5f6 100%);
+  border-bottom: 3px solid var(--accent);
+  padding: 32px 0 24px;
+}
+.site-header h1 { margin: 0 0 6px; font-size: 1.9rem; }
+.subtitle { margin: 0; color: var(--muted); max-width: 720px; }
+.subtitle a, a { color: var(--accent); }
+.pilot-badge {
+  display: inline-block; margin-top: 12px; font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.06em; color: var(--accent); background: var(--accent-soft);
+  padding: 4px 10px; border-radius: 999px;
+}
+
+main { padding: 28px 0 48px; }
+
+.kpi-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px; margin-bottom: 24px;
+}
+.kpi {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 18px 20px; box-shadow: var(--shadow);
+}
+.kpi .value { font-size: 2rem; font-weight: 700; color: var(--accent); }
+.kpi .label { color: var(--muted); font-size: 0.85rem; margin-top: 2px; }
+
+.card-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px;
+}
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 20px; box-shadow: var(--shadow); min-width: 0;
+}
+.card.wide { grid-column: 1 / -1; }
+.card h2 { margin: 0 0 4px; font-size: 1.05rem; }
+.card-desc { margin: 0 0 14px; color: var(--muted); font-size: 0.85rem; }
+.card canvas { max-height: 320px; }
+
+.methods { margin-top: 24px; }
+.methods code { background: var(--bg); padding: 2px 6px; border-radius: 6px; font-size: 0.8rem; word-break: break-all; }
+.muted { color: var(--muted); font-size: 0.85rem; }
+
+.site-footer {
+  border-top: 1px solid var(--border); padding: 20px 0; color: var(--muted); font-size: 0.85rem;
+}
+
+@media (max-width: 720px) {
+  .card-grid { grid-template-columns: 1fr; }
+  .card.wide { grid-column: auto; }
+}
