@@ -26,6 +26,7 @@
       <a href="#institutions" data-i18n="nav.institutions">Institutions</a>
       <a href="#network" data-i18n="nav.network">Collaboration network</a>
       <a href="#topics" data-i18n="nav.topics">Topics &amp; fields</a>
+      <a href="#validation" data-i18n="nav.validation">Search &amp; validation</a>
       <a href="#about" data-i18n="nav.about">About &amp; methods</a>
     </nav>
 
@@ -170,6 +171,37 @@
               <h3 data-i18n="card.lang.title">Languages</h3>
               <canvas id="langChart"></canvas>
             </div>
+          </div>
+        </section>
+
+        <!-- SEARCH STRING & VALIDATION -->
+        <section id="validation" class="section">
+          <h2 class="section-title" data-i18n="sec.validation">Search string &amp; validation</h2>
+          <div class="card">
+            <p class="card-desc" data-i18n="val.intro">Inspect and independently verify the exact OpenAlex query used to build this corpus. Nothing is hidden: copy the query, run it on OpenAlex, compare the live count, and spot-check a random sample for relevance.</p>
+
+            <h3 data-i18n="val.query">OpenAlex query</h3>
+            <div class="query-box">
+              <code id="val-filter"></code>
+              <button class="btn-copy" id="btn-copy" data-i18n="val.copy">Copy</button>
+            </div>
+            <div class="val-links">
+              <a id="val-api" href="#" target="_blank" rel="noopener" data-i18n="val.openApi">↗ Open in OpenAlex API</a>
+              <a id="val-web" href="#" target="_blank" rel="noopener" data-i18n="val.openWeb">↗ Open in OpenAlex</a>
+            </div>
+
+            <h3 data-i18n="val.components">Query components</h3>
+            <ul id="val-concepts" class="concept-list"></ul>
+
+            <h3 data-i18n="val.verify">Live verification</h3>
+            <p class="card-desc" data-i18n="val.verifyDesc">Re-run the query against OpenAlex right now and compare the live result count with the snapshot shipped in this dashboard. Small differences are expected as OpenAlex is continuously updated.</p>
+            <button class="btn-action" id="btn-verify" data-i18n="val.verifyBtn">Verify against OpenAlex now</button>
+            <div id="verify-result" class="val-result"></div>
+
+            <h3 data-i18n="val.sample">Relevance spot-check</h3>
+            <p class="card-desc" data-i18n="val.sampleDesc">Fetch a fresh random sample of works returned by this exact query, straight from OpenAlex, and judge for yourself whether they are genuinely Canadian metaresearch.</p>
+            <button class="btn-action" id="btn-sample" data-i18n="val.sampleBtn">Fetch random sample from OpenAlex</button>
+            <div id="sample-result" class="val-result"></div>
           </div>
         </section>
 

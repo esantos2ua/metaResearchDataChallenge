@@ -15,6 +15,8 @@ const SERIES = ["#c8102e", "#4aa3df", "#2e9e5b", "#f5b301", "#9b59b6", "#cd7f32"
   "#5d6d7e", "#16a085"];
 const TOP_N_NODES = 60;
 const MIN_EDGE_WEIGHT = 2;
+const OPENALEX = "https://api.openalex.org/works";
+const POLITE = "esantos2@ualberta.ca";   // OpenAlex polite-pool contact (already public in repo)
 
 Chart.defaults.font.family = getComputedStyle(document.body).fontFamily;
 Chart.defaults.color = "#5c6b7a";
@@ -61,7 +63,7 @@ function setLang(lang) {
     b.classList.toggle("active", b.dataset.lang === lang));
   applyStatic();
   relabelFilters();
-  if (ALL.length) apply();
+  if (ALL.length) { refreshValidation(); apply(); }
 }
 
 // ----------------------------------------------------------------------------
@@ -108,7 +110,8 @@ const filters = {
 
   buildFilterControls();
   wireUI();
-  setLang(LANG);   // applies static text, relabels filters, and runs apply()
+  initValidation();
+  setLang(LANG);   // applies static text, relabels filters, refreshes validation, runs apply()
 })();
 
 // ----------------------------------------------------------------------------
@@ -374,6 +377,94 @@ function downloadCSV() {
 }
 
 // ----------------------------------------------------------------------------
+// Search-string validation tool
+// ----------------------------------------------------------------------------
+function initValidation() {
+  const filter = META.base_filter || "";
+  const enc = encodeURIComponent(filter);
+  document.getElementById("val-filter").textContent = filter;
+  document.getElementById("val-api").href = `${OPENALEX}?filter=${enc}&mailto=${POLITE}`;
+  document.getElementById("val-web").href = `https://openalex.org/works?filter=${enc}`;
+  document.getElementById("btn-copy").onclick = copyFilter;
+  document.getElementById("btn-verify").onclick = verifyLive;
+  document.getElementById("btn-sample").onclick = fetchSample;
+}
+
+// Rebuild language-dependent bits and clear any prior live results.
+function refreshValidation() {
+  renderConcepts();
+  document.getElementById("verify-result").innerHTML = "";
+  document.getElementById("sample-result").innerHTML = "";
+  document.getElementById("btn-sample").textContent = t("val.sampleBtn");
+}
+
+function renderConcepts() {
+  const ul = document.getElementById("val-concepts");
+  const concepts = META.concepts || {};
+  let html = `<li class="concept-line"><code>institutions.country_code:ca</code> — ${t("val.country")}</li>`;
+  html += `<li class="concept-head">${t("val.concepts")}:</li>`;
+  Object.entries(concepts).forEach(([id, name]) => {
+    html += `<li><code>${id}</code> <a href="https://openalex.org/${id}" target="_blank" rel="noopener">${escapeHtml(name)}</a></li>`;
+  });
+  ul.innerHTML = html;
+}
+
+function copyFilter() {
+  navigator.clipboard.writeText(META.base_filter || "").then(() => {
+    const b = document.getElementById("btn-copy");
+    b.textContent = t("val.copied");
+    setTimeout(() => (b.textContent = t("val.copy")), 1500);
+  });
+}
+
+async function verifyLive() {
+  const box = document.getElementById("verify-result");
+  box.innerHTML = `<span class="muted">${t("val.checking")}</span>`;
+  try {
+    const enc = encodeURIComponent(META.base_filter);
+    const res = await fetch(`${OPENALEX}?filter=${enc}&per-page=1&mailto=${POLITE}`);
+    if (!res.ok) throw new Error(res.status);
+    const live = (await res.json()).meta.count;
+    const snap = META.total_works;
+    const d = Math.abs(live - snap);
+    const pct = snap ? (d / snap) * 100 : 0;
+    const verdict = d === 0
+      ? `<p class="ok">✓ ${t("val.match")}</p>`
+      : `<p class="warn">${t("val.close").replace("{d}", fmt(d)).replace("{p}", pct.toFixed(1))}</p>`;
+    box.innerHTML = `<div class="verify-grid">
+        <div><span class="vlabel">${t("val.snapshot")}</span><b>${fmt(snap)}</b></div>
+        <div><span class="vlabel">${t("val.live")}</span><b>${fmt(live)}</b></div>
+      </div>${verdict}`;
+  } catch (e) {
+    box.innerHTML = `<p class="warn">${t("val.error")}</p>`;
+  }
+}
+
+async function fetchSample() {
+  const box = document.getElementById("sample-result");
+  box.innerHTML = `<span class="muted">${t("val.checking")}</span>`;
+  try {
+    const enc = encodeURIComponent(META.base_filter);
+    const seed = Math.floor(Math.random() * 100000);
+    const url = `${OPENALEX}?filter=${enc}&sample=8&seed=${seed}&per-page=8` +
+      `&select=id,display_name,publication_year,type&mailto=${POLITE}`;
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(res.status);
+    const rows = (await res.json()).results || [];
+    let html = `<p class="muted">${t("val.sampleNote").replace("{n}", rows.length)}</p><ol class="sample-list">`;
+    rows.forEach((w) => {
+      html += `<li><a href="${w.id}" target="_blank" rel="noopener">${escapeHtml(w.display_name || "—")}</a>` +
+        ` <span class="muted">· ${w.publication_year || "?"} · ${escapeHtml(typeLabel(w.type || "unknown"))}</span></li>`;
+    });
+    html += `</ol>`;
+    box.innerHTML = html;
+    document.getElementById("btn-sample").textContent = t("val.sampleAgain");
+  } catch (e) {
+    box.innerHTML = `<p class="warn">${t("val.error")}</p>`;
+  }
+}
+
+// ----------------------------------------------------------------------------
 // Chart helpers
 // ----------------------------------------------------------------------------
 function doughnut(id, labels, values, colors) {
@@ -416,4 +507,8 @@ const shortName = (s) => (s && s.length > 40 ? s.slice(0, 38) + "…" : s);
 function csvCell(v) {
   const s = String(v ?? "");
   return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
+}
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, (c) =>
+    ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 }
