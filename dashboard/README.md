@@ -22,10 +22,13 @@ to Observable Framework / Quarto if the view set grows.
 ## Run the pilot locally
 
 ```bash
-# 1. Build the data (real OpenAlex aggregates)
+# 1. Build the facet aggregates (OA, trends, institutions, topics, languages)
 OPENALEX_EMAIL=you@example.org python3 scripts/extraction/build_dashboard_data.py
 
-# 2. Serve the app (charts fetch JSON, so a file:// open won't work)
+# 2. Build the institutional collaboration network (cursor-pages the corpus)
+OPENALEX_EMAIL=you@example.org python3 scripts/extraction/build_network_data.py
+
+# 3. Serve the app (charts fetch JSON, so a file:// open won't work)
 cd dashboard/app && python3 -m http.server 8000
 # open http://localhost:8000
 ```
