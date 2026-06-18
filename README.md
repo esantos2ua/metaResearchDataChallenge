@@ -6,6 +6,9 @@ This repository contains our submission to the **Canadian Metaresearch Data Chal
 [2nd Canadian Open Science Conference](https://carn-recar.ca/2nd-canadian-open-science-conference-call-for-proposal-canadian-metaresearch-data-challenge/)
 (University of Ottawa, October 27–29, 2026).
 
+> 🚀 **Live pilot dashboard:** <https://esantos2ua.github.io/metaResearchDataChallenge/>
+> (proof-of-concept mock-up built on real OpenAlex data)
+
 ## Project goal
 
 Build a reproducible, open-access dashboard — inspired by the
