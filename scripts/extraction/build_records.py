@@ -25,20 +25,18 @@ OUT_DIR = ROOT / "dashboard" / "app" / "data"
 BASE = "https://api.openalex.org/works"
 EMAIL = os.environ.get("OPENALEX_EMAIL", "").strip()  # optional OpenAlex polite-pool contact
 
-# Pilot corpus definition (shared with the other extraction scripts).
-METARESEARCH_CONCEPTS = {
-    "C178315738": "Bibliometrics",
-    "C105345328": "Citation analysis",
-    "C525823164": "Scientometrics",
-    "C2994190893": "Research integrity",
-    "C2777462167": "Scholarly communication",
-    "C2778149293": "Open science",
-    "C138368954": "Peer review",
-    "C2778407487": "Altmetrics",
-    "C2777861003": "Research Assessment Exercise",
+# Pilot corpus definition. Built on OpenAlex's current Topics taxonomy (the legacy
+# Concepts taxonomy is deprecated). A work joins the corpus if any of its topics is
+# one of these metaresearch topics.
+METARESEARCH_TOPICS = {
+    "T10102": "Scientometrics and bibliometrics research",
+    "T13607": "Academic Publishing and Open Access",
+    "T13516": "Publishing and Scholarly Communication",
+    "T11492": "Academic integrity and plagiarism",
+    "T13976": "Web visibility and informetrics",
 }
-BASE_FILTER = "institutions.country_code:ca,concepts.id:" + "|".join(METARESEARCH_CONCEPTS)
-SELECT = "id,title,publication_year,type,language,cited_by_count,open_access,authorships,primary_topic,concepts"
+BASE_FILTER = "institutions.country_code:ca,topics.id:" + "|".join(METARESEARCH_TOPICS)
+SELECT = "id,title,publication_year,type,language,cited_by_count,open_access,authorships,primary_topic,topics"
 
 
 def api(params: dict) -> dict:
@@ -100,9 +98,9 @@ def main() -> None:
                 "topic": (topic.get("display_name") or "Unclassified"),
                 "field": ((topic.get("field") or {}).get("display_name") or "Unclassified"),
                 "institutions": institutions_of(w),
-                # which of the corpus-defining concepts this work carries (for client-side filtering)
-                "concepts": [cid for c in (w.get("concepts") or [])
-                             if (cid := short_id(c.get("id"))) in METARESEARCH_CONCEPTS],
+                # which of the corpus-defining metaresearch topics this work carries (for filtering)
+                "topics": [tid for tp in (w.get("topics") or [])
+                           if (tid := short_id(tp.get("id"))) in METARESEARCH_TOPICS],
             })
         cursor = data["meta"].get("next_cursor")
         print(f"  fetched {len(records)} records", file=sys.stderr)
@@ -113,9 +111,9 @@ def main() -> None:
         "meta": {
             "source": "OpenAlex",
             "base_filter": BASE_FILTER,
-            "concepts": METARESEARCH_CONCEPTS,
+            "topics": METARESEARCH_TOPICS,
             "total_works": len(records),
-            "note": "Pilot mock-up corpus. Refine concept/keyword definition for the full study.",
+            "note": "Pilot corpus defined on OpenAlex Topics. Refine the topic/keyword definition for the full study.",
         },
         "records": records,
     }

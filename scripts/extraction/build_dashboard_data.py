@@ -25,18 +25,17 @@ BASE = "https://api.openalex.org/works"
 EMAIL = os.environ.get("OPENALEX_EMAIL", "").strip()  # optional OpenAlex polite-pool contact
 
 # --- Corpus definition (pilot) -------------------------------------------------
-# Metaresearch-related OpenAlex concepts. These are the pilot set; refine in
-# query_config.yaml for the full study.
-METARESEARCH_CONCEPTS = {
-    "C178315738": "Bibliometrics",
-    "C105345328": "Citation analysis",
-    "C525823164": "Scientometrics",
-    "C2994190893": "Research integrity",
-    "C2777462167": "Scholarly communication",
-    "C2778149293": "Open science",
+# Metaresearch-related OpenAlex topics (current Topics taxonomy; Concepts is
+# deprecated). Pilot set; refine in query_config.yaml for the full study.
+METARESEARCH_TOPICS = {
+    "T10102": "Scientometrics and bibliometrics research",
+    "T13607": "Academic Publishing and Open Access",
+    "T13516": "Publishing and Scholarly Communication",
+    "T11492": "Academic integrity and plagiarism",
+    "T13976": "Web visibility and informetrics",
 }
-CONCEPT_FILTER = "concepts.id:" + "|".join(METARESEARCH_CONCEPTS)
-BASE_FILTER = f"institutions.country_code:ca,{CONCEPT_FILTER}"
+TOPIC_FILTER = "topics.id:" + "|".join(METARESEARCH_TOPICS)
+BASE_FILTER = f"institutions.country_code:ca,{TOPIC_FILTER}"
 
 
 def api(params: dict) -> dict:
@@ -78,15 +77,15 @@ def main() -> None:
         "meta": {
             "source": "OpenAlex",
             "base_filter": BASE_FILTER,
-            "concepts": METARESEARCH_CONCEPTS,
+            "topics": METARESEARCH_TOPICS,
             "total_works": total,
-            "note": "Pilot mock-up corpus. Refine concept/keyword definition for full study.",
+            "note": "Pilot corpus defined on OpenAlex Topics. Refine the topic/keyword definition for the full study.",
         },
         "oa_status": group_by("open_access.oa_status"),
         "year": sorted(group_by("publication_year"), key=lambda g: g["key"]),
         "type": group_by("type"),
         "institutions": group_by("institutions.id")[:15],
-        "concepts": group_by("concepts.id")[:15],
+        "topics": group_by("topics.id")[:15],
         "languages": group_by("language"),
         "is_oa": group_by("open_access.is_oa"),
         "topics": group_by("primary_topic.id")[:15],

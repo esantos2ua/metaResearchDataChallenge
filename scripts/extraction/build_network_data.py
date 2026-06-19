@@ -29,12 +29,11 @@ OUT_DIR = ROOT / "dashboard" / "app" / "data"
 BASE = "https://api.openalex.org/works"
 EMAIL = os.environ.get("OPENALEX_EMAIL", "").strip()  # optional OpenAlex polite-pool contact
 
-# Same pilot corpus definition as build_dashboard_data.py.
-METARESEARCH_CONCEPTS = [
-    "C178315738", "C105345328", "C525823164",
-    "C2994190893", "C2777462167", "C2778149293",
+# Same pilot corpus definition as build_dashboard_data.py (OpenAlex Topics taxonomy).
+METARESEARCH_TOPICS = [
+    "T10102", "T13607", "T13516", "T11492", "T13976",
 ]
-BASE_FILTER = "institutions.country_code:ca,concepts.id:" + "|".join(METARESEARCH_CONCEPTS)
+BASE_FILTER = "institutions.country_code:ca,topics.id:" + "|".join(METARESEARCH_TOPICS)
 
 # Keep the graph readable: top-N institutions by corpus output, and prune weak ties.
 TOP_N_NODES = 60

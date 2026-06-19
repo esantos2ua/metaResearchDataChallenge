@@ -121,10 +121,10 @@ const filters = {
   field: "all",
   topic: "all",
   institution: "all",   // OpenAlex institution id of a Canadian institution, or "all"
-  concepts: new Set(),  // selected metaresearch concept ids (filled once data loads)
+  mrTopics: new Set(),  // selected metaresearch topic ids (filled once data loads)
   oaOnly: false,
 };
-let ALL_CONCEPTS = [];   // all corpus-defining concept ids (for reset)
+let ALL_MR_TOPICS = [];   // all corpus-defining metaresearch topic ids (for reset)
 
 // ----------------------------------------------------------------------------
 // Boot
@@ -227,20 +227,20 @@ function buildFilterControls() {
   [...instWorks.entries()].sort((a, b) => b[1] - a[1]).forEach(([id, n]) =>
     instSel.appendChild(new Option(`${shortName(instName.get(id))} (${n})`, id)));
 
-  // Metaresearch concepts (checkbox group) — a work may carry several.
-  const conceptBox = document.getElementById("f-concepts");
-  const conceptNames = META.concepts || {};
-  const conceptCounts = new Map();
-  ALL.forEach((r) => (r.concepts || []).forEach((c) => conceptCounts.set(c, (conceptCounts.get(c) || 0) + 1)));
-  ALL_CONCEPTS = Object.keys(conceptNames);
-  filters.concepts = new Set(ALL_CONCEPTS);
-  ALL_CONCEPTS
-    .sort((a, b) => (conceptCounts.get(b) || 0) - (conceptCounts.get(a) || 0))
+  // Metaresearch topics (checkbox group) — a work may carry several.
+  const mrTopicBox = document.getElementById("f-concepts");
+  const mrTopicNames = META.topics || {};
+  const mrTopicCounts = new Map();
+  ALL.forEach((r) => (r.topics || []).forEach((tp) => mrTopicCounts.set(tp, (mrTopicCounts.get(tp) || 0) + 1)));
+  ALL_MR_TOPICS = Object.keys(mrTopicNames);
+  filters.mrTopics = new Set(ALL_MR_TOPICS);
+  ALL_MR_TOPICS
+    .sort((a, b) => (mrTopicCounts.get(b) || 0) - (mrTopicCounts.get(a) || 0))
     .forEach((id) => {
       const wrap = document.createElement("label");
       wrap.innerHTML = `<input type="checkbox" value="${id}" checked> ` +
-        `<span>${escapeHtml(conceptNames[id])} (${conceptCounts.get(id) || 0})</span>`;
-      conceptBox.appendChild(wrap);
+        `<span>${escapeHtml(mrTopicNames[id])} (${mrTopicCounts.get(id) || 0})</span>`;
+      mrTopicBox.appendChild(wrap);
     });
 }
 
@@ -254,7 +254,7 @@ function wireUI() {
   document.getElementById("f-institution").onchange = (e) => { filters.institution = e.target.value; apply(); };
   document.getElementById("f-concepts").addEventListener("change", (e) => {
     if (e.target.matches("input[type=checkbox]")) {
-      e.target.checked ? filters.concepts.add(e.target.value) : filters.concepts.delete(e.target.value);
+      e.target.checked ? filters.mrTopics.add(e.target.value) : filters.mrTopics.delete(e.target.value);
       apply();
     }
   });
@@ -325,7 +325,7 @@ function resetFilters() {
   filters.oaStatus = new Set(OA_ORDER);
   filters.language = "all"; filters.type = "all";
   filters.field = "all"; filters.topic = "all"; filters.institution = "all";
-  filters.concepts = new Set(ALL_CONCEPTS);
+  filters.mrTopics = new Set(ALL_MR_TOPICS);
   filters.oaOnly = false;
   document.getElementById("f-year-min").value = filters.yearMin;
   document.getElementById("f-year-max").value = filters.yearMax;
@@ -356,8 +356,8 @@ function currentFiltered() {
     if (filters.topic !== "all" && r.topic !== filters.topic) return false;
     if (filters.institution !== "all" &&
         !r.institutions.some((i) => i.id === filters.institution)) return false;
-    if (filters.concepts.size < ALL_CONCEPTS.length &&
-        !(r.concepts || []).some((c) => filters.concepts.has(c))) return false;
+    if (filters.mrTopics.size < ALL_MR_TOPICS.length &&
+        !(r.topics || []).some((tp) => filters.mrTopics.has(tp))) return false;
     return true;
   });
 }
@@ -706,10 +706,10 @@ function refreshValidation() {
 
 function renderConcepts() {
   const ul = document.getElementById("val-concepts");
-  const concepts = META.concepts || {};
+  const topics = META.topics || {};
   let html = `<li class="concept-line"><code>institutions.country_code:ca</code> — ${t("val.country")}</li>`;
   html += `<li class="concept-head">${t("val.concepts")}:</li>`;
-  Object.entries(concepts).forEach(([id, name]) => {
+  Object.entries(topics).forEach(([id, name]) => {
     html += `<li><code>${id}</code> <a href="https://openalex.org/${id}" target="_blank" rel="noopener">${escapeHtml(name)}</a></li>`;
   });
   ul.innerHTML = html;
