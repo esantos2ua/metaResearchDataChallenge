@@ -1,0 +1,8 @@
+# Analysis / topic-modeling stack for the PLANNED full-study analyses
+# (scripts/analysis/run_analyses.py). These packages are not imported by any
+# code yet — the analysis scripts are scaffolds. Install only when implementing
+# those analyses.
+scikit-learn    # preprocessing / clustering
+networkx        # network metrics (note: the dashboard builds its network client-side)
+bertopic        # topic modeling (optional; alternatives: gensim / scikit-learn LDA)
+jupyterlab      # exploratory notebooks

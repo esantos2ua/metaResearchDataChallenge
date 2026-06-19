@@ -1,12 +1,10 @@
+# Core extraction & processing pipeline (scripts/extraction, scripts/processing).
 # Pin exact versions before running the pipeline (e.g. `pip freeze > requirements.txt`).
 pyyaml
 requests
 pandas
 pyarrow
 python-dotenv
-# Analysis
-scikit-learn
-networkx
-bertopic        # topic modeling (optional; or gensim/sklearn LDA)
-# Notebooks
-jupyterlab
+
+# Optional analysis / notebook stack (planned for the full study, NOT yet used by
+# any code in this repo): see requirements-analysis.txt.
