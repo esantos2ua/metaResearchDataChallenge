@@ -772,9 +772,32 @@ function initValidation() {
 // Rebuild language-dependent bits and clear any prior live results.
 function refreshValidation() {
   renderConcepts();
+  renderSensitivity();
   document.getElementById("verify-result").innerHTML = "";
   document.getElementById("sample-result").innerHTML = "";
   document.getElementById("btn-sample").textContent = t("val.sampleBtn");
+}
+
+// Sensitivity of corpus size to the definition of "Canadian" (precomputed at build time).
+function renderSensitivity() {
+  const s = META.sensitivity;
+  if (!s || !s.definitions) return;
+  const defs = s.definitions;
+  const primary = (defs.find((d) => d.primary) || defs[0]).count || 1;
+  upsert("sensChart", {
+    type: "bar",
+    data: {
+      labels: defs.map((d) => t("sens." + d.key)),
+      datasets: [{ data: defs.map((d) => d.count), backgroundColor: defs.map((d) => (d.primary ? "#c8102e" : "#4aa3df")) }],
+    },
+    options: { indexAxis: "y", plugins: { legend: { display: false } } },
+  });
+  const rows = defs.map((d) =>
+    `<tr><td>${t("sens." + d.key)}</td><td>${fmt(d.count)}</td><td>${Math.round((100 * d.count) / primary)}%</td></tr>`).join("");
+  document.getElementById("sens-table").innerHTML =
+    `<thead><tr><th>${t("val.sensColDef")}</th><th>${t("val.sensColN")}</th><th>${t("val.sensColPct")}</th></tr></thead><tbody>${rows}</tbody>`;
+  document.getElementById("sens-corr-note").textContent =
+    t("val.sensCorrNote").replace("{c}", fmt(s.corresponding_coverage)).replace("{n}", fmt(primary));
 }
 
 function renderConcepts() {

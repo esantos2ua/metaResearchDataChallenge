@@ -270,6 +270,13 @@
             <h3 data-i18n="val.components">Query components</h3>
             <ul id="val-concepts" class="concept-list"></ul>
 
+            <h3 data-i18n="val.sensTitle">Sensitivity: definitions of “Canadian”</h3>
+            <p class="card-desc" data-i18n="val.sensDesc">“Canadian” can be defined several defensible ways. Holding the metaresearch subject filter constant, this shows how many works qualify under each. The rest of the dashboard uses the primary definition (any author at a Canadian institution); the others are reported side by side for transparency.</p>
+            <canvas id="sensChart"></canvas>
+            <table class="sens-table" id="sens-table"></table>
+            <p class="muted" id="sens-corr-note"></p>
+            <p class="muted planned" data-i18n="val.sensPlanned">Planned (next iteration): an interactive control to switch the active definition so every chart and the network re-aggregate accordingly. For now these are reference counts.</p>
+
             <h3 data-i18n="val.verify">Live verification</h3>
             <p class="card-desc" data-i18n="val.verifyDesc">Re-run the query against OpenAlex right now and compare the live result count with the snapshot shipped in this dashboard. Small differences are expected as OpenAlex is continuously updated.</p>
             <button class="btn-action" id="btn-verify" data-i18n="val.verifyBtn">Verify against OpenAlex now</button>

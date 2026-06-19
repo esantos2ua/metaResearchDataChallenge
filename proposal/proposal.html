@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>proposal</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="proposal_files/libs/clipboard/clipboard.min.js"></script>
+<script src="proposal_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="proposal_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="proposal_files/libs/quarto-html/popper.min.js"></script>
+<script src="proposal_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="proposal_files/libs/quarto-html/anchor.min.js"></script>
+<link href="proposal_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="proposal_files/libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="proposal_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="proposal_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="proposal_files/libs/bootstrap/bootstrap-138a6193a3bd40baf1e627da441a4734.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+
+
+
+<section id="an-open-reproducible-dashboard-for-mapping-the-canadian-metaresearch-landscape" class="level1">
+<h1>An Open, Reproducible Dashboard for Mapping the Canadian Metaresearch Landscape</h1>
+<p><strong>The challenge — and our answer.</strong> The call asks: <em>“How can we construct an open, reproducible, and inclusive dataset that best captures the Canadian metaresearch landscape?”</em> Our answer is to define the corpus through a transparent, versioned query over OpenAlex <span class="citation" data-cites="openalex">(<a href="#ref-openalex" role="doc-biblioref">Priem et al. 2022</a>)</span> that anyone can re-run; to script every step from retrieval to visualization so the dataset rebuilds with a single command; to report several defensible definitions of “Canadian” and “metaresearch” side by side rather than hide a single choice; to co-design the inclusion criteria with the community; and to surface the dataset’s own gaps — language, discipline, coverage — directly in the dashboard rather than bury them. The deliverable is a live, public dashboard, already running as a pilot on real OpenAlex data, that lets researchers, funders, and communities explore who is shaping Canadian research culture, whose voices are missing, and where to improve transparency and equity.</p>
+<p><strong>Defining and retrieving the corpus.</strong> We operationalize “metaresearch” <span class="citation" data-cites="ioannidis2015metaresearch">(<a href="#ref-ioannidis2015metaresearch" role="doc-biblioref">Ioannidis et al. 2015</a>)</span> as a versioned OpenAlex query. The pilot draws on five OpenAlex topics — from OpenAlex’s current Topics taxonomy — , namely scientometrics and bibliometrics, academic publishing and open access, scholarly communication, academic integrity, and web visibility/informetrics, from 1970 onward (the field was named c.1969, so earlier topic tags are misclassifications) and excluding paratext, yielding roughly 7,000 Canadian-affiliated works; the full corpus will layer in English- and French-language title/abstract keywords. “Canadian” is defined by author–institution country in OpenAlex; because that choice is contestable, we report sensitivity checks against alternatives (first or corresponding author, funder) side by side. Retrieval uses the OpenAlex API with a dated, version-pinned snapshot, and we benchmark coverage against established sources such as Web of Science and Scopus <span class="citation" data-cites="mongeon2016coverage">(<a href="#ref-mongeon2016coverage" role="doc-biblioref">Mongeon and Paul-Hus 2016</a>)</span>, validating relevance through a manually checked stratified sample and precision/recall against a curated seed set. Inclusion criteria are pre-registered <span class="citation" data-cites="nosek2018preregistration">(<a href="#ref-nosek2018preregistration" role="doc-biblioref">Nosek et al. 2018</a>)</span> and refined with stakeholders before the corpus is frozen. From the resulting dataset the dashboard derives output and citation trends, open-access patterns (including an open-versus-closed citation comparison <span class="citation" data-cites="piwowar2018state">(<a href="#ref-piwowar2018state" role="doc-biblioref"><span class="nocase">Piwowar et al.</span> 2018</a>)</span>), thematic structure (topic and field breakdowns now, formal topic modeling for the full study), and co-authorship and institutional collaboration networks.</p>
+<p><strong>Openness, transparency, and reproducibility.</strong> Reproducibility is the project’s core design principle: the entire dataset rebuilds from source with one command, and every choice is inspectable. All extraction, cleaning, analysis, and dashboard code is MIT-licensed and public on GitHub; the processed, record-level corpus and its codebook are released under CC BY 4.0 and built to be FAIR <span class="citation" data-cites="wilkinson2016fair">(<a href="#ref-wilkinson2016fair" role="doc-biblioref"><span class="nocase">Wilkinson et al.</span> 2016</a>)</span>, with a dated OpenAlex snapshot so results remain reproducible as the database grows. The pipeline (raw → processed → dashboard) is fully scripted with pinned software environments, and the corpus-defining query lives in a single versioned configuration file, so the definition is auditable and re-runnable. Documentation includes a methodology and reproducibility guide, the codebook, and an in-dashboard “Search &amp; validation” panel that displays the exact query, re-runs it live against OpenAlex, and spot-checks a random sample for relevance — transparency any reader can exercise in the browser. The approach aligns with the UNESCO Recommendation on Open Science <span class="citation" data-cites="unesco2021open">(<a href="#ref-unesco2021open" role="doc-biblioref">UNESCO 2021</a>)</span>.</p>
+<p><strong>Diversity across traditions, languages, and communities.</strong> Metaresearch is not monolithic, and the dataset is built to reflect that. Its traditions and disciplines span quantitative scientometrics, science-and-technology studies, research-integrity and ethics scholarship, and library and information science; our topic set deliberately mixes these, and the dashboard breaks the corpus down by field and topic so that no single tradition stands in for the whole. English and French are treated as first-class — the query, keywords, and dashboard are bilingual — and we report the English/French balance explicitly (the pilot is ~94% English, itself a finding rather than a target). Inclusion criteria are co-designed with librarians, researchers, EDI experts, and policymakers, and smaller institutions and all regions are tracked alongside the largest universities. Where the corpus touches Indigenous-led research or data, we follow the First Nations principles of OCAP® <span class="citation" data-cites="fnigc_ocap">(<a href="#ref-fnigc_ocap" role="doc-biblioref">First Nations Information Governance Centre (FNIGC), n.d.</a>)</span>, the CARE Principles for Indigenous Data Governance <span class="citation" data-cites="carroll2020care">(<a href="#ref-carroll2020care" role="doc-biblioref"><span class="nocase">Carroll et al.</span> 2020</a>)</span>, and Chapter 9 of the Tri-Council Policy Statement (TCPS 2) <span class="citation" data-cites="tcps2_2022">(<a href="#ref-tcps2_2022" role="doc-biblioref">CIHR, NSERC, SSHRC 2022</a>)</span>.</p>
+<p><strong>Assumptions, limitations, and sources of bias.</strong> We are explicit about what this approach assumes and where it can mislead. It assumes that OpenAlex topics and affiliations are usable proxies for “metaresearch” and “Canadian” — both contestable, which is why we test alternatives rather than assert one — and that affiliation country adequately captures Canadian contribution. The main limitations are coverage bias, since OpenAlex favours English-language, journal-based, DOI-bearing outputs and under-represents non-English work, grey literature, and community-based scholarship <span class="citation" data-cites="mongeon2016coverage vera2019language">(<a href="#ref-mongeon2016coverage" role="doc-biblioref">Mongeon and Paul-Hus 2016</a>; <a href="#ref-vera2019language" role="doc-biblioref">Vera-Baceta et al. 2019</a>)</span>; definitional bias, since topic tagging is imperfect (broad topics can pull in tangential work) and affiliation-based attribution credits a whole work to Canada regardless of contribution share; and metadata gaps, since OpenAlex carries little reliable information on author demographics, career stage, or equity-deserving groups, so any equity analysis relies on coarse proxies. We surface these gaps in the dashboard rather than hide them, so the tool informs capacity building and equitable policy.</p>
+<p><strong>Work plan.</strong> All work is completed before the conference, in four overlapping phases:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 9%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Phase</th>
+<th>Window</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Corpus definition, retrieval &amp; stakeholder codesign</td>
+<td>Jul–Aug 2026</td>
+<td>Versioned query, dated snapshot, validated inclusion criteria</td>
+</tr>
+<tr class="even">
+<td>Cleaning, validation &amp; bias assessment</td>
+<td>Aug 2026</td>
+<td>Validated dataset + bias/coverage report</td>
+</tr>
+<tr class="odd">
+<td>Analyses &amp; dashboard build</td>
+<td>Sep–Oct 2026</td>
+<td>Bibliometric, network, and topic results in a deployed dashboard</td>
+</tr>
+<tr class="even">
+<td>Documentation &amp; rehearsal</td>
+<td>Oct 2026</td>
+<td>Reproducibility docs + 30-minute plenary talk</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Outputs.</strong> An open dataset with codebook, reproducible code and workflows, a deployed public dashboard (CC BY 4.0 data and docs; MIT code), and a 30-minute plenary presentation.</p>
+<section id="references" class="level2 unnumbered">
+
+
+</section>
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-carroll2020care" class="csl-entry" role="listitem">
+<span class="nocase">Carroll, Stephanie Russo, Ibrahim Garba, Oscar L. Figueroa-Rodrı́guez, et al.</span> 2020. <span>“The CARE Principles for Indigenous Data Governance.”</span> <em>Data Science Journal</em> 19 (1): 43. <a href="https://doi.org/10.5334/dsj-2020-043">https://doi.org/10.5334/dsj-2020-043</a>.
+</div>
+<div id="ref-tcps2_2022" class="csl-entry" role="listitem">
+CIHR, NSERC, SSHRC. 2022. <em>Tri-Council Policy Statement: Ethical Conduct for Research Involving Humans (TCPS 2), Chapter 9</em>. <a href="https://ethics.gc.ca/eng/policy-politique_tcps2-eptc2_2022.html" class="uri">Https://ethics.gc.ca/eng/policy-politique_tcps2-eptc2_2022.html</a>.
+</div>
+<div id="ref-fnigc_ocap" class="csl-entry" role="listitem">
+First Nations Information Governance Centre (FNIGC). n.d. <em>The First Nations Principles of OCAP®</em>. <a href="https://fnigc.ca/ocap-training/" class="uri">Https://fnigc.ca/ocap-training/</a>.
+</div>
+<div id="ref-ioannidis2015metaresearch" class="csl-entry" role="listitem">
+Ioannidis, John P. A., Daniele Fanelli, Debbie Drake Dunne, and Steven N. Goodman. 2015. <span>“Meta-Research: Evaluation and Improvement of Research Methods and Practices.”</span> <em>PLoS Biology</em> 13 (10): e1002264. <a href="https://doi.org/10.1371/journal.pbio.1002264">https://doi.org/10.1371/journal.pbio.1002264</a>.
+</div>
+<div id="ref-mongeon2016coverage" class="csl-entry" role="listitem">
+Mongeon, Philippe, and Adèle Paul-Hus. 2016. <span>“The Journal Coverage of Web of Science and Scopus: A Comparative Analysis.”</span> <em>Scientometrics</em> 106: 213–28. <a href="https://doi.org/10.1007/s11192-015-1765-5">https://doi.org/10.1007/s11192-015-1765-5</a>.
+</div>
+<div id="ref-nosek2018preregistration" class="csl-entry" role="listitem">
+Nosek, Brian A., Charles R. Ebersole, Alexander C. DeHaven, and David T. Mellor. 2018. <span>“The Preregistration Revolution.”</span> <em>PNAS</em> 115 (11): 2600–2606. <a href="https://doi.org/10.1073/pnas.1708274114">https://doi.org/10.1073/pnas.1708274114</a>.
+</div>
+<div id="ref-piwowar2018state" class="csl-entry" role="listitem">
+<span class="nocase">Piwowar, Heather, Jason Priem, Vincent Larivière, et al.</span> 2018. <span>“The State of OA: A Large-Scale Analysis of the Prevalence and Impact of Open Access Articles.”</span> <em>PeerJ</em> 6: e4375. <a href="https://doi.org/10.7717/peerj.4375">https://doi.org/10.7717/peerj.4375</a>.
+</div>
+<div id="ref-openalex" class="csl-entry" role="listitem">
+Priem, Jason, Heather Piwowar, and Richard Orr. 2022. <em>OpenAlex: A Fully-Open Index of Scholarly Works, Authors, Venues, Institutions, and Concepts</em>. <a href="https://arxiv.org/abs/2205.01833" class="uri">Https://arxiv.org/abs/2205.01833</a>.
+</div>
+<div id="ref-unesco2021open" class="csl-entry" role="listitem">
+UNESCO. 2021. <em>Recommendation on Open Science</em>. <a href="https://doi.org/10.54677/MNMH8546" class="uri">Https://doi.org/10.54677/MNMH8546</a>.
+</div>
+<div id="ref-vera2019language" class="csl-entry" role="listitem">
+Vera-Baceta, Miguel-Angel, Mike Thelwall, and Kayvan Kousha. 2019. <span>“Web of Science and Scopus Language Coverage.”</span> <em>Scientometrics</em> 121: 1803–13. <a href="https://doi.org/10.1007/s11192-019-03264-z">https://doi.org/10.1007/s11192-019-03264-z</a>.
+</div>
+<div id="ref-wilkinson2016fair" class="csl-entry" role="listitem">
+<span class="nocase">Wilkinson, Mark D., Michel Dumontier, I. J. Aalbersberg, et al.</span> 2016. <span>“The FAIR Guiding Principles for Scientific Data Management and Stewardship.”</span> <em>Scientific Data</em> 3: 160018. <a href="https://doi.org/10.1038/sdata.2016.18">https://doi.org/10.1038/sdata.2016.18</a>.
+</div>
+</div></section></div></main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
