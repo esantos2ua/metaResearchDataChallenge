@@ -14,54 +14,70 @@
 
 ## 1. Problem & objective
 
-How can we construct an open, reproducible, and inclusive dataset that best captures the Canadian
-metaresearch landscape? We propose an end-to-end, fully open pipeline built on **OpenAlex** that
-produces (a) a documented open dataset of Canadian metaresearch outputs and (b) an interactive,
-open-access **dashboard** — inspired by the [COKI Open Access Dashboard](https://open.coki.ac/) —
-for exploring openness, transparency, citation/bibliometric, and network dimensions of the field.
+**Why map this landscape?** Understanding the Canadian metaresearch ecosystem is critical to identifying who is shaping research culture, whose voices are missing, and how to improve equity and transparency in science. We propose an end-to-end, fully open pipeline built on **OpenAlex** that empowers researchers, policymakers, and communities (the **who**) to drive positive social change through better research practices. 
+
+Our objective is to construct an open, reproducible, and inclusive dataset, culminating in a live **dashboard** (inspired by the [COKI Open Access Dashboard](https://open.coki.ac/)). This system, already actively running as a pilot on GitHub, will allow stakeholders to explore openness, citation/bibliometric dimensions, and equity within the field.
 
 ## 2. Search & retrieval strategy (OpenAlex)
 
-- Define "metaresearch" via a transparent, versioned query combining OpenAlex **concepts/topics**
-  (metascience, bibliometrics/scientometrics, STS, research integrity & reproducibility, scholarly
-  communication, open science) with keyword filters on titles/abstracts.
-- Restrict to "Canadian" outputs via author **institution country (CA)** and ROR-linked affiliations,
-  with sensitivity checks on alternative definitions (author location, funder).
-- Retrieve via the OpenAlex API (snapshot pinned by date) for reproducibility.
+- Define "metaresearch" [1] via a transparent, versioned query. The pilot corpus is built from OpenAlex
+  **concepts** (bibliometrics, citation analysis, scientometrics, research integrity, scholarly
+  communication, open science); the versioned `query_config.yaml` additionally specifies English/French
+  title/abstract **keyword filters** to be layered in for the full corpus.
+- Restrict to "Canadian" outputs via author **institution country (CA)** in OpenAlex [2]. The pilot uses an
+  any-author-affiliation definition; the full study reports **sensitivity checks** on alternatives
+  (first/corresponding author, funder) side by side.
+- Retrieve via the OpenAlex API [2]; the full corpus pins a **dated snapshot** for reproducibility, with
+  coverage benchmarked against established sources (e.g., Web of Science, Scopus) [3].
 
-## 3. Inclusion/exclusion & community definition
+## 3. Inclusion/exclusion & community codesign
 
-- Pre-registered inclusion/exclusion criteria documented in `docs/METHODOLOGY.md`.
-- Multiple "Canadian-ness" definitions reported side-by-side to expose sensitivity.
+- **Pre-registered** inclusion/exclusion criteria, co-designed and validated through active engagement with
+  diverse stakeholders (librarians, researchers, EDI experts, and policymakers) to ensure community
+  alignment. Pre-registration of the corpus definition follows open, time-stamped specification practice [4],
+  with the criteria versioned in the public repository.
+- Meaningful involvement of Indigenous scholars and knowledge keepers to respectfully represent Indigenous
+  research methodologies. Where the corpus touches Indigenous-led research or data, we adhere to the First
+  Nations principles of **OCAP®** (Ownership, Control, Access, and Possession) [5], the **CARE** Principles
+  for Indigenous Data Governance [6], and Chapter 9 of the **Tri-Council Policy Statement (TCPS 2)** on
+  research involving First Nations, Inuit, and Métis Peoples [7].
+- Multiple "Canadian-ness" definitions reported side-by-side to expose sensitivity (see §2).
 
-## 4. Validation & bias assessment
+## 4. Validation & stakeholder engagement
 
+- Iterative dashboard validation involving target users (institutions, funders, early-career researchers) to guarantee the tool addresses real-world needs.
 - Manual validation on a stratified sample; precision/recall against a curated seed set.
-- Coverage and language bias assessment (English/French); acknowledgment of OpenAlex coverage gaps.
+- Coverage and language-bias assessment (English/French) — the pilot snapshot is ~94% English with very few
+  French-language outputs, a gap the full study quantifies; database language coverage is a known source of
+  bias [10], as are OpenAlex/indexing coverage gaps relative to other sources [3].
 
 ## 5. Analyses
 
-- **Openness/transparency:** OA status, preprints, data/code availability.
-- **Bibliometrics & citations:** output trends, citation distributions, fields.
-- **Topic modeling & thematic mapping.**
-- **Network analyses:** co-authorship and institutional collaboration.
-- **Underrepresented groups:** institution type, region, language, career stage proxies.
+- **Openness/transparency:** OA status and preprint share (live in the dashboard); data/code-availability
+  indicators to be added for the full study.
+- **Bibliometrics & citations:** output trends, citation counts, and an open-vs-closed comparison [8], by field.
+- **Thematic mapping:** OpenAlex primary-topic and field frequencies in the pilot; formal topic modeling
+  (e.g., BERTopic/LDA) for the full study.
+- **Network analyses:** co-authorship and institutional collaboration (interactive network in the dashboard).
+- **Underrepresented groups:** institution type, region, language, career-stage proxies (planned).
 
 ## 6. Openness, transparency & reproducibility
 
-- All code MIT-licensed and public; data/docs CC BY 4.0.
-- Scripted pipeline (raw → processed → dashboard), pinned environments, pinned OpenAlex snapshot.
+- All code MIT-licensed and public; data/docs CC BY 4.0, released to be **FAIR** [9] and aligned with the
+  UNESCO Recommendation on Open Science [11].
+- Scripted pipeline (raw → processed → dashboard), pinned environments, and a dated OpenAlex snapshot.
 
-## 7. Diversity & bias acknowledgment
+## 7. Equity, diversity, inclusion (EDI) & bias acknowledgment
 
-- Report inclusive of French-language and smaller-institution outputs.
-- Explicit discussion of OpenAlex metadata limitations and equity considerations.
+- Systematic tracking of EDI considerations, ensuring the report is inclusive of French-language, smaller-institution, and regionally diverse outputs.
+- Explicit discussion of OpenAlex metadata limitations regarding marginalized groups, highlighting these gaps to inform capacity building and equitable policy.
 
 ## 8. Work plan (pre-conference)
 
 | Phase | Window | Output |
 |-------|--------|--------|
 | Corpus definition & retrieval | Jul–Aug 2026 | Query spec + raw snapshot |
+| Stakeholder codesign | Aug 2026 | Validated inclusion & dashboard feedback |
 | Cleaning & validation | Aug 2026 | Validated dataset + bias report |
 | Analyses | Sep 2026 | Bibliometric/network/topic results |
 | Dashboard build | Sep–Oct 2026 | Deployed open dashboard |
@@ -71,3 +87,21 @@ for exploring openness, transparency, citation/bibliometric, and network dimensi
 
 Open dataset (with codebook), reproducible code/workflows, deployed dashboard, and a 30-minute
 plenary presentation.
+
+---
+
+## References
+
+> Citations support the methodology; please verify each DOI/URL before final submission.
+
+1. Ioannidis JPA, Fanelli D, Dunne DD, Goodman SN (2015). Meta-research: Evaluation and improvement of research methods and practices. *PLoS Biology* 13(10): e1002264. https://doi.org/10.1371/journal.pbio.1002264
+2. Priem J, Piwowar H, Orr R (2022). OpenAlex: A fully-open index of scholarly works, authors, venues, institutions, and concepts. *arXiv* 2205.01833. https://arxiv.org/abs/2205.01833
+3. Mongeon P, Paul-Hus A (2016). The journal coverage of Web of Science and Scopus: a comparative analysis. *Scientometrics* 106: 213–228. https://doi.org/10.1007/s11192-015-1765-5
+4. Nosek BA, Ebersole CR, DeHaven AC, Mellor DT (2018). The preregistration revolution. *PNAS* 115(11): 2600–2606. https://doi.org/10.1073/pnas.1708274114
+5. First Nations Information Governance Centre (FNIGC). The First Nations Principles of OCAP®. https://fnigc.ca/ocap-training/
+6. Carroll SR, Garba I, Figueroa-Rodríguez OL, et al. (2020). The CARE Principles for Indigenous Data Governance. *Data Science Journal* 19(1): 43. https://doi.org/10.5334/dsj-2020-043
+7. CIHR, NSERC, SSHRC (2022). *Tri-Council Policy Statement: Ethical Conduct for Research Involving Humans (TCPS 2)*, Chapter 9: Research Involving the First Nations, Inuit and Métis Peoples of Canada. https://ethics.gc.ca/eng/policy-politique_tcps2-eptc2_2022.html
+8. Piwowar H, Priem J, Larivière V, et al. (2018). The state of OA: a large-scale analysis of the prevalence and impact of Open Access articles. *PeerJ* 6: e4375. https://doi.org/10.7717/peerj.4375
+9. Wilkinson MD, Dumontier M, Aalbersberg IJ, et al. (2016). The FAIR Guiding Principles for scientific data management and stewardship. *Scientific Data* 3: 160018. https://doi.org/10.1038/sdata.2016.18
+10. Vera-Baceta MA, Thelwall M, Kousha K (2019). Web of Science and Scopus language coverage. *Scientometrics* 121: 1803–1813. https://doi.org/10.1007/s11192-019-03264-z
+11. UNESCO (2021). *Recommendation on Open Science*. https://doi.org/10.54677/MNMH8546
