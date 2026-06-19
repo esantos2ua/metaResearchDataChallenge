@@ -91,6 +91,7 @@ let netData = null;    // {nodes, edges} DataSets
 let langCounts = new Map();   // language code -> count (for filter labels)
 let typeCounts = new Map();   // output type -> count (for filter labels)
 let viewMode = "dashboard";   // "dashboard" | "records"
+let networkStale = false;     // filters changed while off the dashboard view
 const tableState = { key: "year", dir: "desc", page: 0, size: 25 };
 
 // Records-table columns. get() -> sort value; cell() -> HTML.
@@ -364,7 +365,10 @@ function apply() {
   renderKpis(_filtered);
   renderInsights(_filtered);
   renderCharts(_filtered);
-  renderNetwork(_filtered);
+  // Only re-layout the network when it's actually on screen; otherwise defer
+  // (avoids re-running physics — "spinning" — while on the Records view).
+  if (viewMode === "dashboard") renderNetwork(_filtered);
+  else networkStale = true;
   tableState.page = 0;
   if (viewMode === "records") renderTable(_filtered);
 }
@@ -492,6 +496,7 @@ function setView(view) {
   document.querySelectorAll("#view-tabs button").forEach((b) =>
     b.classList.toggle("active", b.dataset.view === view));
   if (view === "records") renderTable(_filtered);
+  else if (networkStale) { renderNetwork(_filtered); networkStale = false; }
   window.scrollTo({ top: 0 });
 }
 
@@ -600,26 +605,38 @@ function renderNetwork(recs) {
   });
 
   const container = document.getElementById("networkChart");
+  // Edge widths: sqrt scaling spreads out the many low-weight ties so they're
+  // distinguishable, instead of a linear scale that crushes them together.
+  const edgeScaling = {
+    min: 1, max: 16,
+    customScalingFunction: (min, max, total, value) =>
+      max === min ? 0.5 : Math.sqrt((value - min) / (max - min)),
+  };
+  const stabilization = { enabled: true, iterations: 120, fit: true };
   if (!network) {
     netData = { nodes: new vis.DataSet(nodes), edges: new vis.DataSet(edges) };
     network = new vis.Network(container, netData, {
       nodes: { shape: "dot", scaling: { min: 8, max: 42, label: { enabled: true, min: 11, max: 26 } } },
-      edges: { scaling: { min: 0.5, max: 8 }, smooth: { type: "continuous" } },
+      edges: { scaling: edgeScaling, smooth: { type: "continuous" } },
       physics: {
+        // Higher damping + central gravity settle the layout quickly and stop
+        // forceAtlas2 from drifting/rotating ("spinning") before it freezes.
         solver: "forceAtlas2Based",
-        forceAtlas2Based: { gravitationalConstant: -45, springLength: 110, avoidOverlap: 0.6 },
-        stabilization: { iterations: 200 },
+        forceAtlas2Based: { gravitationalConstant: -32, centralGravity: 0.015,
+          springLength: 110, springConstant: 0.08, avoidOverlap: 0.6, damping: 0.7 },
+        maxVelocity: 28, minVelocity: 1.2, timestep: 0.4,
+        stabilization,
       },
       interaction: { hover: true, tooltipDelay: 120 },
     });
     network.on("stabilizationIterationsDone", () => {
-      network.setOptions({ physics: false });
-      network.fit({ animation: { duration: 300 } });   // zoom to fit — fixes the "too narrow" view
+      network.setOptions({ physics: false });   // freeze once settled — no perpetual motion
+      network.fit({ animation: { duration: 300 } });
     });
   } else {
     netData.nodes.clear(); netData.edges.clear();
     netData.nodes.add(nodes); netData.edges.add(edges);
-    network.setOptions({ physics: { enabled: true, stabilization: { iterations: 200 } } });
+    network.setOptions({ physics: { enabled: true, stabilization } });
   }
 
   document.getElementById("network-note").textContent = t("networkNote")
