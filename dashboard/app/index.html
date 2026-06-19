@@ -6,7 +6,7 @@
   <title>Canadian Metaresearch Dashboard — Pilot</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vis-network@9.1.9/standalone/umd/vis-network.min.js"></script>
-  <link rel="stylesheet" href="styles.css?v=20260619b" />
+  <link rel="stylesheet" href="styles.css?v=20260619c" />
 </head>
 <body>
 <div class="layout">
@@ -18,6 +18,7 @@
         <strong data-i18n="brand.title">Metaresearch Dashboard</strong>
         <span class="brand-sub" data-i18n="brand.sub">Canada · pilot</span>
       </div>
+      <button class="sidebar-close" id="sidebar-close" aria-label="Close menu" title="Close">✕</button>
     </div>
 
     <nav class="nav" id="nav">
@@ -87,6 +88,9 @@
     <a class="repo-link" href="https://github.com/esantos2ua/metaResearchDataChallenge"
        target="_blank" rel="noopener" data-i18n="repo.link">↗ Project on GitHub</a>
   </aside>
+
+  <!-- Mobile: tap outside the open drawer to close it -->
+  <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
 
   <!-- ============================ MAIN ============================ -->
   <div class="main-col">
@@ -309,7 +313,7 @@
   </div>
 </div>
 
-<script src="i18n.js?v=20260619b"></script>
-<script src="dashboard.js?v=20260619b"></script>
+<script src="i18n.js?v=20260619c"></script>
+<script src="dashboard.js?v=20260619c"></script>
 </body>
 </html>

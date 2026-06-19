@@ -294,9 +294,12 @@ function wireUI() {
   document.querySelectorAll("#lang-toggle button").forEach((b) =>
     (b.onclick = () => setLang(b.dataset.lang)));
 
-  // Mobile sidebar toggle
+  // Mobile sidebar toggle + close affordances (button + tap-outside backdrop)
   const sidebar = document.getElementById("sidebar");
+  const closeSidebar = () => sidebar.classList.remove("open");
   document.getElementById("filters-toggle").onclick = () => sidebar.classList.toggle("open");
+  document.getElementById("sidebar-close").onclick = closeSidebar;
+  document.getElementById("sidebar-backdrop").onclick = closeSidebar;
 
   // Nav: smooth scroll + active state
   const navLinks = [...document.querySelectorAll(".nav a")];
