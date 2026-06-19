@@ -27,6 +27,7 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -69,90 +70,90 @@ div.csl-indent {
 
 
 
-<section id="an-open-reproducible-dashboard-for-mapping-the-canadian-metaresearch-landscape" class="level1">
-<h1>An Open, Reproducible Dashboard for Mapping the Canadian Metaresearch Landscape</h1>
-<p><strong>The challenge — and our answer.</strong> The call asks: <em>“How can we construct an open, reproducible, and inclusive dataset that best captures the Canadian metaresearch landscape?”</em> Our answer is to define the corpus through a transparent, versioned query over OpenAlex <span class="citation" data-cites="openalex">(<a href="#ref-openalex" role="doc-biblioref">1</a>)</span> that anyone can re-run; to script every step from retrieval to visualization so the dataset rebuilds with a single command; to report several defensible definitions of “Canadian” and “metaresearch” side by side rather than hide a single choice; to co-design the inclusion criteria with the community; and to surface the dataset’s own gaps — language, discipline, coverage — directly in the dashboard rather than bury them. The deliverable is a live, public dashboard, already running as a pilot on real OpenAlex data, that lets researchers, funders, and communities explore who is shaping Canadian research culture, whose voices are missing, and where to improve transparency and equity.</p>
-<p><strong>Defining and retrieving the corpus.</strong> We operationalize “metaresearch” <span class="citation" data-cites="ioannidis2015metaresearch">(<a href="#ref-ioannidis2015metaresearch" role="doc-biblioref">2</a>)</span> as a versioned OpenAlex query. The pilot draws on five OpenAlex topics — from OpenAlex’s current Topics taxonomy — , namely scientometrics and bibliometrics, academic publishing and open access, scholarly communication, academic integrity, and web visibility/informetrics, from 1970 onward (the field was named c.1969, so earlier topic tags are misclassifications) and excluding paratext, yielding roughly 7,000 Canadian-affiliated works; the full corpus will layer in English- and French-language title/abstract keywords. “Canadian” is defined by author–institution country in OpenAlex; because that choice is contestable, we report sensitivity checks against alternatives (first or corresponding author, funder) side by side. Retrieval uses the OpenAlex API with a dated, version-pinned snapshot, and we benchmark coverage against established sources such as Web of Science and Scopus <span class="citation" data-cites="mongeon2016coverage">(<a href="#ref-mongeon2016coverage" role="doc-biblioref">3</a>)</span>, validating relevance through a manually checked stratified sample and precision/recall against a curated seed set. Inclusion criteria are pre-registered <span class="citation" data-cites="nosek2018preregistration">(<a href="#ref-nosek2018preregistration" role="doc-biblioref">4</a>)</span> and refined with stakeholders before the corpus is frozen. From the resulting dataset the dashboard derives output and citation trends, open-access patterns (including an open-versus-closed citation comparison <span class="citation" data-cites="piwowar2018state">(<a href="#ref-piwowar2018state" role="doc-biblioref">5</a>)</span>), thematic structure (topic and field breakdowns now, formal topic modeling for the full study), and co-authorship and institutional collaboration networks.</p>
-<p><strong>Openness, transparency, and reproducibility.</strong> Reproducibility is the project’s core design principle: the entire dataset rebuilds from source with one command, and every choice is inspectable. All extraction, cleaning, analysis, and dashboard code is MIT-licensed and public on GitHub; the processed, record-level corpus and its codebook are released under CC BY 4.0 and built to be FAIR <span class="citation" data-cites="wilkinson2016fair">(<a href="#ref-wilkinson2016fair" role="doc-biblioref">6</a>)</span>, with a dated OpenAlex snapshot so results remain reproducible as the database grows. The pipeline (raw → processed → dashboard) is fully scripted with pinned software environments, and the corpus-defining query lives in a single versioned configuration file, so the definition is auditable and re-runnable. Documentation includes a methodology and reproducibility guide, the codebook, and an in-dashboard “Search &amp; validation” panel that displays the exact query, re-runs it live against OpenAlex, and spot-checks a random sample for relevance — transparency any reader can exercise in the browser. The approach aligns with the UNESCO Recommendation on Open Science <span class="citation" data-cites="unesco2021open">(<a href="#ref-unesco2021open" role="doc-biblioref">7</a>)</span>.</p>
-<p><strong>Diversity across traditions, languages, and communities.</strong> Metaresearch is not monolithic, and the dataset is built to reflect that. Its traditions and disciplines span quantitative scientometrics, science-and-technology studies, research-integrity and ethics scholarship, and library and information science; our topic set deliberately mixes these, and the dashboard breaks the corpus down by field and topic so that no single tradition stands in for the whole. English and French are treated as first-class — the query, keywords, and dashboard are bilingual — and we report the English/French balance explicitly (the pilot is ~94% English, itself a finding rather than a target). Inclusion criteria are co-designed with librarians, researchers, EDI experts, and policymakers, and smaller institutions and all regions are tracked alongside the largest universities. Where the corpus touches Indigenous-led research or data, we follow the First Nations principles of OCAP® <span class="citation" data-cites="fnigc_ocap">(<a href="#ref-fnigc_ocap" role="doc-biblioref">8</a>)</span>, the CARE Principles for Indigenous Data Governance <span class="citation" data-cites="carroll2020care">(<a href="#ref-carroll2020care" role="doc-biblioref">9</a>)</span>, and Chapter 9 of the Tri-Council Policy Statement (TCPS 2) <span class="citation" data-cites="tcps2_2022">(<a href="#ref-tcps2_2022" role="doc-biblioref">10</a>)</span>.</p>
-<p><strong>Assumptions, limitations, and sources of bias.</strong> We are explicit about what this approach assumes and where it can mislead. It assumes that OpenAlex topics and affiliations are usable proxies for “metaresearch” and “Canadian” — both contestable, which is why we test alternatives rather than assert one — and that affiliation country adequately captures Canadian contribution. The main limitations are coverage bias, since OpenAlex favours English-language, journal-based, DOI-bearing outputs and under-represents non-English work, grey literature, and community-based scholarship <span class="citation" data-cites="mongeon2016coverage vera2019language">(<a href="#ref-mongeon2016coverage" role="doc-biblioref">3</a>,<a href="#ref-vera2019language" role="doc-biblioref">11</a>)</span>; definitional bias, since topic tagging is imperfect (broad topics can pull in tangential work) and affiliation-based attribution credits a whole work to Canada regardless of contribution share; and metadata gaps, since OpenAlex carries little reliable information on author demographics, career stage, or equity-deserving groups, so any equity analysis relies on coarse proxies. We surface these gaps in the dashboard rather than hide them, so the tool informs capacity building and equitable policy.</p>
+<section id="an-open-reproducible-dashboard-for-mapping-the-canadian-metaresearch-landscape" class="level2">
+<h2 class="anchored" data-anchor-id="an-open-reproducible-dashboard-for-mapping-the-canadian-metaresearch-landscape">An Open, Reproducible Dashboard for Mapping the Canadian Metaresearch Landscape</h2>
+<p><strong>The challenge — and our answer.</strong> The call asks: <em>“How can we construct an open, reproducible, and inclusive dataset that best captures the Canadian metaresearch landscape?”</em> Our answer is to define the corpus through a transparent, versioned query over OpenAlex<span class="citation" data-cites="openalex"><sup><a href="#ref-openalex" role="doc-biblioref">1</a></sup></span> that anyone can re-run; to script every step from retrieval to visualization so the dataset rebuilds with a single command; to report several defensible definitions of “Canadian” and “metaresearch” side by side rather than hide a single choice; to co-design the inclusion criteria with the community; and to surface the dataset’s own gaps — language, discipline, coverage — directly in the dashboard rather than bury them. The deliverable is a live, public dashboard, already running as a pilot on real OpenAlex data, that lets researchers, funders, and communities explore who is shaping Canadian research culture, whose voices are missing, and where to improve transparency and equity.</p>
+<p><strong>Defining and retrieving the corpus.</strong> We operationalize “metaresearch”<span class="citation" data-cites="ioannidis2015metaresearch"><sup><a href="#ref-ioannidis2015metaresearch" role="doc-biblioref">2</a></sup></span> as a versioned OpenAlex query. The pilot draws on five OpenAlex topics — from OpenAlex’s current Topics taxonomy —, namely scientometrics and bibliometrics, academic publishing and open access, scholarly communication, academic integrity, and web visibility/informetrics, from 1970 onward (the field was named c.1969, so earlier topic tags are misclassifications) and excluding paratext, yielding roughly 7,000 Canadian-affiliated works; the full corpus will layer in English- and French-language title/abstract keywords. “Canadian” is defined by the author–institution country in OpenAlex; because that choice is contestable, we report sensitivity checks against alternatives (first or corresponding author, funder) side by side. Retrieval uses the OpenAlex API with a dated, version-pinned snapshot, and we benchmark coverage against established sources such as Web of Science and Scopus<span class="citation" data-cites="mongeon2016coverage"><sup><a href="#ref-mongeon2016coverage" role="doc-biblioref">3</a></sup></span>, validating relevance through a manually checked stratified sample and precision/recall against a curated seed set. Inclusion criteria are pre-registered<span class="citation" data-cites="nosek2018preregistration"><sup><a href="#ref-nosek2018preregistration" role="doc-biblioref">4</a></sup></span> and refined with stakeholders before the corpus is frozen. From the resulting dataset, the dashboard derives output and citation trends, open-access patterns (including an open-versus-closed citation comparison<span class="citation" data-cites="piwowar2018state"><sup><a href="#ref-piwowar2018state" role="doc-biblioref">5</a></sup></span>), thematic structure (topic and field breakdowns now, formal topic modeling for the full study), and co-authorship and institutional collaboration networks.</p>
+<p><strong>Openness, transparency, and reproducibility.</strong> Reproducibility is the project’s core design principle: the entire dataset rebuilds from source with one command, and every choice is inspectable. All extraction, cleaning, analysis, and dashboard code is MIT-licensed and public on GitHub; the processed, record-level corpus and its codebook are released under CC BY 4.0 and built to be FAIR<span class="citation" data-cites="wilkinson2016fair"><sup><a href="#ref-wilkinson2016fair" role="doc-biblioref">6</a></sup></span>, with a dated OpenAlex snapshot so that results remain reproducible as the database grows. The pipeline (raw → processed → dashboard) is fully scripted with pinned software environments, and the corpus-defining query lives in a single versioned configuration file, so the definition is auditable and re-runnable. Documentation includes a methodology and reproducibility guide, the codebook, and an in-dashboard “Search &amp; validation” panel that displays the exact query, re-runs it live against OpenAlex, and spot-checks a random sample for relevance — transparency any reader can exercise in the browser. The approach aligns with the UNESCO Recommendation on Open Science<span class="citation" data-cites="unesco2021open"><sup><a href="#ref-unesco2021open" role="doc-biblioref">7</a></sup></span>.</p>
+<p><strong>Diversity across traditions, languages, and communities.</strong> Metaresearch is not monolithic, and the dataset is built to reflect that. Its traditions and disciplines span quantitative scientometrics, science-and-technology studies, research-integrity and ethics scholarship, and library and information science; our topic set deliberately mixes these, and the dashboard breaks the corpus down by field and topic so that no single tradition stands in for the whole. English and French are primary features: the query, keywords, and dashboard are bilingual. We report the English/French balance explicitly (the pilot is ~94% English, itself a finding rather than a target). Inclusion criteria are co-designed with librarians, researchers, EDI experts, and policymakers, and smaller institutions and all regions are tracked alongside the largest universities. Where the corpus touches Indigenous-led research or data, we will follow the First Nations principles of OCAP®<span class="citation" data-cites="fnigc_ocap"><sup><a href="#ref-fnigc_ocap" role="doc-biblioref">8</a></sup></span>, the CARE Principles for Indigenous Data Governance<span class="citation" data-cites="carroll2020care"><sup><a href="#ref-carroll2020care" role="doc-biblioref">9</a></sup></span>, and Chapter 9 of the Tri-Council Policy Statement (TCPS 2)<span class="citation" data-cites="tcps2_2022"><sup><a href="#ref-tcps2_2022" role="doc-biblioref">10</a></sup></span>.</p>
+<p><strong>Assumptions, limitations, and sources of bias.</strong> We are explicit about what this approach assumes and where it can mislead. It assumes that OpenAlex topics and affiliations are usable proxies for “metaresearch” and “Canadian” — both contestable, which is why we test alternatives rather than assert one — and that affiliation country adequately captures Canadian contribution. The primary limitations include coverage bias, as OpenAlex favors English-language, journal-based outputs with DOIs, and under-represents non-English work, grey literature, and community-based scholarship<span class="citation" data-cites="mongeon2016coverage vera2019language"><sup><a href="#ref-mongeon2016coverage" role="doc-biblioref">3</a>,<a href="#ref-vera2019language" role="doc-biblioref">11</a></sup></span>. There is also definitional bias, because topic tagging is imperfect—broad topics may include tangential work—and affiliation-based attribution assigns the entire work to Canada regardless of contribution share. Additionally, there are metadata gaps, as OpenAlex provides limited reliable information on author demographics, career stage, or equity-deserving groups, making any equity analysis dependent on coarse proxies. We present these gaps in the dashboard rather than hide them, so the tool informs capacity building and equitable policy.</p>
 <p><strong>Work plan.</strong> All work is completed before the conference, in four overlapping phases:</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 40%">
-<col style="width: 9%">
-<col style="width: 50%">
+<col style="width: 38%">
+<col style="width: 15%">
+<col style="width: 45%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Phase</th>
-<th>Window</th>
-<th>Output</th>
+<th><small>Phase</small></th>
+<th><small>Window</small></th>
+<th><small>Output</small></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Corpus definition, retrieval &amp; stakeholder codesign</td>
-<td>Jul–Aug 2026</td>
-<td>Versioned query, dated snapshot, validated inclusion criteria</td>
+<td><small>Corpus definition, retrieval &amp; stakeholder codesign</small></td>
+<td><small>Jul–Aug 2026</small></td>
+<td><small>Versioned query, dated snapshot, validated inclusion criteria</small></td>
 </tr>
 <tr class="even">
-<td>Cleaning, validation &amp; bias assessment</td>
-<td>Aug 2026</td>
-<td>Validated dataset + bias/coverage report</td>
+<td><small>Cleaning, validation &amp; bias assessment</small></td>
+<td><small>Aug 2026</small></td>
+<td><small>Validated dataset + bias/coverage report</small></td>
 </tr>
 <tr class="odd">
-<td>Analyses &amp; dashboard build</td>
-<td>Sep–Oct 2026</td>
-<td>Bibliometric, network, and topic results in a deployed dashboard</td>
+<td><small>Analyses &amp; dashboard build</small></td>
+<td><small>Sep–Oct 2026</small></td>
+<td><small>Bibliometric, network, and topic results in a deployed dashboard</small></td>
 </tr>
 <tr class="even">
-<td>Documentation &amp; rehearsal</td>
-<td>Oct 2026</td>
-<td>Reproducibility docs + 30-minute plenary talk</td>
+<td><small>Documentation &amp; rehearsal</small></td>
+<td><small>Oct 2026</small></td>
+<td><small>Reproducibility docs + 30-minute plenary talk</small></td>
 </tr>
 </tbody>
 </table>
 <p><strong>Outputs.</strong> An open dataset with codebook, reproducible code and workflows, a deployed public dashboard (CC BY 4.0 data and docs; MIT code), and a 30-minute plenary presentation.</p>
+</section>
 <section id="references" class="level2 unnumbered">
 
 
 </section>
-</section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" role="list">
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" data-line-spacing="2" role="list">
 <div id="ref-openalex" class="csl-entry" role="listitem">
-<div class="csl-left-margin">1. </div><div class="csl-right-inline">Priem J, Piwowar H, Orr R. OpenAlex: A fully-open index of scholarly works, authors, venues, institutions, and concepts. <a href="https://arxiv.org/abs/2205.01833" class="uri">https://arxiv.org/abs/2205.01833</a>; 2022.</div>
+<div class="csl-left-margin">1. </div><div class="csl-right-inline">Priem, J., Piwowar, H. &amp; Orr, R. OpenAlex: A fully-open index of scholarly works, authors, venues, institutions, and concepts. (2022).</div>
 </div>
 <div id="ref-ioannidis2015metaresearch" class="csl-entry" role="listitem">
-<div class="csl-left-margin">2. </div><div class="csl-right-inline">Ioannidis JPA, Fanelli D, Dunne DD, Goodman SN. Meta-research: Evaluation and improvement of research methods and practices. PLoS Biology. 2015;13(10):e1002264. doi:<a href="https://doi.org/10.1371/journal.pbio.1002264">10.1371/journal.pbio.1002264</a></div>
+<div class="csl-left-margin">2. </div><div class="csl-right-inline">Ioannidis, J. P. A., Fanelli, D., Dunne, D. D. &amp; Goodman, S. N. <a href="https://doi.org/10.1371/journal.pbio.1002264">Meta-research: Evaluation and improvement of research methods and practices</a>. <em>PLoS Biology</em> <strong>13</strong>, e1002264 (2015).</div>
 </div>
 <div id="ref-mongeon2016coverage" class="csl-entry" role="listitem">
-<div class="csl-left-margin">3. </div><div class="csl-right-inline">Mongeon P, Paul-Hus A. The journal coverage of web of science and scopus: A comparative analysis. Scientometrics. 2016;106:213–28. doi:<a href="https://doi.org/10.1007/s11192-015-1765-5">10.1007/s11192-015-1765-5</a></div>
+<div class="csl-left-margin">3. </div><div class="csl-right-inline">Mongeon, P. &amp; Paul-Hus, A. <a href="https://doi.org/10.1007/s11192-015-1765-5">The journal coverage of web of science and scopus: A comparative analysis</a>. <em>Scientometrics</em> <strong>106</strong>, 213–228 (2016).</div>
 </div>
 <div id="ref-nosek2018preregistration" class="csl-entry" role="listitem">
-<div class="csl-left-margin">4. </div><div class="csl-right-inline">Nosek BA, Ebersole CR, DeHaven AC, Mellor DT. The preregistration revolution. PNAS. 2018;115(11):2600–6. doi:<a href="https://doi.org/10.1073/pnas.1708274114">10.1073/pnas.1708274114</a></div>
+<div class="csl-left-margin">4. </div><div class="csl-right-inline">Nosek, B. A., Ebersole, C. R., DeHaven, A. C. &amp; Mellor, D. T. <a href="https://doi.org/10.1073/pnas.1708274114">The preregistration revolution</a>. <em>PNAS</em> <strong>115</strong>, 2600–2606 (2018).</div>
 </div>
 <div id="ref-piwowar2018state" class="csl-entry" role="listitem">
-<div class="csl-left-margin">5. </div><div class="csl-right-inline"><span class="nocase">Piwowar H, Priem J, Larivière V, et al.</span> The state of OA: A large-scale analysis of the prevalence and impact of open access articles. PeerJ. 2018;6:e4375. doi:<a href="https://doi.org/10.7717/peerj.4375">10.7717/peerj.4375</a></div>
+<div class="csl-left-margin">5. </div><div class="csl-right-inline"><span class="nocase">Piwowar, H., Priem, J., Larivière, V., <em>et al.</em></span> <a href="https://doi.org/10.7717/peerj.4375">The state of OA: A large-scale analysis of the prevalence and impact of open access articles</a>. <em>PeerJ</em> <strong>6</strong>, e4375 (2018).</div>
 </div>
 <div id="ref-wilkinson2016fair" class="csl-entry" role="listitem">
-<div class="csl-left-margin">6. </div><div class="csl-right-inline"><span class="nocase">Wilkinson MD, Dumontier M, Aalbersberg IJ, et al.</span> The FAIR guiding principles for scientific data management and stewardship. Scientific Data. 2016;3:160018. doi:<a href="https://doi.org/10.1038/sdata.2016.18">10.1038/sdata.2016.18</a></div>
+<div class="csl-left-margin">6. </div><div class="csl-right-inline"><span class="nocase">Wilkinson, M. D., Dumontier, M., Aalbersberg, I. J., <em>et al.</em></span> <a href="https://doi.org/10.1038/sdata.2016.18">The FAIR guiding principles for scientific data management and stewardship</a>. <em>Scientific Data</em> <strong>3</strong>, 160018 (2016).</div>
 </div>
 <div id="ref-unesco2021open" class="csl-entry" role="listitem">
-<div class="csl-left-margin">7. </div><div class="csl-right-inline">UNESCO. Recommendation on open science. <a href="https://doi.org/10.54677/MNMH8546" class="uri">https://doi.org/10.54677/MNMH8546</a>; 2021.</div>
+<div class="csl-left-margin">7. </div><div class="csl-right-inline">UNESCO. Recommendation on open science. (2021).</div>
 </div>
 <div id="ref-fnigc_ocap" class="csl-entry" role="listitem">
-<div class="csl-left-margin">8. </div><div class="csl-right-inline">First Nations Information Governance Centre (FNIGC). The first nations principles of OCAP®. <a href="https://fnigc.ca/ocap-training/" class="uri">https://fnigc.ca/ocap-training/</a>.</div>
+<div class="csl-left-margin">8. </div><div class="csl-right-inline">First Nations Information Governance Centre (FNIGC). The first nations principles of OCAP®.</div>
 </div>
 <div id="ref-carroll2020care" class="csl-entry" role="listitem">
-<div class="csl-left-margin">9. </div><div class="csl-right-inline"><span class="nocase">Carroll SR, Garba I, Figueroa-Rodrı́guez OL, et al.</span> The CARE principles for indigenous data governance. Data Science Journal. 2020;19(1):43. doi:<a href="https://doi.org/10.5334/dsj-2020-043">10.5334/dsj-2020-043</a></div>
+<div class="csl-left-margin">9. </div><div class="csl-right-inline"><span class="nocase">Carroll, S. R., Garba, I., Figueroa-Rodrı́guez, O. L., <em>et al.</em></span> <a href="https://doi.org/10.5334/dsj-2020-043">The CARE principles for indigenous data governance</a>. <em>Data Science Journal</em> <strong>19</strong>, 43 (2020).</div>
 </div>
 <div id="ref-tcps2_2022" class="csl-entry" role="listitem">
-<div class="csl-left-margin">10. </div><div class="csl-right-inline">CIHR, NSERC, SSHRC. Tri-council policy statement: Ethical conduct for research involving humans (TCPS 2), chapter 9. <a href="https://ethics.gc.ca/eng/policy-politique_tcps2-eptc2_2022.html" class="uri">https://ethics.gc.ca/eng/policy-politique_tcps2-eptc2_2022.html</a>; 2022.</div>
+<div class="csl-left-margin">10. </div><div class="csl-right-inline">CIHR, NSERC, SSHRC. Tri-council policy statement: Ethical conduct for research involving humans (TCPS 2), chapter 9. (2022).</div>
 </div>
 <div id="ref-vera2019language" class="csl-entry" role="listitem">
-<div class="csl-left-margin">11. </div><div class="csl-right-inline">Vera-Baceta MA, Thelwall M, Kousha K. Web of science and scopus language coverage. Scientometrics. 2019;121:1803–13. doi:<a href="https://doi.org/10.1007/s11192-019-03264-z">10.1007/s11192-019-03264-z</a></div>
+<div class="csl-left-margin">11. </div><div class="csl-right-inline">Vera-Baceta, M.-A., Thelwall, M. &amp; Kousha, K. <a href="https://doi.org/10.1007/s11192-019-03264-z">Web of science and scopus language coverage</a>. <em>Scientometrics</em> <strong>121</strong>, 1803–1813 (2019).</div>
 </div>
 </div></section></div></main>
 <!-- /main column -->
