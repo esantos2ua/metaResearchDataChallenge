@@ -54,6 +54,14 @@ function relabelFilters() {
     [...typeSel.options].slice(1).forEach((o) => { o.text = `${typeLabel(o.value)} (${typeCounts.get(o.value)})`; });
   }
   document.querySelectorAll("#f-oa .oa-name").forEach((s) => { s.textContent = oaLabel(s.dataset.k); });
+  // Field/topic/institution values are not translated; only their "all" option is.
+  const setAll = (id, key) => {
+    const sel = document.getElementById(id);
+    if (sel && sel.options.length) sel.options[0].text = t(key);
+  };
+  setAll("f-field", "filters.allFields");
+  setAll("f-topic", "filters.allTopics");
+  setAll("f-institution", "filters.allInstitutions");
 }
 
 function setLang(lang) {
@@ -82,6 +90,9 @@ const filters = {
   oaStatus: new Set(OA_ORDER),
   language: "all",
   type: "all",
+  field: "all",
+  topic: "all",
+  institution: "all",   // OpenAlex institution id of a Canadian institution, or "all"
   oaOnly: false,
 };
 
@@ -153,6 +164,38 @@ function buildFilterControls() {
   typeCounts = countBy(ALL, (r) => r.type);
   [...typeCounts.entries()].sort((a, b) => b[1] - a[1]).forEach(([k, n]) =>
     typeSel.appendChild(new Option(`${typeLabel(k)} (${n})`, k)));
+
+  // Field (broad OpenAlex field of study) — values are not translated, only the "all" option.
+  const fieldSel = document.getElementById("f-field");
+  fieldSel.appendChild(new Option(t("filters.allFields"), "all"));
+  [...countBy(ALL, (r) => r.field).entries()]
+    .filter(([k]) => k)
+    .sort((a, b) => b[1] - a[1])
+    .forEach(([k, n]) => fieldSel.appendChild(new Option(`${k} (${n})`, k)));
+
+  // Topic (primary OpenAlex topic)
+  const topicSel = document.getElementById("f-topic");
+  topicSel.appendChild(new Option(t("filters.allTopics"), "all"));
+  [...countBy(ALL, (r) => r.topic).entries()]
+    .filter(([k]) => k)
+    .sort((a, b) => b[1] - a[1])
+    .forEach(([k, n]) => topicSel.appendChild(new Option(`${shortName(k)} (${n})`, k)));
+
+  // Canadian institution — drill into one institution's KPIs and network.
+  const instSel = document.getElementById("f-institution");
+  instSel.appendChild(new Option(t("filters.allInstitutions"), "all"));
+  const instWorks = new Map(), instName = new Map();
+  ALL.forEach((r) => {
+    const seen = new Set();
+    r.institutions.forEach((i) => {
+      if (i.country !== "CA" || seen.has(i.id)) return;
+      seen.add(i.id);
+      instName.set(i.id, i.name);
+      instWorks.set(i.id, (instWorks.get(i.id) || 0) + 1);
+    });
+  });
+  [...instWorks.entries()].sort((a, b) => b[1] - a[1]).forEach(([id, n]) =>
+    instSel.appendChild(new Option(`${shortName(instName.get(id))} (${n})`, id)));
 }
 
 function wireUI() {
@@ -160,6 +203,9 @@ function wireUI() {
   document.getElementById("f-year-max").onchange = (e) => { filters.yearMax = +e.target.value; apply(); };
   document.getElementById("f-language").onchange = (e) => { filters.language = e.target.value; apply(); };
   document.getElementById("f-type").onchange = (e) => { filters.type = e.target.value; apply(); };
+  document.getElementById("f-field").onchange = (e) => { filters.field = e.target.value; apply(); };
+  document.getElementById("f-topic").onchange = (e) => { filters.topic = e.target.value; apply(); };
+  document.getElementById("f-institution").onchange = (e) => { filters.institution = e.target.value; apply(); };
   document.getElementById("f-oa-only").onchange = (e) => { filters.oaOnly = e.target.checked; apply(); };
   document.getElementById("f-oa").addEventListener("change", (e) => {
     if (e.target.matches("input[type=checkbox]")) {
@@ -197,11 +243,16 @@ function resetFilters() {
   const years = ALL.map((r) => r.year).filter(Boolean);
   filters.yearMin = Math.min(...years); filters.yearMax = Math.max(...years);
   filters.oaStatus = new Set(OA_ORDER);
-  filters.language = "all"; filters.type = "all"; filters.oaOnly = false;
+  filters.language = "all"; filters.type = "all";
+  filters.field = "all"; filters.topic = "all"; filters.institution = "all";
+  filters.oaOnly = false;
   document.getElementById("f-year-min").value = filters.yearMin;
   document.getElementById("f-year-max").value = filters.yearMax;
   document.getElementById("f-language").value = "all";
   document.getElementById("f-type").value = "all";
+  document.getElementById("f-field").value = "all";
+  document.getElementById("f-topic").value = "all";
+  document.getElementById("f-institution").value = "all";
   document.getElementById("f-oa-only").checked = false;
   document.querySelectorAll("#f-oa input").forEach((c) => (c.checked = true));
   apply();
@@ -219,6 +270,10 @@ function currentFiltered() {
     if (filters.oaOnly && !r.is_oa) return false;
     if (filters.language !== "all" && r.language !== filters.language) return false;
     if (filters.type !== "all" && r.type !== filters.type) return false;
+    if (filters.field !== "all" && r.field !== filters.field) return false;
+    if (filters.topic !== "all" && r.topic !== filters.topic) return false;
+    if (filters.institution !== "all" &&
+        !r.institutions.some((i) => i.id === filters.institution)) return false;
     return true;
   });
 }
@@ -230,6 +285,7 @@ function apply() {
   document.getElementById("match-count").innerHTML =
     t("matchCount").replace("{n}", fmt(n)).replace("{m}", fmt(ALL.length));
   renderKpis(_filtered);
+  renderInsights(_filtered);
   renderCharts(_filtered);
   renderNetwork(_filtered);
 }
@@ -252,6 +308,100 @@ function renderKpis(recs) {
   document.getElementById("kpis").innerHTML = kpis
     .map((k) => `<div class="kpi"><div class="value">${k.value}</div><div class="label">${k.label}</div></div>`)
     .join("");
+}
+
+// ----------------------------------------------------------------------------
+// Metaresearch report — auto-generated findings for the filtered corpus
+// ----------------------------------------------------------------------------
+function renderInsights(recs) {
+  const grid = document.getElementById("report-grid");
+  const n = recs.length;
+  if (!n) { grid.innerHTML = `<p class="muted">${t("insights.empty")}</p>`; return; }
+
+  const pct = (x) => Math.round((x / n) * 100);
+  const fill = (key, vals) => {
+    let s = t(key);
+    Object.entries(vals).forEach(([k, v]) => { s = s.replaceAll(`{${k}}`, v); });
+    return s;
+  };
+
+  // --- Openness & transparency -----------------------------------------------
+  const oa = recs.filter((r) => r.is_oa).length;
+  const community = recs.filter((r) => r.oa_status === "diamond" || r.oa_status === "green").length;
+  const preprints = recs.filter((r) => r.type === "preprint").length;
+
+  // --- Citation impact (OA advantage) ----------------------------------------
+  const mean = (arr) => (arr.length ? arr.reduce((s, x) => s + x, 0) / arr.length : 0);
+  const oaCites = mean(recs.filter((r) => r.is_oa).map((r) => r.cited_by_count || 0));
+  const closedCites = mean(recs.filter((r) => !r.is_oa).map((r) => r.cited_by_count || 0));
+  const advantage = closedCites > 0 ? (oaCites / closedCites) : 0;
+
+  // --- Linguistic diversity --------------------------------------------------
+  const fr = recs.filter((r) => r.language === "fr").length;
+
+  // --- Collaboration ---------------------------------------------------------
+  const intl = recs.filter((r) => r.institutions.some((i) => i.country && i.country !== "CA")).length;
+  const caInst = new Set();
+  recs.forEach((r) => r.institutions.forEach((i) => { if (i.country === "CA") caInst.add(i.id); }));
+
+  // --- Thematic concentration ------------------------------------------------
+  const topicCounts = [...countBy(recs, (r) => r.topic).entries()].sort((a, b) => b[1] - a[1]);
+  const top5 = topicCounts.slice(0, 5).reduce((s, e) => s + e[1], 0);
+  const topField = [...countBy(recs, (r) => r.field).entries()].sort((a, b) => b[1] - a[1])[0];
+
+  // --- Growth (latest 5-year window vs. the preceding 5 years) ---------------
+  // Trailing windows anchored on the most recent year — robust to old outliers.
+  const maxY = Math.max(...recs.map((r) => r.year).filter(Boolean));
+  const recWin = [maxY - 4, maxY];
+  const prevWin = [maxY - 9, maxY - 5];
+  const recent = recs.filter((r) => r.year >= recWin[0] && r.year <= recWin[1]).length;
+  const early = recs.filter((r) => r.year >= prevWin[0] && r.year <= prevWin[1]).length;
+  const growth = early > 0 ? Math.round(((recent - early) / early) * 100) : null;
+
+  const findings = [
+    {
+      q: t("insights.q.open"),
+      stat: pct(oa) + "%",
+      text: fill("insights.t.open", { c: pct(community) }),
+    },
+    {
+      q: t("insights.q.preprint"),
+      stat: pct(preprints) + "%",
+      text: t("insights.t.preprint"),
+    },
+    {
+      q: t("insights.q.advantage"),
+      stat: advantage ? advantage.toFixed(1) + "×" : "—",
+      text: fill("insights.t.advantage", { oa: oaCites.toFixed(1), cl: closedCites.toFixed(1) }),
+    },
+    {
+      q: t("insights.q.lang"),
+      stat: pct(fr) + "%",
+      text: t("insights.t.lang"),
+    },
+    {
+      q: t("insights.q.intl"),
+      stat: pct(intl) + "%",
+      text: fill("insights.t.intl", { i: fmt(caInst.size) }),
+    },
+    {
+      q: t("insights.q.concentration"),
+      stat: pct(top5) + "%",
+      text: fill("insights.t.concentration", { f: topField ? topField[0] : "—" }),
+    },
+    {
+      q: t("insights.q.growth"),
+      stat: growth === null ? "—" : (growth >= 0 ? "+" : "") + growth + "%",
+      text: fill("insights.t.growth", { e: prevWin[0] + "–" + prevWin[1], r: recWin[0] + "–" + recWin[1] }),
+    },
+  ];
+
+  grid.innerHTML = findings.map((f) => `
+    <div class="finding">
+      <p class="finding-q">${escapeHtml(f.q)}</p>
+      <div class="finding-stat">${escapeHtml(f.stat)}</div>
+      <p class="finding-text">${escapeHtml(f.text)}</p>
+    </div>`).join("");
 }
 
 function renderCharts(recs) {

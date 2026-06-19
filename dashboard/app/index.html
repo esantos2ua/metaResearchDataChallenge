@@ -22,6 +22,7 @@
 
     <nav class="nav" id="nav">
       <a href="#overview" class="active" data-i18n="nav.overview">Overview</a>
+      <a href="#insights" data-i18n="nav.insights">Metaresearch report</a>
       <a href="#trends" data-i18n="nav.trends">Publication trends</a>
       <a href="#institutions" data-i18n="nav.institutions">Institutions</a>
       <a href="#network" data-i18n="nav.network">Collaboration network</a>
@@ -52,6 +53,18 @@
 
       <label class="f-label"><span data-i18n="filters.type">Output type</span>
         <select id="f-type"></select>
+      </label>
+
+      <label class="f-label"><span data-i18n="filters.field">Field</span>
+        <select id="f-field"></select>
+      </label>
+
+      <label class="f-label"><span data-i18n="filters.topic">Topic</span>
+        <select id="f-topic"></select>
+      </label>
+
+      <label class="f-label"><span data-i18n="filters.institution">Canadian institution</span>
+        <select id="f-institution"></select>
       </label>
 
       <label class="f-check">
@@ -117,6 +130,16 @@
               <canvas id="isOaChart"></canvas>
             </div>
           </div>
+        </section>
+
+        <!-- METARESEARCH REPORT -->
+        <section id="insights" class="section">
+          <h2 class="section-title" data-i18n="sec.insights">Metaresearch report</h2>
+          <p class="report-intro" id="report-intro" data-i18n="insights.intro">
+            An auto-generated reading of the corpus through a metaresearch-science lens. It responds to the
+            filters on the left — narrow by year, field, language, or institution to re-frame every finding below.
+          </p>
+          <div class="report-grid" id="report-grid"></div>
         </section>
 
         <!-- TRENDS -->
