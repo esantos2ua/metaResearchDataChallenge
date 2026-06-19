@@ -540,10 +540,22 @@ function renderCharts(recs) {
   const open = recs.filter((r) => r.is_oa).length;
   doughnut("isOaChart", [t("chart.open"), t("chart.closed")], [open, recs.length - open], ["#2e9e5b", "#8a9aa8"]);
 
-  // Year trend
-  const byYear = countBy(recs, (r) => r.year);
-  const years = [...byYear.keys()].filter((y) => y >= 1900).sort((a, b) => a - b);
-  line("yearChart", years, years.map((y) => byYear.get(y)));
+  // Year trends: outputs, open-access share, and citations per output
+  const perYear = new Map();   // year -> { n, open, cites }
+  recs.forEach((r) => {
+    if (!r.year) return;
+    const e = perYear.get(r.year) || { n: 0, open: 0, cites: 0 };
+    e.n++; if (r.is_oa) e.open++; e.cites += r.cited_by_count || 0;
+    perYear.set(r.year, e);
+  });
+  const years = [...perYear.keys()].filter((y) => y >= 1900).sort((a, b) => a - b);
+  line("yearChart", years, years.map((y) => perYear.get(y).n));
+  line("oaTrendChart", years, years.map((y) => {
+    const e = perYear.get(y); return e.n ? Math.round((e.open / e.n) * 100) : 0;
+  }), { color: "#2e9e5b", yMax: 100, yPct: true, suffix: "%" });
+  line("citeTrendChart", years, years.map((y) => {
+    const e = perYear.get(y); return e.n ? +(e.cites / e.n).toFixed(1) : 0;
+  }), { color: "#4aa3df" });
 
   // Top Canadian institutions
   const instCounts = new Map();
@@ -762,12 +774,19 @@ function doughnut(id, labels, values, colors) {
     options: { plugins: { legend: { position: "right", labels: { boxWidth: 12 } } }, cutout: "55%" },
   });
 }
-function line(id, labels, values) {
+function line(id, labels, values, opts = {}) {
+  const color = opts.color || "#c8102e";
+  const y = { beginAtZero: true };
+  if (opts.yMax) y.max = opts.yMax;
+  if (opts.yPct) y.ticks = { callback: (v) => v + "%" };
+  const tooltip = opts.suffix
+    ? { callbacks: { label: (c) => `${c.parsed.y}${opts.suffix}` } }
+    : {};
   upsert(id, {
     type: "line",
-    data: { labels, datasets: [{ data: values, borderColor: "#c8102e", backgroundColor: "rgba(200,16,46,.12)",
+    data: { labels, datasets: [{ data: values, borderColor: color, backgroundColor: color + "22",
       fill: true, tension: 0.3, pointRadius: 0, borderWidth: 2 }] },
-    options: { plugins: { legend: { display: false } }, scales: { x: { ticks: { maxTicksLimit: 12 } } } },
+    options: { plugins: { legend: { display: false }, tooltip }, scales: { x: { ticks: { maxTicksLimit: 12 } }, y } },
   });
 }
 function hbar(id, labels, values) {
