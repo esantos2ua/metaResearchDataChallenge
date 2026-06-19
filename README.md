@@ -51,6 +51,21 @@ metaresearch corpus.
 └── docs/            # Documentation, methodology, figures
 ```
 
+## Dashboard stack
+
+A deliberately **static-first** stack — no build step and no backend, so it hosts for free on
+GitHub Pages and stays fully reproducible:
+
+- **Plain HTML / CSS / vanilla JS** ([dashboard/app/](dashboard/app/)) — no framework, no bundler.
+- **[Chart.js](https://www.chartjs.org/)** for charts, **[vis-network](https://visjs.github.io/vis-network/)**
+  for the co-authorship network, and **[Leaflet](https://leafletjs.com/)** for maps (all via CDN).
+- A single **record-level dataset** (`app/data/records.json`) is loaded in the browser; all
+  filtering, aggregation, network construction, and CSV export happen **client-side**.
+- The Python pipeline ([scripts/](scripts/)) builds that dataset from OpenAlex; a push to `main`
+  touching `dashboard/app/**` redeploys the site via GitHub Actions.
+
+See [dashboard/README.md](dashboard/README.md) for details.
+
 ## Reproducibility
 
 Every step from raw OpenAlex retrieval to dashboard is scripted and version-controlled.
