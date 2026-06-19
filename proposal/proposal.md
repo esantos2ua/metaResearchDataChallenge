@@ -12,11 +12,15 @@
 > reproducibility; (2) diversity considerations & bias acknowledgment; (3) a work plan for
 > pre-conference completion.
 
-## 1. Problem & objective
+## 1. The challenge question — and our answer
 
-**Why map this landscape?** Understanding the Canadian metaresearch ecosystem is critical to identifying who is shaping research culture, whose voices are missing, and how to improve equity and transparency in science. We propose an end-to-end, fully open pipeline built on **OpenAlex** that empowers researchers, policymakers, and communities (the **who**) to drive positive social change through better research practices. 
+> *"How can we construct an open, reproducible, and inclusive dataset that best captures the Canadian metaresearch landscape?"*
 
-Our objective is to construct an open, reproducible, and inclusive dataset, culminating in a live **dashboard** (inspired by the [COKI Open Access Dashboard](https://open.coki.ac/)). This system, already actively running as a pilot on GitHub, will allow stakeholders to explore openness, citation/bibliometric dimensions, and equity within the field.
+**Our answer, in one sentence:** by defining the corpus through a **transparent, versioned query over OpenAlex** that anyone can re-run; **scripting every step** from retrieval to dashboard so the dataset rebuilds with one command; reporting **multiple defensible definitions** of "Canadian" and "metaresearch" side-by-side instead of a single hidden choice; **co-designing inclusion criteria with the community**; and **surfacing the dataset's own gaps** (language, discipline, coverage) directly in the dashboard rather than hiding them.
+
+**Why it matters.** Mapping the Canadian metaresearch ecosystem shows who is shaping research culture, whose voices are missing, and where to improve transparency and equity in science. The deliverable is a live, public **dashboard** (inspired by the [COKI Open Access Dashboard](https://open.coki.ac/)) — already running as a pilot on real OpenAlex data — that lets researchers, funders, and communities explore the landscape and inspect exactly how it was built.
+
+The three commitments the call asks us to evaluate map directly to the sections below: **openness & reproducibility (§6)**, **diversity & bias transparency (§7)**, and a concrete **work plan (§8)**.
 
 ## 2. Search & retrieval strategy (OpenAlex)
 
@@ -64,14 +68,35 @@ Our objective is to construct an open, reproducible, and inclusive dataset, culm
 
 ## 6. Openness, transparency & reproducibility
 
-- All code MIT-licensed and public; data/docs CC BY 4.0, released to be **FAIR** [9] and aligned with the
-  UNESCO Recommendation on Open Science [11].
-- Scripted pipeline (raw → processed → dashboard), pinned environments, and a dated OpenAlex snapshot.
+> *How will the project support openness, transparency, and reproducibility — and how will data, code, workflows, and documentation be shared?*
 
-## 7. Equity, diversity, inclusion (EDI) & bias acknowledgment
+Reproducibility is the project's core design principle: the dataset rebuilds from source with a single command, and every choice is inspectable.
 
-- Systematic tracking of EDI considerations, ensuring the report is inclusive of French-language, smaller-institution, and regionally diverse outputs.
-- Explicit discussion of OpenAlex metadata limitations regarding marginalized groups, highlighting these gaps to inform capacity building and equitable policy.
+- **Data** — the record-level processed corpus, with a **codebook**, is released **CC BY 4.0** and built to be **FAIR** [9]. A **dated, version-pinned OpenAlex snapshot** keeps results reproducible even as OpenAlex updates.
+- **Code** — all extraction, cleaning, analysis, and dashboard code is **MIT-licensed** and public on GitHub.
+- **Workflows** — a fully scripted pipeline (raw → processed → dashboard) with pinned software environments; the corpus-defining query lives in one **versioned config** (`query_config.yaml`), so the definition is auditable and re-runnable.
+- **Documentation** — a methodology and reproducibility guide and the codebook, plus an in-dashboard **"Search & validation"** panel that displays the exact query, **re-runs it live against OpenAlex**, and spot-checks a random sample for relevance — transparency anyone can exercise in the browser.
+- Aligned with the **UNESCO Recommendation on Open Science** [11].
+
+## 7. Diversity, assumptions, limitations & sources of bias
+
+> *How does the proposal account for diversity in metaresearch traditions, research cultures, disciplines, languages, or communities? What are the key assumptions, limitations, and potential sources of bias?*
+
+**Accounting for diversity**
+- **Traditions & disciplines** — metaresearch spans quantitative scientometrics, science-and-technology studies, research-integrity and ethics scholarship, and library/information science; our concept set deliberately mixes these, and the dashboard breaks the corpus down by **field, topic, and concept** so no single tradition stands in for the whole.
+- **Languages** — English and French are first-class: query, keywords, and dashboard are **bilingual**, and we report the EN/FR balance explicitly (the pilot is ~94% English — itself a finding, not a target).
+- **Communities & research cultures** — inclusion criteria are **co-designed** with librarians, researchers, EDI experts, and policymakers; Indigenous-related research follows **OCAP®, CARE, and TCPS 2** (§3).
+- **Institutions & regions** — smaller institutions and all regions are tracked, not only the largest universities.
+
+**Key assumptions**
+- OpenAlex concepts and affiliations are a usable proxy for "metaresearch" and "Canadian." Both are contestable, so we **test alternative definitions** (§2) rather than assert one.
+- Author-affiliation country adequately captures Canadian contribution.
+
+**Limitations & sources of bias**
+- **Coverage bias** — OpenAlex favours English-language, journal-based, DOI-bearing outputs; non-English work, grey literature, and community-based scholarship are under-represented [3, 10].
+- **Definitional bias** — concept tagging is noisy (broad concepts can pull in false positives, observed in the pilot), and affiliation-based "Canadian" credits a whole work to Canada regardless of contribution share.
+- **Metadata gaps** — OpenAlex carries little reliable information on author demographics, career stage, or equity-deserving groups, so EDI analysis relies on coarse proxies and is reported as such.
+- We **surface these gaps in the dashboard** rather than hide them, to inform capacity building and equitable policy.
 
 ## 8. Work plan (pre-conference)
 
