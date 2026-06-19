@@ -56,6 +56,19 @@ metaresearch corpus.
 Every step from raw OpenAlex retrieval to dashboard is scripted and version-controlled.
 See [docs/METHODOLOGY.md](docs/METHODOLOGY.md) and [docs/REPRODUCIBILITY.md](docs/REPRODUCIBILITY.md).
 
+## Dashboard analytics
+
+The live dashboard uses **[GoatCounter](https://www.goatcounter.com)** for privacy-friendly,
+cookieless visitor tracking (no personal data, no consent banner required). To enable it:
+
+1. Register a free site at <https://www.goatcounter.com> (e.g. site code `metaresearch`).
+2. Replace `GOATCOUNTER_CODE` in the analytics `<script>` tag in
+   [dashboard/app/index.html](dashboard/app/index.html) with your site code.
+3. View stats at `https://YOUR_CODE.goatcounter.com`.
+
+GitHub's own repo traffic (views, clones, referrers — rolling 14-day window) is also available
+under **Insights → Traffic**.
+
 ## License
 
 - Code: [MIT](LICENSE)
