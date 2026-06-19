@@ -21,9 +21,20 @@ and lexical filters:
 Primary definition: at least one authorship with an **institution in Canada** (country_code = CA),
 resolved via ROR. Reported alternatives for sensitivity analysis:
 
-1. Corresponding/first author at a Canadian institution.
-2. Any Canadian co-author.
-3. Canadian funder acknowledgment.
+1. First author at a Canadian institution.
+2. Corresponding author at a Canadian institution.
+3. Funded by a major Canadian funder (`funders.id`), regardless of affiliation.
+
+### Sensitivity reporting — status
+
+- **Implemented (option 1):** `build_records.py` computes the corpus size under each definition
+  above, holding the metaresearch subject filter constant, and the dashboard's "Search &
+  validation" section reports them **side by side** (count and % of the primary definition).
+  First/corresponding are computed from `authorships` (author position / `is_corresponding`);
+  corresponding-author coverage is reported as a caveat (it is sparsely recorded in OpenAlex).
+- **Planned (option 2):** an interactive control to switch the *active* definition so every
+  chart, KPI, and the collaboration network re-aggregate accordingly. The per-record `first_ca`
+  / `corr_ca` flags needed for this are already shipped in `records.json`.
 
 ## 3. Retrieval
 
