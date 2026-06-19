@@ -16,7 +16,10 @@ const SERIES = ["#c8102e", "#4aa3df", "#2e9e5b", "#f5b301", "#9b59b6", "#cd7f32"
 const TOP_N_NODES = 60;
 const MIN_EDGE_WEIGHT = 2;
 const OPENALEX = "https://api.openalex.org/works";
-const POLITE = "esantos2@ualberta.ca";   // OpenAlex polite-pool contact (already public in repo)
+// Optional OpenAlex polite-pool contact. Leave empty, or set a project (non-personal)
+// email; it is sent with API requests from the browser, so do not use a private address.
+const POLITE = "";
+const MAILTO = POLITE ? `&mailto=${encodeURIComponent(POLITE)}` : "";
 
 Chart.defaults.font.family = getComputedStyle(document.body).fontFamily;
 Chart.defaults.color = "#5c6b7a";
@@ -683,7 +686,7 @@ function initValidation() {
   const filter = META.base_filter || "";
   const enc = encodeURIComponent(filter);
   document.getElementById("val-filter").textContent = filter;
-  document.getElementById("val-api").href = `${OPENALEX}?filter=${enc}&mailto=${POLITE}`;
+  document.getElementById("val-api").href = `${OPENALEX}?filter=${enc}${MAILTO}`;
   document.getElementById("val-web").href = `https://openalex.org/works?filter=${enc}`;
   document.getElementById("btn-copy").onclick = copyFilter;
   document.getElementById("btn-verify").onclick = verifyLive;
@@ -722,7 +725,7 @@ async function verifyLive() {
   box.innerHTML = `<span class="muted">${t("val.checking")}</span>`;
   try {
     const enc = encodeURIComponent(META.base_filter);
-    const res = await fetch(`${OPENALEX}?filter=${enc}&per-page=1&mailto=${POLITE}`);
+    const res = await fetch(`${OPENALEX}?filter=${enc}&per-page=1${MAILTO}`);
     if (!res.ok) throw new Error(res.status);
     const live = (await res.json()).meta.count;
     const snap = META.total_works;
@@ -747,7 +750,7 @@ async function fetchSample() {
     const enc = encodeURIComponent(META.base_filter);
     const seed = Math.floor(Math.random() * 100000);
     const url = `${OPENALEX}?filter=${enc}&sample=8&seed=${seed}&per-page=8` +
-      `&select=id,display_name,publication_year,type&mailto=${POLITE}`;
+      `&select=id,display_name,publication_year,type${MAILTO}`;
     const res = await fetch(url);
     if (!res.ok) throw new Error(res.status);
     const rows = (await res.json()).results || [];

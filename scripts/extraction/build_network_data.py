@@ -27,7 +27,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 OUT_DIR = ROOT / "dashboard" / "app" / "data"
 BASE = "https://api.openalex.org/works"
-EMAIL = os.environ.get("OPENALEX_EMAIL", "esantos2@ualberta.ca")
+EMAIL = os.environ.get("OPENALEX_EMAIL", "").strip()  # optional OpenAlex polite-pool contact
 
 # Same pilot corpus definition as build_dashboard_data.py.
 METARESEARCH_CONCEPTS = [
@@ -42,7 +42,9 @@ MIN_EDGE_WEIGHT = 2
 
 
 def api(params: dict) -> dict:
-    params = {**params, "mailto": EMAIL}
+    params = {**params}
+    if EMAIL:
+        params["mailto"] = EMAIL
     url = f"{BASE}?{urllib.parse.urlencode(params)}"
     for attempt in range(4):
         try:
@@ -92,7 +94,7 @@ def institutions_of(work: dict) -> dict[str, dict]:
 
 def main() -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
-    print(f"Building collaboration network from OpenAlex (mailto={EMAIL}) ...")
+    print(f"Building collaboration network from OpenAlex (mailto={EMAIL or 'not set'}) ...")
 
     node_info: dict[str, dict] = {}
     node_works: dict[str, int] = {}

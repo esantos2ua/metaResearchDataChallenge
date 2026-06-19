@@ -23,7 +23,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 OUT_DIR = ROOT / "dashboard" / "app" / "data"
 BASE = "https://api.openalex.org/works"
-EMAIL = os.environ.get("OPENALEX_EMAIL", "esantos2@ualberta.ca")
+EMAIL = os.environ.get("OPENALEX_EMAIL", "").strip()  # optional OpenAlex polite-pool contact
 
 # Pilot corpus definition (shared with the other extraction scripts).
 METARESEARCH_CONCEPTS = {
@@ -42,7 +42,9 @@ SELECT = "id,title,publication_year,type,language,cited_by_count,open_access,aut
 
 
 def api(params: dict) -> dict:
-    params = {**params, "mailto": EMAIL}
+    params = {**params}
+    if EMAIL:
+        params["mailto"] = EMAIL
     url = f"{BASE}?{urllib.parse.urlencode(params)}"
     for attempt in range(4):
         try:
@@ -77,7 +79,7 @@ def institutions_of(work: dict) -> list[dict]:
 
 def main() -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
-    print(f"Building record-level dataset from OpenAlex (mailto={EMAIL}) ...")
+    print(f"Building record-level dataset from OpenAlex (mailto={EMAIL or 'not set'}) ...")
 
     records: list[dict] = []
     cursor = "*"

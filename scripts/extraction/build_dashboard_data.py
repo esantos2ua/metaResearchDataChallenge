@@ -22,7 +22,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 OUT_DIR = ROOT / "dashboard" / "app" / "data"
 BASE = "https://api.openalex.org/works"
-EMAIL = os.environ.get("OPENALEX_EMAIL", "esantos2@ualberta.ca")
+EMAIL = os.environ.get("OPENALEX_EMAIL", "").strip()  # optional OpenAlex polite-pool contact
 
 # --- Corpus definition (pilot) -------------------------------------------------
 # Metaresearch-related OpenAlex concepts. These are the pilot set; refine in
@@ -40,7 +40,9 @@ BASE_FILTER = f"institutions.country_code:ca,{CONCEPT_FILTER}"
 
 
 def api(params: dict) -> dict:
-    params = {**params, "mailto": EMAIL}
+    params = {**params}
+    if EMAIL:
+        params["mailto"] = EMAIL
     url = f"{BASE}?{urllib.parse.urlencode(params)}"
     for attempt in range(4):
         try:
@@ -67,7 +69,7 @@ def group_by(dimension: str, extra_filter: str = "") -> list[dict]:
 
 def main() -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
-    print(f"Querying OpenAlex (mailto={EMAIL}) ...")
+    print(f"Querying OpenAlex (mailto={EMAIL or 'not set'}) ...")
 
     total = total_count()
     print(f"  corpus size: {total} works")
