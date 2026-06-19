@@ -102,6 +102,10 @@ a { color: var(--accent); }
 }
 .topbar h1 { margin: 0 0 4px; font-size: 1.5rem; }
 .subtitle { margin: 0; color: var(--muted); font-size: 0.9rem; max-width: 620px; }
+.credit-row { display: flex; align-items: center; gap: 11px; margin-top: 10px; }
+.credit-logo { display: inline-flex; flex: 0 0 auto; }
+.credit-logo img { height: 42px; width: auto; display: block; }
+.credit { margin: 0; color: var(--muted); font-size: 0.82rem; max-width: 560px; }
 .topbar-right { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; white-space: nowrap; }
 .lang-toggle { display: inline-flex; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: #fff; }
 .lang-toggle button {

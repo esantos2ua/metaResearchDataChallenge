@@ -41,6 +41,8 @@ const I18N = {
       "<a href=\"https://openalex.org/\" target=\"_blank\" rel=\"noopener\">OpenAlex</a> · " +
       "inspired by <a href=\"https://open.coki.ac/\" target=\"_blank\" rel=\"noopener\">COKI</a>.",
     "header.pilot": "PILOT · real OpenAlex data",
+    "header.credit": "Developed by the " +
+      "<a href=\"https://cossee.org/\" target=\"_blank\" rel=\"noopener\">Collaboration for Open Science and Synthesis in Ecology and Evolution (COSSEE)</a>.",
     "filtersToggle": "☰ Menu & filters",
     "loading": "Loading data…",
     // Section titles
@@ -203,6 +205,8 @@ const I18N = {
       "à partir d'<a href=\"https://openalex.org/\" target=\"_blank\" rel=\"noopener\">OpenAlex</a> · " +
       "inspiré de <a href=\"https://open.coki.ac/\" target=\"_blank\" rel=\"noopener\">COKI</a>.",
     "header.pilot": "PILOTE · données réelles OpenAlex",
+    "header.credit": "Développé par la " +
+      "<a href=\"https://cossee.org/\" target=\"_blank\" rel=\"noopener\">Collaboration for Open Science and Synthesis in Ecology and Evolution (COSSEE)</a>.",
     "filtersToggle": "☰ Menu et filtres",
     "loading": "Chargement des données…",
     "sec.overview": "Aperçu",
