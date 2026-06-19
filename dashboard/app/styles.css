@@ -151,6 +151,43 @@ a { color: var(--accent); }
 .muted { color: var(--muted); font-size: 0.84rem; }
 code { background: var(--bg); padding: 2px 6px; border-radius: 6px; font-size: 0.8rem; word-break: break-all; }
 
+/* ---- View tabs (Dashboard / Records) ---- */
+.view-tabs { display: flex; gap: 4px; margin-bottom: 24px; border-bottom: 1px solid var(--border); }
+.view-tabs button {
+  border: none; background: transparent; padding: 10px 20px; font-size: 0.95rem; font-weight: 600;
+  color: var(--muted); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px;
+}
+.view-tabs button:hover { color: var(--ink); }
+.view-tabs button.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+#dash.view-records .section:not(#records-view) { display: none; }
+#dash:not(.view-records) #records-view { display: none; }
+
+/* ---- Records table ---- */
+.table-toolbar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+.table-perpage { font-size: 0.82rem; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+.table-perpage select { padding: 4px 7px; border-radius: 6px; border: 1px solid var(--border); }
+.table-scroll { overflow-x: auto; border: 1px solid var(--border); border-radius: 10px; max-height: 70vh; overflow-y: auto; }
+.rec-table { width: 100%; border-collapse: collapse; font-size: 0.84rem; }
+.rec-table th, .rec-table td { padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--border); white-space: nowrap; }
+.rec-table th {
+  position: sticky; top: 0; background: var(--surface); cursor: pointer; user-select: none; z-index: 1;
+  font-size: 0.74rem; text-transform: uppercase; letter-spacing: .03em; color: var(--muted);
+}
+.rec-table th:hover { color: var(--ink); }
+.rec-table th.sorted { color: var(--accent); }
+.rec-table th.num, .rec-table td.num { text-align: right; }
+.rec-table tbody tr:hover { background: var(--bg); }
+.rec-table td:first-child { white-space: normal; min-width: 280px; max-width: 440px; }
+.oa-pill {
+  display: inline-block; padding: 1px 9px; border-radius: 999px; font-size: 0.74rem; color: #1b2733;
+  background: color-mix(in srgb, var(--oa) 20%, white); border: 1px solid color-mix(in srgb, var(--oa) 45%, white);
+}
+.table-pager { display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: 14px; }
+.btn-page { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 7px 15px; cursor: pointer; font-size: 0.85rem; }
+.btn-page:hover:not(:disabled) { background: var(--bg); }
+.btn-page:disabled { opacity: .45; cursor: default; }
+
 /* ---- Metaresearch report ---- */
 .report-intro { color: var(--muted); font-size: 0.9rem; max-width: 760px; margin: 0 0 20px; }
 .report-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }

@@ -38,8 +38,14 @@ const typeLabel = (k) => tf("type." + k, k);
 function applyStatic() {
   document.documentElement.lang = LANG;
   document.title = t("header.title");
-  document.querySelectorAll("[data-i18n]").forEach((el) => { el.textContent = t(el.dataset.i18n); });
-  document.querySelectorAll("[data-i18n-html]").forEach((el) => { el.innerHTML = t(el.dataset.i18nHtml); });
+  // If a key is missing (e.g. a stale cached i18n.js), keep the hard-coded HTML
+  // fallback text rather than printing the raw key.
+  document.querySelectorAll("[data-i18n]").forEach((el) => {
+    const v = lookup(el.dataset.i18n); if (v !== undefined) el.textContent = v;
+  });
+  document.querySelectorAll("[data-i18n-html]").forEach((el) => {
+    const v = lookup(el.dataset.i18nHtml); if (v !== undefined) el.innerHTML = v;
+  });
 }
 
 function relabelFilters() {
@@ -84,6 +90,24 @@ let network = null;    // vis.Network instance
 let netData = null;    // {nodes, edges} DataSets
 let langCounts = new Map();   // language code -> count (for filter labels)
 let typeCounts = new Map();   // output type -> count (for filter labels)
+let viewMode = "dashboard";   // "dashboard" | "records"
+const tableState = { key: "year", dir: "desc", page: 0, size: 25 };
+
+// Records-table columns. get() -> sort value; cell() -> HTML.
+const TABLE_COLS = [
+  { key: "title", i18n: "table.col.title", num: false, get: (r) => r.title || "",
+    cell: (r) => `<a href="https://openalex.org/${r.id}" target="_blank" rel="noopener">${escapeHtml(r.title || "—")}</a>` },
+  { key: "year", i18n: "table.col.year", num: true, get: (r) => r.year || 0, cell: (r) => r.year ?? "—" },
+  { key: "type", i18n: "table.col.type", num: false, get: (r) => r.type || "", cell: (r) => escapeHtml(typeLabel(r.type || "unknown")) },
+  { key: "language", i18n: "table.col.lang", num: false, get: (r) => r.language || "", cell: (r) => escapeHtml(langLabel(r.language || "unknown")) },
+  { key: "cited_by_count", i18n: "table.col.cites", num: true, get: (r) => r.cited_by_count || 0, cell: (r) => fmt(r.cited_by_count || 0) },
+  { key: "oa_status", i18n: "table.col.oa", num: false, get: (r) => r.oa_status || "",
+    cell: (r) => `<span class="oa-pill" style="--oa:${OA_COLOR[r.oa_status] || "#c4ccd4"}">${escapeHtml(oaLabel(r.oa_status))}</span>` },
+  { key: "topic", i18n: "table.col.topic", num: false, get: (r) => r.topic || "", cell: (r) => escapeHtml(r.topic || "—") },
+  { key: "field", i18n: "table.col.field", num: false, get: (r) => r.field || "", cell: (r) => escapeHtml(r.field || "—") },
+  { key: "institutions", i18n: "table.col.insts", num: true, get: (r) => r.institutions.length,
+    cell: (r) => `<span title="${escapeHtml(r.institutions.map((i) => i.name).join(", "))}">${r.institutions.length}</span>` },
+];
 
 const filters = {
   yearMin: null, yearMax: null,
@@ -240,6 +264,28 @@ function wireUI() {
   document.getElementById("btn-reset").onclick = resetFilters;
   document.getElementById("btn-download").onclick = downloadCSV;
 
+  // View tabs (Dashboard / Records)
+  document.querySelectorAll("#view-tabs button").forEach((b) => (b.onclick = () => setView(b.dataset.view)));
+
+  // Records table: sort on header click, paginate, change page size
+  document.getElementById("rec-head").addEventListener("click", (e) => {
+    const th = e.target.closest("th[data-key]"); if (!th) return;
+    const key = th.dataset.key;
+    if (tableState.key === key) {
+      tableState.dir = tableState.dir === "asc" ? "desc" : "asc";
+    } else {
+      tableState.key = key;
+      tableState.dir = TABLE_COLS.find((c) => c.key === key).num ? "desc" : "asc";
+    }
+    tableState.page = 0;
+    renderTable(_filtered);
+  });
+  document.getElementById("tbl-prev").onclick = () => { tableState.page--; renderTable(_filtered); };
+  document.getElementById("tbl-next").onclick = () => { tableState.page++; renderTable(_filtered); };
+  document.getElementById("table-size").onchange = (e) => {
+    tableState.size = +e.target.value; tableState.page = 0; renderTable(_filtered);
+  };
+
   // Language toggle
   document.querySelectorAll("#lang-toggle button").forEach((b) =>
     (b.onclick = () => setLang(b.dataset.lang)));
@@ -250,7 +296,10 @@ function wireUI() {
 
   // Nav: smooth scroll + active state
   const navLinks = [...document.querySelectorAll(".nav a")];
-  navLinks.forEach((a) => a.addEventListener("click", () => sidebar.classList.remove("open")));
+  navLinks.forEach((a) => a.addEventListener("click", () => {
+    sidebar.classList.remove("open");
+    setView("dashboard");   // section anchors only exist in the dashboard view
+  }));
   const sections = navLinks.map((a) => document.querySelector(a.getAttribute("href")));
   const obs = new IntersectionObserver((entries) => {
     entries.forEach((en) => {
@@ -316,6 +365,8 @@ function apply() {
   renderInsights(_filtered);
   renderCharts(_filtered);
   renderNetwork(_filtered);
+  tableState.page = 0;
+  if (viewMode === "records") renderTable(_filtered);
 }
 
 // ----------------------------------------------------------------------------
@@ -430,6 +481,48 @@ function renderInsights(recs) {
       <div class="finding-stat">${escapeHtml(f.stat)}</div>
       <p class="finding-text">${escapeHtml(f.text)}</p>
     </div>`).join("");
+}
+
+// ----------------------------------------------------------------------------
+// Records table — paginated, sortable, reacts to the same filters
+// ----------------------------------------------------------------------------
+function setView(view) {
+  viewMode = view;
+  document.getElementById("dash").classList.toggle("view-records", view === "records");
+  document.querySelectorAll("#view-tabs button").forEach((b) =>
+    b.classList.toggle("active", b.dataset.view === view));
+  if (view === "records") renderTable(_filtered);
+  window.scrollTo({ top: 0 });
+}
+
+function renderTable(recs) {
+  const col = TABLE_COLS.find((c) => c.key === tableState.key) || TABLE_COLS[1];
+  const dir = tableState.dir === "asc" ? 1 : -1;
+  const sorted = [...recs].sort((a, b) => {
+    const av = col.get(a), bv = col.get(b);
+    return (col.num ? av - bv : String(av).localeCompare(String(bv), LANG === "fr" ? "fr" : "en")) * dir;
+  });
+
+  const size = tableState.size;
+  const pages = Math.max(1, Math.ceil(sorted.length / size));
+  tableState.page = Math.min(Math.max(tableState.page, 0), pages - 1);
+  const start = tableState.page * size;
+  const slice = sorted.slice(start, start + size);
+
+  document.getElementById("rec-head").innerHTML = "<tr>" + TABLE_COLS.map((c) => {
+    const active = c.key === tableState.key;
+    const arrow = active ? (tableState.dir === "asc" ? " ▲" : " ▼") : "";
+    return `<th data-key="${c.key}" class="${active ? "sorted" : ""}${c.num ? " num" : ""}">${escapeHtml(t(c.i18n))}${arrow}</th>`;
+  }).join("") + "</tr>";
+
+  document.getElementById("rec-body").innerHTML = slice.length
+    ? slice.map((r) => "<tr>" + TABLE_COLS.map((c) => `<td class="${c.num ? "num" : ""}">${c.cell(r)}</td>`).join("") + "</tr>").join("")
+    : `<tr><td colspan="${TABLE_COLS.length}" class="muted" style="text-align:center;padding:24px">${t("insights.empty")}</td></tr>`;
+
+  document.getElementById("table-count").textContent = t("table.count").replace("{n}", fmt(sorted.length));
+  document.getElementById("tbl-page").textContent = t("table.page").replace("{p}", tableState.page + 1).replace("{n}", pages);
+  document.getElementById("tbl-prev").disabled = tableState.page === 0;
+  document.getElementById("tbl-next").disabled = tableState.page >= pages - 1;
 }
 
 function renderCharts(recs) {

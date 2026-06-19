@@ -119,6 +119,11 @@
       <p id="loading" data-i18n="loading">Loading data…</p>
 
       <div id="dash" hidden>
+        <div class="view-tabs" id="view-tabs" role="tablist">
+          <button data-view="dashboard" class="active" data-i18n="tabs.dashboard">Dashboard</button>
+          <button data-view="records" data-i18n="tabs.records">Records</button>
+        </div>
+
         <!-- OVERVIEW -->
         <section id="overview" class="section">
           <h2 class="section-title" data-i18n="sec.overview">Overview</h2>
@@ -247,6 +252,34 @@
               All charts, the network, and the CSV export update with the filters on the left.
               Data &amp; documentation: CC BY 4.0 · Code: MIT.
             </p>
+          </div>
+        </section>
+
+        <!-- RECORDS TABLE -->
+        <section id="records-view" class="section">
+          <h2 class="section-title" data-i18n="sec.records">Records</h2>
+          <div class="card wide">
+            <div class="table-toolbar">
+              <span class="muted" id="table-count"></span>
+              <label class="table-perpage"><span data-i18n="table.perPage">Rows per page</span>
+                <select id="table-size">
+                  <option value="25">25</option>
+                  <option value="50">50</option>
+                  <option value="100">100</option>
+                </select>
+              </label>
+            </div>
+            <div class="table-scroll">
+              <table class="rec-table" id="rec-table">
+                <thead id="rec-head"></thead>
+                <tbody id="rec-body"></tbody>
+              </table>
+            </div>
+            <div class="table-pager">
+              <button class="btn-page" id="tbl-prev" data-i18n="table.prev">‹ Prev</button>
+              <span id="tbl-page" class="muted"></span>
+              <button class="btn-page" id="tbl-next" data-i18n="table.next">Next ›</button>
+            </div>
           </div>
         </section>
       </div>
