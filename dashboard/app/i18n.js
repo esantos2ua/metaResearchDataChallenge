@@ -31,6 +31,7 @@ const I18N = {
     "filters.allFields": "All fields",
     "filters.allTopics": "All topics",
     "filters.allInstitutions": "All Canadian institutions",
+    "filters.concepts": "Metaresearch concept",
     // Actions
     "actions.download": "⬇ Download filtered CSV",
     "repo.link": "↗ Project on GitHub",
@@ -172,6 +173,7 @@ const I18N = {
     "filters.allFields": "Tous les domaines",
     "filters.allTopics": "Tous les sujets",
     "filters.allInstitutions": "Tous les établissements canadiens",
+    "filters.concepts": "Concept de métarecherche",
     "actions.download": "⬇ Télécharger le CSV filtré",
     "repo.link": "↗ Projet sur GitHub",
     "header.title": "Tableau de bord de la métarecherche canadienne",

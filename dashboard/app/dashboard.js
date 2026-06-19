@@ -93,8 +93,10 @@ const filters = {
   field: "all",
   topic: "all",
   institution: "all",   // OpenAlex institution id of a Canadian institution, or "all"
+  concepts: new Set(),  // selected metaresearch concept ids (filled once data loads)
   oaOnly: false,
 };
+let ALL_CONCEPTS = [];   // all corpus-defining concept ids (for reset)
 
 // ----------------------------------------------------------------------------
 // Boot
@@ -196,6 +198,22 @@ function buildFilterControls() {
   });
   [...instWorks.entries()].sort((a, b) => b[1] - a[1]).forEach(([id, n]) =>
     instSel.appendChild(new Option(`${shortName(instName.get(id))} (${n})`, id)));
+
+  // Metaresearch concepts (checkbox group) — a work may carry several.
+  const conceptBox = document.getElementById("f-concepts");
+  const conceptNames = META.concepts || {};
+  const conceptCounts = new Map();
+  ALL.forEach((r) => (r.concepts || []).forEach((c) => conceptCounts.set(c, (conceptCounts.get(c) || 0) + 1)));
+  ALL_CONCEPTS = Object.keys(conceptNames);
+  filters.concepts = new Set(ALL_CONCEPTS);
+  ALL_CONCEPTS
+    .sort((a, b) => (conceptCounts.get(b) || 0) - (conceptCounts.get(a) || 0))
+    .forEach((id) => {
+      const wrap = document.createElement("label");
+      wrap.innerHTML = `<input type="checkbox" value="${id}" checked> ` +
+        `<span>${escapeHtml(conceptNames[id])} (${conceptCounts.get(id) || 0})</span>`;
+      conceptBox.appendChild(wrap);
+    });
 }
 
 function wireUI() {
@@ -206,6 +224,12 @@ function wireUI() {
   document.getElementById("f-field").onchange = (e) => { filters.field = e.target.value; apply(); };
   document.getElementById("f-topic").onchange = (e) => { filters.topic = e.target.value; apply(); };
   document.getElementById("f-institution").onchange = (e) => { filters.institution = e.target.value; apply(); };
+  document.getElementById("f-concepts").addEventListener("change", (e) => {
+    if (e.target.matches("input[type=checkbox]")) {
+      e.target.checked ? filters.concepts.add(e.target.value) : filters.concepts.delete(e.target.value);
+      apply();
+    }
+  });
   document.getElementById("f-oa-only").onchange = (e) => { filters.oaOnly = e.target.checked; apply(); };
   document.getElementById("f-oa").addEventListener("change", (e) => {
     if (e.target.matches("input[type=checkbox]")) {
@@ -245,6 +269,7 @@ function resetFilters() {
   filters.oaStatus = new Set(OA_ORDER);
   filters.language = "all"; filters.type = "all";
   filters.field = "all"; filters.topic = "all"; filters.institution = "all";
+  filters.concepts = new Set(ALL_CONCEPTS);
   filters.oaOnly = false;
   document.getElementById("f-year-min").value = filters.yearMin;
   document.getElementById("f-year-max").value = filters.yearMax;
@@ -255,6 +280,7 @@ function resetFilters() {
   document.getElementById("f-institution").value = "all";
   document.getElementById("f-oa-only").checked = false;
   document.querySelectorAll("#f-oa input").forEach((c) => (c.checked = true));
+  document.querySelectorAll("#f-concepts input").forEach((c) => (c.checked = true));
   apply();
 }
 
@@ -274,6 +300,8 @@ function currentFiltered() {
     if (filters.topic !== "all" && r.topic !== filters.topic) return false;
     if (filters.institution !== "all" &&
         !r.institutions.some((i) => i.id === filters.institution)) return false;
+    if (filters.concepts.size < ALL_CONCEPTS.length &&
+        !(r.concepts || []).some((c) => filters.concepts.has(c))) return false;
     return true;
   });
 }

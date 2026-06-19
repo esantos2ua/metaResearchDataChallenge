@@ -38,7 +38,7 @@ METARESEARCH_CONCEPTS = {
     "C2777861003": "Research Assessment Exercise",
 }
 BASE_FILTER = "institutions.country_code:ca,concepts.id:" + "|".join(METARESEARCH_CONCEPTS)
-SELECT = "id,title,publication_year,type,language,cited_by_count,open_access,authorships,primary_topic"
+SELECT = "id,title,publication_year,type,language,cited_by_count,open_access,authorships,primary_topic,concepts"
 
 
 def api(params: dict) -> dict:
@@ -98,6 +98,9 @@ def main() -> None:
                 "topic": (topic.get("display_name") or "Unclassified"),
                 "field": ((topic.get("field") or {}).get("display_name") or "Unclassified"),
                 "institutions": institutions_of(w),
+                # which of the corpus-defining concepts this work carries (for client-side filtering)
+                "concepts": [cid for c in (w.get("concepts") or [])
+                             if (cid := short_id(c.get("id"))) in METARESEARCH_CONCEPTS],
             })
         cursor = data["meta"].get("next_cursor")
         print(f"  fetched {len(records)} records", file=sys.stderr)
