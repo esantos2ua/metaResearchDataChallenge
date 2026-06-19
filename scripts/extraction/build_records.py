@@ -35,7 +35,12 @@ METARESEARCH_TOPICS = {
     "T11492": "Academic integrity and plagiarism",
     "T13976": "Web visibility and informetrics",
 }
-BASE_FILTER = "institutions.country_code:ca,topics.id:" + "|".join(METARESEARCH_TOPICS)
+# Floor the window at 1970 — "bibliometrics"/"scientometrics" were coined c.1969, so
+# topic tags before then are anachronistic misclassifications of digitised old content.
+# Drop paratext (covers, indexes, back-matter), which OpenAlex also mis-tags.
+DATE_FROM = "1970-01-01"
+BASE_FILTER = ("institutions.country_code:ca,topics.id:" + "|".join(METARESEARCH_TOPICS)
+               + f",from_publication_date:{DATE_FROM},type:!paratext")
 SELECT = "id,title,publication_year,type,language,cited_by_count,open_access,authorships,primary_topic,topics"
 
 

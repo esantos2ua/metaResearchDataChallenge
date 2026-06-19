@@ -35,7 +35,8 @@ METARESEARCH_TOPICS = {
     "T13976": "Web visibility and informetrics",
 }
 TOPIC_FILTER = "topics.id:" + "|".join(METARESEARCH_TOPICS)
-BASE_FILTER = f"institutions.country_code:ca,{TOPIC_FILTER}"
+# Floor at 1970 (field named c.1969) and drop paratext — removes pre-field misclassifications.
+BASE_FILTER = f"institutions.country_code:ca,{TOPIC_FILTER},from_publication_date:1970-01-01,type:!paratext"
 
 
 def api(params: dict) -> dict:

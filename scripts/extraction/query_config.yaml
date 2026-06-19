@@ -34,6 +34,9 @@ keywords:
 country: CA
 canadian_definition: any_author_institution   # alternatives: first_author | corresponding | any_coauthor | funder
 
-# Time window.
-from_publication_date: "2000-01-01"
+# Time window. Floor at 1970: "bibliometrics"/"scientometrics" were coined c.1969, so
+# topic tags before then are anachronistic misclassifications. Tighten to 2000-01-01
+# for a modern-only view.
+from_publication_date: "1970-01-01"
 to_publication_date: null   # null = snapshot date
+exclude_types: [paratext]   # journal covers/indexes/back-matter are mis-tagged by topic

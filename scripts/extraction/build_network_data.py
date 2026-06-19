@@ -33,7 +33,8 @@ EMAIL = os.environ.get("OPENALEX_EMAIL", "").strip()  # optional OpenAlex polite
 METARESEARCH_TOPICS = [
     "T10102", "T13607", "T13516", "T11492", "T13976",
 ]
-BASE_FILTER = "institutions.country_code:ca,topics.id:" + "|".join(METARESEARCH_TOPICS)
+BASE_FILTER = ("institutions.country_code:ca,topics.id:" + "|".join(METARESEARCH_TOPICS)
+               + ",from_publication_date:1970-01-01,type:!paratext")
 
 # Keep the graph readable: top-N institutions by corpus output, and prune weak ties.
 TOP_N_NODES = 60
