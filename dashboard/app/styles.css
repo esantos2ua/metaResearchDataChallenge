@@ -147,6 +147,8 @@ a { color: var(--accent); }
 .card > canvas { max-height: 330px; }
 
 .network-canvas { height: 560px; width: 100%; border: 1px solid var(--border); border-radius: 10px; background: #fbfcfd; }
+.map-canvas { height: 560px; width: 100%; border: 1px solid var(--border); border-radius: 10px; background: #eef2f5; z-index: 0; }
+.map-canvas .leaflet-container { border-radius: 10px; font: inherit; }
 .network-canvas canvas { max-height: none !important; }
 .net-legend { margin-left: 6px; white-space: nowrap; }
 .net-legend .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin: 0 4px 0 12px; vertical-align: middle; }

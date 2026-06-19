@@ -91,6 +91,9 @@ let META = {};
 const charts = {};     // id -> Chart instance
 let network = null;    // vis.Network instance
 let netData = null;    // {nodes, edges} DataSets
+let lmap = null;       // Leaflet map instance
+let lmapLayer = null;  // Leaflet layer group (markers + edges)
+let GEO = null;        // institution id -> [lat, lon]
 let langCounts = new Map();   // language code -> count (for filter labels)
 let typeCounts = new Map();   // output type -> count (for filter labels)
 let viewMode = "dashboard";   // "dashboard" | "records"
@@ -143,6 +146,12 @@ let ALL_MR_TOPICS = [];   // all corpus-defining metaresearch topic ids (for res
   }
   ALL = data.records;
   META = data.meta;
+
+  // Institution coordinates for the geographic map (optional — map shows a notice if absent).
+  try {
+    const res = await fetch("data/institutions_geo.json", { cache: "no-store" });
+    if (res.ok) GEO = await res.json();
+  } catch (_) { /* leave GEO null */ }
 
   document.getElementById("loading").hidden = true;
   document.getElementById("dash").hidden = false;
@@ -371,9 +380,9 @@ function apply() {
   renderKpis(_filtered);
   renderInsights(_filtered);
   renderCharts(_filtered);
-  // Only re-layout the network when it's actually on screen; otherwise defer
+  // Only re-render the network + map when they're actually on screen; otherwise defer
   // (avoids re-running physics — "spinning" — while on the Records view).
-  if (viewMode === "dashboard") renderNetwork(_filtered);
+  if (viewMode === "dashboard") { renderNetwork(_filtered); renderMap(_filtered); }
   else networkStale = true;
   tableState.page = 0;
   if (viewMode === "records") renderTable(_filtered);
@@ -502,7 +511,11 @@ function setView(view) {
   document.querySelectorAll("#view-tabs button").forEach((b) =>
     b.classList.toggle("active", b.dataset.view === view));
   if (view === "records") renderTable(_filtered);
-  else if (networkStale) { renderNetwork(_filtered); networkStale = false; }
+  else {
+    if (networkStale) { renderNetwork(_filtered); renderMap(_filtered); networkStale = false; }
+    // Leaflet mis-sizes if it was laid out while hidden; refresh on return to dashboard.
+    if (lmap) setTimeout(() => lmap.invalidateSize(), 60);
+  }
   window.scrollTo({ top: 0 });
 }
 
@@ -660,6 +673,66 @@ function renderNetwork(recs) {
   document.getElementById("network-note").textContent = t("networkNote")
     .replace("{n}", nodes.length).replace("{N}", TOP_N_NODES)
     .replace("{e}", edges.length).replace("{w}", MIN_EDGE_WEIGHT);
+}
+
+// ----------------------------------------------------------------------------
+// Geographic collaboration map (Leaflet) — top institutions placed by coordinates,
+// co-authorship ties drawn as lines between them.
+// ----------------------------------------------------------------------------
+function renderMap(recs) {
+  const note = document.getElementById("map-note");
+  if (typeof L === "undefined" || !GEO) { note.textContent = t("map.unavailable"); return; }
+
+  // Aggregate institutions (output) and ties (shared works) — same as the network.
+  const works = new Map(), info = new Map(), edge = new Map();
+  recs.forEach((r) => {
+    const uniq = [...new Set(r.institutions.map((i) => { info.set(i.id, i); return i.id; }))].sort();
+    uniq.forEach((id) => works.set(id, (works.get(id) || 0) + 1));
+    for (let i = 0; i < uniq.length; i++)
+      for (let j = i + 1; j < uniq.length; j++)
+        edge.set(`${uniq[i]}|${uniq[j]}`, (edge.get(`${uniq[i]}|${uniq[j]}`) || 0) + 1);
+  });
+  const topIds = new Set([...works.entries()].sort((a, b) => b[1] - a[1]).slice(0, TOP_N_NODES).map((e) => e[0]));
+  const located = [...topIds].filter((id) => GEO[id]);
+  const maxW = Math.max(1, ...located.map((id) => works.get(id)));
+
+  if (!lmap) {
+    lmap = L.map("mapChart", { worldCopyJump: true, minZoom: 1, scrollWheelZoom: true })
+      .setView([35, -30], 2);
+    L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> · © <a href="https://carto.com/attributions">CARTO</a>',
+      subdomains: "abcd", maxZoom: 19,
+    }).addTo(lmap);
+    lmapLayer = L.layerGroup().addTo(lmap);
+  }
+  lmapLayer.clearLayers();
+
+  // Ties first, so markers sit on top.
+  let drawn = 0;
+  edge.forEach((w, key) => {
+    const [a, b] = key.split("|");
+    if (w >= MIN_EDGE_WEIGHT && topIds.has(a) && topIds.has(b) && GEO[a] && GEO[b]) {
+      L.polyline([GEO[a], GEO[b]], { color: "#c8102e", weight: Math.max(0.5, Math.sqrt(w)), opacity: 0.16 })
+        .addTo(lmapLayer);
+      drawn++;
+    }
+  });
+
+  // Institution markers, sized by output, coloured CA vs international.
+  const pts = [];
+  located.forEach((id) => {
+    const it = info.get(id), isCA = it.country === "CA", w = works.get(id);
+    pts.push(GEO[id]);
+    L.circleMarker(GEO[id], {
+      radius: 5 + 14 * Math.sqrt(w / maxW),
+      color: isCA ? "#8c0a20" : "#2c7bb6", weight: 1,
+      fillColor: isCA ? "#c8102e" : "#4aa3df", fillOpacity: 0.8,
+    }).bindTooltip(`${escapeHtml(it.name)} · ${fmt(w)}`, { direction: "top" }).addTo(lmapLayer);
+  });
+  if (pts.length) lmap.fitBounds(pts, { padding: [30, 30], maxZoom: 5 });
+
+  note.textContent = t("mapNote")
+    .replace("{n}", located.length).replace("{N}", TOP_N_NODES).replace("{e}", drawn);
 }
 
 // ----------------------------------------------------------------------------
