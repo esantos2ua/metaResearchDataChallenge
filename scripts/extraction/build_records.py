@@ -33,6 +33,9 @@ METARESEARCH_CONCEPTS = {
     "C2994190893": "Research integrity",
     "C2777462167": "Scholarly communication",
     "C2778149293": "Open science",
+    "C138368954": "Peer review",
+    "C2778407487": "Altmetrics",
+    "C2777861003": "Research Assessment Exercise",
 }
 BASE_FILTER = "institutions.country_code:ca,concepts.id:" + "|".join(METARESEARCH_CONCEPTS)
 SELECT = "id,title,publication_year,type,language,cited_by_count,open_access,authorships,primary_topic"

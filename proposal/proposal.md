@@ -20,10 +20,11 @@ Our objective is to construct an open, reproducible, and inclusive dataset, culm
 
 ## 2. Search & retrieval strategy (OpenAlex)
 
-- Define "metaresearch" [1] via a transparent, versioned query. The pilot corpus is built from OpenAlex
-  **concepts** (bibliometrics, citation analysis, scientometrics, research integrity, scholarly
-  communication, open science); the versioned `query_config.yaml` additionally specifies English/French
-  title/abstract **keyword filters** to be layered in for the full corpus.
+- Define "metaresearch" [1] via a transparent, versioned query. The pilot corpus (≈4,500 works) is built
+  from nine OpenAlex **concepts** (bibliometrics, citation analysis, scientometrics, research integrity,
+  scholarly communication, open science, peer review, altmetrics, research assessment); the versioned
+  `query_config.yaml` additionally specifies English/French title/abstract **keyword filters** to be
+  layered in for the full corpus.
 - Restrict to "Canadian" outputs via author **institution country (CA)** in OpenAlex [2]. The pilot uses an
   any-author-affiliation definition; the full study reports **sensitivity checks** on alternatives
   (first/corresponding author, funder) side by side.
