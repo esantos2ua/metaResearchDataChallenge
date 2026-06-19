@@ -26,4 +26,4 @@ csl: ../references/nature.csl
 
 **Outputs.** An open dataset with codebook, reproducible code and workflows, a deployed public dashboard (CC BY 4.0 data and docs; MIT code), and a 30-minute plenary presentation.
 
-## References
+### References
