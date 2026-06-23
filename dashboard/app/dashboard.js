@@ -934,12 +934,13 @@ function vbar(id, labels, values, colors, opts = {}) {
     },
   });
 }
-// Round a value up to a clean axis ceiling (1/2/5 × 10ⁿ) for shared, tidy y-axes.
+// Round a value up to a clean axis ceiling for shared, tidy y-axes — fine enough
+// steps that a small filtered corpus doesn't leave the chart mostly empty.
 function niceMax(v) {
   if (!(v > 0)) return 1;
   const pow = Math.pow(10, Math.floor(Math.log10(v)));
-  const f = v / pow;
-  const step = f <= 1 ? 1 : f <= 2 ? 2 : f <= 5 ? 5 : 10;
+  const n = v / pow;   // 1 ≤ n < 10
+  const step = [1, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10].find((s) => n <= s);
   return step * pow;
 }
 function hbar(id, labels, values) {

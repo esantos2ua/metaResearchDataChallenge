@@ -183,6 +183,10 @@ a { color: var(--accent); }
 .card-desc { margin: 0 0 14px; color: var(--muted); font-size: 0.84rem; }
 .card > canvas { max-height: 330px; }
 .card > canvas.compact { height: 158px; max-height: 158px; }
+/* Align the two overview charts: equal-height cards with the canvas pinned to
+   the bottom, so their plot baselines line up despite different description lengths. */
+.hero .card-grid .card { display: flex; flex-direction: column; }
+.hero .card-grid .card > canvas.compact { margin-top: auto; }
 
 .network-canvas { height: 560px; width: 100%; border: 1px solid var(--border); border-radius: 10px; background: #fbfcfd; }
 .map-canvas { height: 560px; width: 100%; border: 1px solid var(--border); border-radius: 10px; background: #eef2f5; z-index: 0; }
