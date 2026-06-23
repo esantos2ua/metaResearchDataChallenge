@@ -553,11 +553,11 @@ function renderCharts(recs) {
   // OA status
   const oaCounts = countBy(recs, (r) => r.oa_status);
   const oaKeys = OA_ORDER.filter((k) => oaCounts.has(k));
-  doughnut("oaChart", oaKeys.map(oaLabel), oaKeys.map((k) => oaCounts.get(k)), oaKeys.map((k) => OA_COLOR[k]));
+  vbar("oaChart", oaKeys.map(oaLabel), oaKeys.map((k) => oaCounts.get(k)), oaKeys.map((k) => OA_COLOR[k]));
 
   // Open vs closed
   const open = recs.filter((r) => r.is_oa).length;
-  doughnut("isOaChart", [t("chart.open"), t("chart.closed")], [open, recs.length - open], ["#2e9e5b", "#8a9aa8"]);
+  vbar("isOaChart", [t("chart.open"), t("chart.closed")], [open, recs.length - open], ["#2e9e5b", "#8a9aa8"]);
 
   // Year trends: outputs, open-access share, and citations per output
   const perYear = new Map();   // year -> { n, open, cites }
@@ -889,6 +889,17 @@ function line(id, labels, values, opts = {}) {
     data: { labels, datasets: [{ data: values, borderColor: color, backgroundColor: color + "22",
       fill: true, tension: 0.3, pointRadius: 0, borderWidth: 2 }] },
     options: { plugins: { legend: { display: false }, tooltip }, scales: { x: { ticks: { maxTicksLimit: 12 } }, y } },
+  });
+}
+function vbar(id, labels, values, colors) {
+  upsert(id, {
+    type: "bar",
+    data: { labels, datasets: [{ data: values, backgroundColor: colors, borderWidth: 0 }] },
+    options: {
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: { y: { beginAtZero: true } },
+    },
   });
 }
 function hbar(id, labels, values) {

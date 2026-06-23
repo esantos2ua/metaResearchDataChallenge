@@ -145,6 +145,7 @@ a { color: var(--accent); }
 .card h3 { margin: 0 0 4px; font-size: 1.02rem; }
 .card-desc { margin: 0 0 14px; color: var(--muted); font-size: 0.84rem; }
 .card > canvas { max-height: 330px; }
+.card > canvas.compact { height: 200px; max-height: 200px; }
 
 .network-canvas { height: 560px; width: 100%; border: 1px solid var(--border); border-radius: 10px; background: #fbfcfd; }
 .map-canvas { height: 560px; width: 100%; border: 1px solid var(--border); border-radius: 10px; background: #eef2f5; z-index: 0; }
