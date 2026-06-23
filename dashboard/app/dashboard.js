@@ -509,9 +509,9 @@ function renderInsights(recs) {
 
   grid.innerHTML = findings.map((f) => `
     <div class="finding">
-      <p class="finding-q">${escapeHtml(f.q)}</p>
+      <p class="finding-q" title="${escapeHtml(f.q)}">${escapeHtml(f.q)}</p>
       <div class="finding-stat">${escapeHtml(f.stat)}</div>
-      <p class="finding-text">${escapeHtml(f.text)}</p>
+      <p class="finding-text" title="${escapeHtml(f.text)}">${escapeHtml(f.text)}</p>
     </div>`).join("");
 }
 
@@ -566,11 +566,16 @@ function renderCharts(recs) {
   // OA status
   const oaCounts = countBy(recs, (r) => r.oa_status);
   const oaKeys = OA_ORDER.filter((k) => oaCounts.has(k));
-  vbar("oaChart", oaKeys.map(oaLabel), oaKeys.map((k) => oaCounts.get(k)), oaKeys.map((k) => OA_COLOR[k]));
+  const oaVals = oaKeys.map((k) => oaCounts.get(k));
 
   // Open vs closed
   const open = recs.filter((r) => r.is_oa).length;
-  vbar("isOaChart", [t("chart.open"), t("chart.closed")], [open, recs.length - open], ["#2e9e5b", "#8a9aa8"]);
+  const closed = recs.length - open;
+
+  // Shared y-axis ceiling so both overview bar charts are directly comparable
+  const yMax = niceMax(Math.max(0, ...oaVals, open, closed));
+  vbar("isOaChart", [t("chart.open"), t("chart.closed")], [open, closed], ["#2e9e5b", "#8a9aa8"], { yMax });
+  vbar("oaChart", oaKeys.map(oaLabel), oaVals, oaKeys.map((k) => OA_COLOR[k]), { yMax });
 
   // Year trends: outputs, open-access share, and citations per output
   const perYear = new Map();   // year -> { n, open, cites }
@@ -904,8 +909,10 @@ function line(id, labels, values, opts = {}) {
     options: { plugins: { legend: { display: false }, tooltip }, scales: { x: { ticks: { maxTicksLimit: 12 } }, y } },
   });
 }
-function vbar(id, labels, values, colors) {
+function vbar(id, labels, values, colors, opts = {}) {
   const total = values.reduce((s, v) => s + v, 0);
+  const y = { beginAtZero: true };
+  if (opts.yMax) y.max = opts.yMax;
   upsert(id, {
     type: "bar",
     data: { labels, datasets: [{ data: values, backgroundColor: colors, borderWidth: 0 }] },
@@ -923,9 +930,17 @@ function vbar(id, labels, values, colors) {
           },
         },
       },
-      scales: { y: { beginAtZero: true } },
+      scales: { y },
     },
   });
+}
+// Round a value up to a clean axis ceiling (1/2/5 × 10ⁿ) for shared, tidy y-axes.
+function niceMax(v) {
+  if (!(v > 0)) return 1;
+  const pow = Math.pow(10, Math.floor(Math.log10(v)));
+  const f = v / pow;
+  const step = f <= 1 ? 1 : f <= 2 ? 2 : f <= 5 ? 5 : 10;
+  return step * pow;
 }
 function hbar(id, labels, values) {
   upsert(id, {
