@@ -572,10 +572,12 @@ function renderCharts(recs) {
   const open = recs.filter((r) => r.is_oa).length;
   const closed = recs.length - open;
 
-  // Shared y-axis ceiling so both overview bar charts are directly comparable
+  // Shared y-axis ceiling + x-axis area so both overview bar charts are directly
+  // comparable and line up at the y=0 baseline (the OA-status labels rotate).
   const yMax = niceMax(Math.max(0, ...oaVals, open, closed));
-  vbar("isOaChart", [t("chart.open"), t("chart.closed")], [open, closed], ["#2e9e5b", "#8a9aa8"], { yMax });
-  vbar("oaChart", oaKeys.map(oaLabel), oaVals, oaKeys.map((k) => OA_COLOR[k]), { yMax });
+  const xAxisHeight = 58;
+  vbar("isOaChart", [t("chart.open"), t("chart.closed")], [open, closed], ["#2e9e5b", "#8a9aa8"], { yMax, xAxisHeight });
+  vbar("oaChart", oaKeys.map(oaLabel), oaVals, oaKeys.map((k) => OA_COLOR[k]), { yMax, xAxisHeight });
 
   // Year trends: outputs, open-access share, and citations per output
   const perYear = new Map();   // year -> { n, open, cites }
@@ -913,6 +915,10 @@ function vbar(id, labels, values, colors, opts = {}) {
   const total = values.reduce((s, v) => s + v, 0);
   const y = { beginAtZero: true };
   if (opts.yMax) y.max = opts.yMax;
+  // Reserve a fixed x-axis area so charts sharing a row line up at the y=0
+  // baseline regardless of whether their category labels rotate.
+  const x = {};
+  if (opts.xAxisHeight) x.afterFit = (scale) => { scale.height = opts.xAxisHeight; };
   upsert(id, {
     type: "bar",
     data: { labels, datasets: [{ data: values, backgroundColor: colors, borderWidth: 0 }] },
@@ -930,7 +936,7 @@ function vbar(id, labels, values, colors, opts = {}) {
           },
         },
       },
-      scales: { y },
+      scales: { y, x },
     },
   });
 }
