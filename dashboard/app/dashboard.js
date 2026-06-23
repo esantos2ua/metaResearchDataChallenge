@@ -905,12 +905,24 @@ function line(id, labels, values, opts = {}) {
   });
 }
 function vbar(id, labels, values, colors) {
+  const total = values.reduce((s, v) => s + v, 0);
   upsert(id, {
     type: "bar",
     data: { labels, datasets: [{ data: values, backgroundColor: colors, borderWidth: 0 }] },
     options: {
       maintainAspectRatio: false,
-      plugins: { legend: { display: false } },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: (c) => {
+              const v = c.parsed.y;
+              const pct = total ? Math.round((v / total) * 100) : 0;
+              return `${fmt(v)} (${pct}%)`;
+            },
+          },
+        },
+      },
       scales: { y: { beginAtZero: true } },
     },
   });
