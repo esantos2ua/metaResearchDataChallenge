@@ -128,6 +128,22 @@ a { color: var(--accent); }
 
 .filters-toggle { display: none; }
 
+/* Desktop sidebar collapse toggle (lives in the view-tabs row; hidden on mobile) */
+.nav-collapse {
+  margin-left: auto; align-self: center; display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 12px; border-radius: 8px; border: 1px solid var(--border);
+  background: var(--surface); color: var(--muted); cursor: pointer; font-size: 0.82rem; font-weight: 600;
+}
+.nav-collapse:hover { background: var(--accent-soft); color: var(--ink); }
+@media (max-width: 900px) { .nav-collapse { display: none; } }  /* mobile uses .filters-toggle */
+
+/* Collapsed: hand the sidebar's width back to the content */
+.layout.nav-collapsed .sidebar { display: none; }
+.layout.nav-collapsed .content { max-width: 1400px; }
+/* With the menu hidden there's room to show finding titles/text in full */
+.layout.nav-collapsed .hero .finding-q { -webkit-line-clamp: initial; display: block; overflow: visible; }
+.layout.nav-collapsed .hero .finding-text { -webkit-line-clamp: 4; }
+
 .content { padding: 18px 32px 56px; max-width: 1180px; }
 #loading { color: var(--muted); }
 

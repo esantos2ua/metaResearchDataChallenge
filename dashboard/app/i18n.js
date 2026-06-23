@@ -45,6 +45,8 @@ const I18N = {
     "header.credit": "Developed by the " +
       "<a href=\"https://cossee.org/\" target=\"_blank\" rel=\"noopener\">Collaboration for Open Science and Synthesis in Ecology and Evolution (COSSEE)</a>.",
     "filtersToggle": "☰ Menu & filters",
+    "navCollapse": "Hide menu",
+    "navExpand": "Show menu",
     "loading": "Loading data…",
     // Section titles
     "sec.overview": "Overview",
@@ -226,6 +228,8 @@ const I18N = {
     "header.credit": "Développé par la " +
       "<a href=\"https://cossee.org/\" target=\"_blank\" rel=\"noopener\">Collaboration for Open Science and Synthesis in Ecology and Evolution (COSSEE)</a>.",
     "filtersToggle": "☰ Menu et filtres",
+    "navCollapse": "Masquer le menu",
+    "navExpand": "Afficher le menu",
     "loading": "Chargement des données…",
     "sec.overview": "Aperçu",
     "sec.insights": "Rapport de métarecherche",

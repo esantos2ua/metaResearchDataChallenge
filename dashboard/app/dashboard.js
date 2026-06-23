@@ -310,6 +310,19 @@ function wireUI() {
   document.getElementById("sidebar-close").onclick = closeSidebar;
   document.getElementById("sidebar-backdrop").onclick = closeSidebar;
 
+  // Desktop sidebar collapse — hand the width back to the content
+  const layout = document.querySelector(".layout");
+  const navCollapse = document.getElementById("nav-collapse");
+  navCollapse.onclick = () => {
+    const collapsed = layout.classList.toggle("nav-collapsed");
+    navCollapse.setAttribute("aria-expanded", String(!collapsed));
+    const label = document.getElementById("nav-collapse-label");
+    label.setAttribute("data-i18n", collapsed ? "navExpand" : "navCollapse");
+    label.textContent = t(collapsed ? "navExpand" : "navCollapse");
+    // Nudge Chart.js / Leaflet to re-fit the new content width
+    window.dispatchEvent(new Event("resize"));
+  };
+
   // Nav: smooth scroll + active state
   const navLinks = [...document.querySelectorAll(".nav a")];
   navLinks.forEach((a) => a.addEventListener("click", () => {
