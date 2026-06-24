@@ -8,7 +8,7 @@
   --accent: #1f7a63;       /* COSSEE teal-green */
   --accent-dark: #155c4a;
   --accent-soft: #e3f1ec;
-  --blue: #5b8aa6;         /* COSSEE steel blue */
+  --blue: #7aa7c6;         /* COSSEE steel blue (lightened for green/blue CVD separation) */
   --border: #e0e8e3;
   --sidebar-bg: #16352d;   /* deep forest-teal */
   --sidebar-ink: #d6e2db;
@@ -198,6 +198,12 @@ a { color: var(--accent); }
 .net-legend .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin: 0 4px 0 12px; vertical-align: middle; }
 .net-legend .dot.ca { background: var(--accent); }
 .net-legend .dot.intl { background: var(--blue); }
+/* Triangle swatch — matches the international (international = triangle) node shape */
+.net-legend .tri {
+  display: inline-block; width: 0; height: 0; margin: 0 4px 0 12px; vertical-align: middle;
+  border-left: 6px solid transparent; border-right: 6px solid transparent;
+  border-bottom: 11px solid var(--blue);
+}
 
 .muted { color: var(--muted); font-size: 0.84rem; }
 code { background: var(--bg); padding: 2px 6px; border-radius: 6px; font-size: 0.8rem; word-break: break-all; }

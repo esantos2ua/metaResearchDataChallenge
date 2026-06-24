@@ -7,10 +7,10 @@
 // ----------------------------------------------------------------------------
 const OA_ORDER = ["gold", "green", "diamond", "hybrid", "bronze", "closed", "unknown"];
 const OA_COLOR = {
-  gold: "#f5b301", green: "#2e9e5b", diamond: "#5b8aa6", hybrid: "#9b59b6",
+  gold: "#f5b301", green: "#2e9e5b", diamond: "#7aa7c6", hybrid: "#9b59b6",
   bronze: "#cd7f32", closed: "#8a9aa8", unknown: "#c4ccd4",
 };
-const SERIES = ["#1f7a63", "#5b8aa6", "#2e9e5b", "#f5b301", "#9b59b6", "#cd7f32",
+const SERIES = ["#1f7a63", "#7aa7c6", "#2e9e5b", "#f5b301", "#9b59b6", "#cd7f32",
   "#e67e22", "#1abc9c", "#34495e", "#e84393", "#00897b", "#7e57c2", "#d4a017",
   "#5d6d7e", "#16a085"];
 const TOP_N_NODES = 60;
@@ -594,7 +594,7 @@ function renderCharts(recs) {
   }), { color: "#2e9e5b", yMax: 100, yPct: true, suffix: "%" });
   line("citeTrendChart", years, years.map((y) => {
     const e = perYear.get(y); return e.n ? +(e.cites / e.n).toFixed(1) : 0;
-  }), { color: "#5b8aa6" });
+  }), { color: "#7aa7c6" });
 
   // Top Canadian institutions
   const instCounts = new Map();
@@ -643,7 +643,10 @@ function renderNetwork(recs) {
     const it = info.get(id), isCA = it.country === "CA", w = works.get(id);
     return {
       id, label: it.name, title: `${it.name}\n${w} works`, value: w,
-      color: { background: isCA ? "#1f7a63" : "#5b8aa6", border: isCA ? "#155c4a" : "#3f6b86" },
+      // Shape doubles the encoding (not colour alone) for colour-blind readers:
+      // Canadian institutions are dots, international ones triangles.
+      shape: isCA ? "dot" : "triangle",
+      color: { background: isCA ? "#1f7a63" : "#7aa7c6", border: isCA ? "#155c4a" : "#3f6b86" },
       font: { size: 12 + 14 * (w / maxW), color: "#1b2733" },
     };
   });
@@ -746,7 +749,7 @@ function renderMap(recs) {
     L.circleMarker(GEO[id], {
       radius: 5 + 14 * Math.sqrt(w / maxW),
       color: isCA ? "#155c4a" : "#3f6b86", weight: 1,
-      fillColor: isCA ? "#1f7a63" : "#5b8aa6", fillOpacity: 0.8,
+      fillColor: isCA ? "#1f7a63" : "#7aa7c6", fillOpacity: 0.8,
     }).bindTooltip(`${escapeHtml(it.name)} · ${fmt(w)}`, { direction: "top" }).addTo(lmapLayer);
   });
   if (pts.length) lmap.fitBounds(pts, { padding: [30, 30], maxZoom: 5 });
@@ -808,7 +811,7 @@ function renderSensitivity() {
     type: "bar",
     data: {
       labels: defs.map((d) => t("sens." + d.key)),
-      datasets: [{ data: defs.map((d) => d.count), backgroundColor: defs.map((d) => (d.primary ? "#1f7a63" : "#5b8aa6")) }],
+      datasets: [{ data: defs.map((d) => d.count), backgroundColor: defs.map((d) => (d.primary ? "#1f7a63" : "#7aa7c6")) }],
     },
     options: { indexAxis: "y", plugins: { legend: { display: false } } },
   });
@@ -952,7 +955,7 @@ function niceMax(v) {
 function hbar(id, labels, values) {
   upsert(id, {
     type: "bar",
-    data: { labels, datasets: [{ data: values, backgroundColor: "#5b8aa6" }] },
+    data: { labels, datasets: [{ data: values, backgroundColor: "#7aa7c6" }] },
     options: { indexAxis: "y", plugins: { legend: { display: false } } },
   });
 }
