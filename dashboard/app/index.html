@@ -10,7 +10,7 @@
   <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css" />
   <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
-  <link rel="stylesheet" href="styles.css?v=20260624e" />
+  <link rel="stylesheet" href="styles.css?v=20260624g" />
   <!-- GoatCounter: privacy-friendly, cookieless analytics.
        Swap GOATCOUNTER_CODE below for your site code (e.g. "metaresearch")
        after registering a free site at https://www.goatcounter.com -->
@@ -31,13 +31,13 @@
     </div>
 
     <nav class="nav" id="nav">
-      <a href="#overview" class="active" data-i18n="nav.overview">Overview</a>
-      <a href="#insights" data-i18n="nav.insights">Metaresearch report</a>
+      <a href="#overview" class="active" data-i18n="nav.insights">Metaresearch report</a>
       <a href="#trends" data-i18n="nav.trends">Publication trends</a>
       <a href="#institutions" data-i18n="nav.institutions">Institutions</a>
       <a href="#network" data-i18n="nav.network">Collaboration network</a>
       <a href="#map" data-i18n="nav.map">Collaboration map</a>
       <a href="#topics" data-i18n="nav.topics">Topics &amp; fields</a>
+      <a href="#outputs" data-i18n="nav.outputs">Outputs &amp; open access</a>
       <a href="#validation" data-i18n="nav.validation">Search &amp; validation</a>
       <a href="#about" data-i18n="nav.about">About &amp; methods</a>
     </nav>
@@ -151,36 +151,16 @@
                   aria-label="Collapse menu" title="Collapse menu">☰ <span id="nav-collapse-label" data-i18n="navCollapse">Hide menu</span></button>
         </div>
 
-        <!-- FIRST FRAME: Overview + Metaresearch report side by side on wide screens -->
-        <div class="hero">
-        <!-- OVERVIEW -->
+        <!-- HIGHLIGHT: headline KPIs + the metaresearch report -->
         <section id="overview" class="section">
-          <h2 class="section-title" data-i18n="sec.overview">Overview</h2>
-          <div class="kpi-grid" id="kpis"></div>
-          <div class="card-grid">
-            <div class="card">
-              <h3 data-i18n="card.isoa.title">Open vs. closed</h3>
-              <p class="card-desc" data-i18n="card.isoa.desc">Share of the (filtered) corpus that is openly accessible.</p>
-              <canvas id="isOaChart" class="compact"></canvas>
-            </div>
-            <div class="card">
-              <h3 data-i18n="card.oa.title">Open access status</h3>
-              <p class="card-desc" data-i18n="card.oa.desc">How outputs are made open (gold, green, diamond, hybrid, bronze, closed).</p>
-              <canvas id="oaChart" class="compact"></canvas>
-            </div>
-          </div>
-        </section>
-
-        <!-- METARESEARCH REPORT -->
-        <section id="insights" class="section">
           <h2 class="section-title" data-i18n="sec.insights">Metaresearch report</h2>
+          <div class="kpi-grid" id="kpis"></div>
           <p class="report-intro" id="report-intro" data-i18n="insights.intro">
             An auto-generated reading of the corpus through a metaresearch-science lens. It responds to the
             filters on the left — narrow by year, field, language, or institution to re-frame every finding below.
           </p>
           <div class="report-grid" id="report-grid"></div>
         </section>
-        </div><!-- /.hero -->
 
         <!-- TRENDS -->
         <section id="trends" class="section">
@@ -247,12 +227,17 @@
         <!-- TOPICS -->
         <section id="topics" class="section">
           <h2 class="section-title" data-i18n="sec.topics">Topics &amp; fields</h2>
+          <div class="card wide">
+            <h3 data-i18n="card.topic.title">Top topics</h3>
+            <p class="card-desc" data-i18n="card.topic.desc">Primary OpenAlex topics within the (filtered) corpus.</p>
+            <canvas id="topicChart"></canvas>
+          </div>
+        </section>
+
+        <!-- OUTPUTS & OPEN ACCESS -->
+        <section id="outputs" class="section">
+          <h2 class="section-title" data-i18n="sec.outputs">Outputs &amp; open access</h2>
           <div class="card-grid">
-            <div class="card wide">
-              <h3 data-i18n="card.topic.title">Top topics</h3>
-              <p class="card-desc" data-i18n="card.topic.desc">Primary OpenAlex topics within the (filtered) corpus.</p>
-              <canvas id="topicChart"></canvas>
-            </div>
             <div class="card">
               <h3 data-i18n="card.type.title">Output types</h3>
               <canvas id="typeChart"></canvas>
@@ -260,6 +245,16 @@
             <div class="card">
               <h3 data-i18n="card.lang.title">Languages</h3>
               <canvas id="langChart"></canvas>
+            </div>
+            <div class="card">
+              <h3 data-i18n="card.isoa.title">Open vs. closed</h3>
+              <p class="card-desc" data-i18n="card.isoa.desc">Share of the (filtered) corpus that is openly accessible.</p>
+              <canvas id="isOaChart" class="compact"></canvas>
+            </div>
+            <div class="card">
+              <h3 data-i18n="card.oa.title">Open access status</h3>
+              <p class="card-desc" data-i18n="card.oa.desc">How outputs are made open (gold, green, diamond, hybrid, bronze, closed).</p>
+              <canvas id="oaChart" class="compact"></canvas>
             </div>
           </div>
         </section>
@@ -351,7 +346,7 @@
   </div>
 </div>
 
-<script src="i18n.js?v=20260624e"></script>
-<script src="dashboard.js?v=20260624e"></script>
+<script src="i18n.js?v=20260624g"></script>
+<script src="dashboard.js?v=20260624g"></script>
 </body>
 </html>
