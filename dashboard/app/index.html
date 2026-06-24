@@ -8,7 +8,9 @@
   <script src="https://cdn.jsdelivr.net/npm/vis-network@9.1.9/standalone/umd/vis-network.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
-  <link rel="stylesheet" href="styles.css?v=20260624a" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css" />
+  <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
+  <link rel="stylesheet" href="styles.css?v=20260624c" />
   <!-- GoatCounter: privacy-friendly, cookieless analytics.
        Swap GOATCOUNTER_CODE below for your site code (e.g. "metaresearch")
        after registering a free site at https://www.goatcounter.com -->
@@ -57,19 +59,19 @@
       </fieldset>
 
       <label class="f-label"><span data-i18n="filters.language">Language</span>
-        <select id="f-language"></select>
+        <select id="f-language" multiple></select>
       </label>
 
       <label class="f-label"><span data-i18n="filters.type">Output type</span>
-        <select id="f-type"></select>
+        <select id="f-type" multiple></select>
       </label>
 
       <label class="f-label"><span data-i18n="filters.field">Field</span>
-        <select id="f-field"></select>
+        <select id="f-field" multiple></select>
       </label>
 
       <label class="f-label"><span data-i18n="filters.topic">Primary topic</span>
-        <select id="f-topic"></select>
+        <select id="f-topic" multiple></select>
       </label>
 
       <fieldset class="f-group">
@@ -78,7 +80,7 @@
       </fieldset>
 
       <label class="f-label"><span data-i18n="filters.institution">Canadian institution</span>
-        <select id="f-institution"></select>
+        <select id="f-institution" multiple></select>
       </label>
 
       <label class="f-check">
@@ -348,7 +350,7 @@
   </div>
 </div>
 
-<script src="i18n.js?v=20260624a"></script>
-<script src="dashboard.js?v=20260624a"></script>
+<script src="i18n.js?v=20260624c"></script>
+<script src="dashboard.js?v=20260624c"></script>
 </body>
 </html>

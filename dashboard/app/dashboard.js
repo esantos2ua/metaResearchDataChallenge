@@ -52,25 +52,10 @@ function applyStatic() {
 }
 
 function relabelFilters() {
-  const langSel = document.getElementById("f-language");
-  if (langSel && langSel.options.length) {
-    langSel.options[0].text = t("filters.allLanguages");
-    [...langSel.options].slice(1).forEach((o) => { o.text = `${langLabel(o.value)} (${langCounts.get(o.value)})`; });
-  }
-  const typeSel = document.getElementById("f-type");
-  if (typeSel && typeSel.options.length) {
-    typeSel.options[0].text = t("filters.allTypes");
-    [...typeSel.options].slice(1).forEach((o) => { o.text = `${typeLabel(o.value)} (${typeCounts.get(o.value)})`; });
-  }
   document.querySelectorAll("#f-oa .oa-name").forEach((s) => { s.textContent = oaLabel(s.dataset.k); });
-  // Field/topic/institution values are not translated; only their "all" option is.
-  const setAll = (id, key) => {
-    const sel = document.getElementById(id);
-    if (sel && sel.options.length) sel.options[0].text = t(key);
-  };
-  setAll("f-field", "filters.allFields");
-  setAll("f-topic", "filters.allTopics");
-  setAll("f-institution", "filters.allInstitutions");
+  // Rebuild the multi-selects so language/type option labels and the "all" placeholders
+  // follow the active language; current selections are preserved (filters Sets).
+  if (Object.keys(multiOptions).length) { computeMultiOptions(); buildMultiSelects(); }
 }
 
 function setLang(lang) {
@@ -119,15 +104,28 @@ const TABLE_COLS = [
 const filters = {
   yearMin: null, yearMax: null,
   oaStatus: new Set(OA_ORDER),
-  language: "all",
-  type: "all",
-  field: "all",
-  topic: "all",
-  institution: "all",   // OpenAlex institution id of a Canadian institution, or "all"
+  // Searchable multi-selects: a Set of selected values; an empty Set means "all".
+  language: new Set(),
+  type: new Set(),
+  field: new Set(),
+  topic: new Set(),
+  institution: new Set(),   // OpenAlex ids of Canadian institutions
   mrTopics: new Set(),  // selected metaresearch topic ids (filled once data loads)
   oaOnly: false,
 };
 let ALL_MR_TOPICS = [];   // all corpus-defining metaresearch topic ids (for reset)
+const tomSelects = {};    // id -> TomSelect instance (searchable multi-select widgets)
+// Config + cached option data for the five searchable multi-select filters.
+const MULTI = [
+  { id: "f-language", key: "language", ph: "filters.allLanguages" },
+  { id: "f-type", key: "type", ph: "filters.allTypes" },
+  { id: "f-field", key: "field", ph: "filters.allFields" },
+  { id: "f-topic", key: "topic", ph: "filters.allTopics" },
+  { id: "f-institution", key: "institution", ph: "filters.allInstitutions" },
+];
+let multiOptions = {};   // id -> [[value, label], ...] for the current language
+let instName = new Map();              // CA institution id -> name
+let fieldCounts = [], topicCounts = [], instCounts = [];   // [value, count] sorted desc
 
 // ----------------------------------------------------------------------------
 // Boot
@@ -190,40 +188,14 @@ function buildFilterControls() {
     oaBox.appendChild(wrap);
   });
 
-  // Language (counts cached for re-labelling on language switch)
-  const langSel = document.getElementById("f-language");
-  langSel.appendChild(new Option(t("filters.allLanguages"), "all"));
+  // Searchable multi-select filters: language, type, field, topic, institution.
+  // Counts are cached so option labels can be rebuilt on a language switch.
   langCounts = countBy(ALL, (r) => r.language);
-  [...langCounts.entries()].sort((a, b) => b[1] - a[1]).forEach(([k, n]) =>
-    langSel.appendChild(new Option(`${langLabel(k)} (${n})`, k)));
-
-  // Type
-  const typeSel = document.getElementById("f-type");
-  typeSel.appendChild(new Option(t("filters.allTypes"), "all"));
   typeCounts = countBy(ALL, (r) => r.type);
-  [...typeCounts.entries()].sort((a, b) => b[1] - a[1]).forEach(([k, n]) =>
-    typeSel.appendChild(new Option(`${typeLabel(k)} (${n})`, k)));
-
-  // Field (broad OpenAlex field of study) — values are not translated, only the "all" option.
-  const fieldSel = document.getElementById("f-field");
-  fieldSel.appendChild(new Option(t("filters.allFields"), "all"));
-  [...countBy(ALL, (r) => r.field).entries()]
-    .filter(([k]) => k)
-    .sort((a, b) => b[1] - a[1])
-    .forEach(([k, n]) => fieldSel.appendChild(new Option(`${k} (${n})`, k)));
-
-  // Topic (primary OpenAlex topic)
-  const topicSel = document.getElementById("f-topic");
-  topicSel.appendChild(new Option(t("filters.allTopics"), "all"));
-  [...countBy(ALL, (r) => r.topic).entries()]
-    .filter(([k]) => k)
-    .sort((a, b) => b[1] - a[1])
-    .forEach(([k, n]) => topicSel.appendChild(new Option(`${shortName(k)} (${n})`, k)));
-
-  // Canadian institution — drill into one institution's KPIs and network.
-  const instSel = document.getElementById("f-institution");
-  instSel.appendChild(new Option(t("filters.allInstitutions"), "all"));
-  const instWorks = new Map(), instName = new Map();
+  fieldCounts = [...countBy(ALL, (r) => r.field).entries()].filter(([k]) => k).sort((a, b) => b[1] - a[1]);
+  topicCounts = [...countBy(ALL, (r) => r.topic).entries()].filter(([k]) => k).sort((a, b) => b[1] - a[1]);
+  const instWorks = new Map();
+  instName = new Map();
   ALL.forEach((r) => {
     const seen = new Set();
     r.institutions.forEach((i) => {
@@ -233,8 +205,9 @@ function buildFilterControls() {
       instWorks.set(i.id, (instWorks.get(i.id) || 0) + 1);
     });
   });
-  [...instWorks.entries()].sort((a, b) => b[1] - a[1]).forEach(([id, n]) =>
-    instSel.appendChild(new Option(`${shortName(instName.get(id))} (${n})`, id)));
+  instCounts = [...instWorks.entries()].sort((a, b) => b[1] - a[1]);
+  computeMultiOptions();
+  buildMultiSelects();
 
   // Metaresearch topics (checkbox group) — a work may carry several.
   const mrTopicBox = document.getElementById("f-concepts");
@@ -253,14 +226,39 @@ function buildFilterControls() {
     });
 }
 
+// Build the [value, label] option lists for the five multi-selects. Language and
+// output-type labels are localized, so this is re-run on a language switch.
+function computeMultiOptions() {
+  const byCount = (a, b) => b[1] - a[1];
+  multiOptions["f-language"] = [...langCounts.entries()].sort(byCount).map(([k, n]) => [k, `${langLabel(k)} (${n})`]);
+  multiOptions["f-type"] = [...typeCounts.entries()].sort(byCount).map(([k, n]) => [k, `${typeLabel(k)} (${n})`]);
+  multiOptions["f-field"] = fieldCounts.map(([k, n]) => [k, `${k} (${n})`]);
+  multiOptions["f-topic"] = topicCounts.map(([k, n]) => [k, `${shortName(k)} (${n})`]);
+  multiOptions["f-institution"] = instCounts.map(([id, n]) => [id, `${shortName(instName.get(id))} (${n})`]);
+}
+
+// (Re)create the Tom Select searchable multi-selects, preserving any selection.
+function buildMultiSelects() {
+  MULTI.forEach((cfg) => {
+    const sel = document.getElementById(cfg.id);
+    if (tomSelects[cfg.id]) { tomSelects[cfg.id].destroy(); }
+    sel.innerHTML = "";
+    multiOptions[cfg.id].forEach(([v, label]) => sel.appendChild(new Option(label, v)));
+    tomSelects[cfg.id] = new TomSelect(sel, {
+      plugins: ["remove_button", "checkbox_options"],
+      maxItems: null,
+      hidePlaceholder: false,
+      placeholder: t(cfg.ph),
+      onChange() { filters[cfg.key] = new Set(this.items); apply(); },
+    });
+    if (filters[cfg.key].size) tomSelects[cfg.id].setValue([...filters[cfg.key]], true);  // silent restore
+  });
+}
+
 function wireUI() {
   document.getElementById("f-year-min").onchange = (e) => { filters.yearMin = +e.target.value; apply(); };
   document.getElementById("f-year-max").onchange = (e) => { filters.yearMax = +e.target.value; apply(); };
-  document.getElementById("f-language").onchange = (e) => { filters.language = e.target.value; apply(); };
-  document.getElementById("f-type").onchange = (e) => { filters.type = e.target.value; apply(); };
-  document.getElementById("f-field").onchange = (e) => { filters.field = e.target.value; apply(); };
-  document.getElementById("f-topic").onchange = (e) => { filters.topic = e.target.value; apply(); };
-  document.getElementById("f-institution").onchange = (e) => { filters.institution = e.target.value; apply(); };
+  // The five searchable multi-selects update filters via their Tom Select onChange (see buildMultiSelects).
   document.getElementById("f-concepts").addEventListener("change", (e) => {
     if (e.target.matches("input[type=checkbox]")) {
       e.target.checked ? filters.mrTopics.add(e.target.value) : filters.mrTopics.delete(e.target.value);
@@ -345,17 +343,12 @@ function resetFilters() {
   const years = ALL.map((r) => r.year).filter(Boolean);
   filters.yearMin = Math.min(...years); filters.yearMax = Math.max(...years);
   filters.oaStatus = new Set(OA_ORDER);
-  filters.language = "all"; filters.type = "all";
-  filters.field = "all"; filters.topic = "all"; filters.institution = "all";
+  MULTI.forEach((cfg) => { filters[cfg.key] = new Set(); });
   filters.mrTopics = new Set(ALL_MR_TOPICS);
   filters.oaOnly = false;
   document.getElementById("f-year-min").value = filters.yearMin;
   document.getElementById("f-year-max").value = filters.yearMax;
-  document.getElementById("f-language").value = "all";
-  document.getElementById("f-type").value = "all";
-  document.getElementById("f-field").value = "all";
-  document.getElementById("f-topic").value = "all";
-  document.getElementById("f-institution").value = "all";
+  MULTI.forEach((cfg) => { if (tomSelects[cfg.id]) tomSelects[cfg.id].clear(true); });  // silent
   document.getElementById("f-oa-only").checked = false;
   document.querySelectorAll("#f-oa input").forEach((c) => (c.checked = true));
   document.querySelectorAll("#f-concepts input").forEach((c) => (c.checked = true));
@@ -372,12 +365,12 @@ function currentFiltered() {
     if (r.year < lo || r.year > hi) return false;
     if (!filters.oaStatus.has(r.oa_status)) return false;
     if (filters.oaOnly && !r.is_oa) return false;
-    if (filters.language !== "all" && r.language !== filters.language) return false;
-    if (filters.type !== "all" && r.type !== filters.type) return false;
-    if (filters.field !== "all" && r.field !== filters.field) return false;
-    if (filters.topic !== "all" && r.topic !== filters.topic) return false;
-    if (filters.institution !== "all" &&
-        !r.institutions.some((i) => i.id === filters.institution)) return false;
+    if (filters.language.size && !filters.language.has(r.language)) return false;
+    if (filters.type.size && !filters.type.has(r.type)) return false;
+    if (filters.field.size && !filters.field.has(r.field)) return false;
+    if (filters.topic.size && !filters.topic.has(r.topic)) return false;
+    if (filters.institution.size &&
+        !r.institutions.some((i) => filters.institution.has(i.id))) return false;
     if (filters.mrTopics.size < ALL_MR_TOPICS.length &&
         !(r.topics || []).some((tp) => filters.mrTopics.has(tp))) return false;
     return true;
