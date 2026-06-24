@@ -611,6 +611,11 @@ function renderCharts(recs) {
   doughnut("langChart", langAgg.map((e) => langLabel(e[0])), langAgg.map((e) => e[1]), SERIES);
 }
 
+// Minimum shared-works for a tie to be drawn. Relaxed to 1 for small filtered
+// corpora, where almost every collaboration is a single shared work and a fixed
+// ≥2 cut-off would fragment the graph into disconnected nodes.
+function tieThreshold(n) { return n < 300 ? 1 : MIN_EDGE_WEIGHT; }
+
 // ----------------------------------------------------------------------------
 // Collaboration network (built from the filtered records)
 // ----------------------------------------------------------------------------
@@ -630,9 +635,26 @@ function renderNetwork(recs) {
   });
 
   const topIds = new Set([...works.entries()].sort((a, b) => b[1] - a[1]).slice(0, TOP_N_NODES).map((e) => e[0]));
-  const maxW = Math.max(1, ...[...topIds].map((id) => works.get(id)));
 
-  const nodes = [...topIds].map((id) => {
+  // Build ties first. Small filtered corpora are dominated by single-share ties, so
+  // a fixed ≥2 threshold leaves the graph sparse and full of isolated nodes — relax it.
+  const minEdge = tieThreshold(recs.length);
+  const edges = [];
+  const connected = new Set();
+  edge.forEach((w, key) => {
+    const [a, b] = key.split("|");
+    if (w >= minEdge && topIds.has(a) && topIds.has(b)) {
+      edges.push({ from: a, to: b, value: w, title: `${w} shared works`,
+        color: { color: "rgba(120,135,150,0.35)", highlight: "#1f7a63" } });
+      connected.add(a); connected.add(b);
+    }
+  });
+
+  // Show only institutions with at least one tie — isolated nodes just clutter a
+  // collaboration view (and become common once filters shrink the corpus).
+  const shownIds = [...topIds].filter((id) => connected.has(id));
+  const maxW = Math.max(1, ...shownIds.map((id) => works.get(id)));
+  const nodes = shownIds.map((id) => {
     const it = info.get(id), isCA = it.country === "CA", w = works.get(id);
     return {
       id, label: it.name, title: `${it.name}\n${w} works`, value: w,
@@ -642,13 +664,6 @@ function renderNetwork(recs) {
       color: { background: isCA ? "#1f7a63" : "#7aa7c6", border: isCA ? "#155c4a" : "#3f6b86" },
       font: { size: 12 + 14 * (w / maxW), color: "#1b2733" },
     };
-  });
-  const edges = [];
-  edge.forEach((w, key) => {
-    const [a, b] = key.split("|");
-    if (w >= MIN_EDGE_WEIGHT && topIds.has(a) && topIds.has(b))
-      edges.push({ from: a, to: b, value: w, title: `${w} shared works`,
-        color: { color: "rgba(120,135,150,0.35)", highlight: "#1f7a63" } });
   });
 
   const container = document.getElementById("networkChart");
@@ -688,7 +703,7 @@ function renderNetwork(recs) {
 
   document.getElementById("network-note").textContent = t("networkNote")
     .replace("{n}", nodes.length).replace("{N}", TOP_N_NODES)
-    .replace("{e}", edges.length).replace("{w}", MIN_EDGE_WEIGHT);
+    .replace("{e}", edges.length).replace("{w}", minEdge);
 }
 
 // ----------------------------------------------------------------------------
@@ -724,10 +739,11 @@ function renderMap(recs) {
   lmapLayer.clearLayers();
 
   // Ties first, so markers sit on top.
+  const minEdge = tieThreshold(recs.length);
   let drawn = 0;
   edge.forEach((w, key) => {
     const [a, b] = key.split("|");
-    if (w >= MIN_EDGE_WEIGHT && topIds.has(a) && topIds.has(b) && GEO[a] && GEO[b]) {
+    if (w >= minEdge && topIds.has(a) && topIds.has(b) && GEO[a] && GEO[b]) {
       L.polyline([GEO[a], GEO[b]], { color: "#1f7a63", weight: Math.max(0.5, Math.sqrt(w)), opacity: 0.16 })
         .addTo(lmapLayer);
       drawn++;
