@@ -43,7 +43,8 @@ const I18N = {
       "inspired by <a href=\"https://open.coki.ac/\" target=\"_blank\" rel=\"noopener\">COKI</a>.",
     "header.pilot": "PILOT · real OpenAlex data",
     "header.credit": "Developed by the " +
-      "<a href=\"https://cossee.org/\" target=\"_blank\" rel=\"noopener\">Collaboration for Open Science and Synthesis in Ecology and Evolution (COSSEE)</a>.",
+      "<a href=\"https://cossee.org/\" target=\"_blank\" rel=\"noopener\">Collaboration for Open Science and Synthesis in Ecology and Evolution (COSSEE)</a>, " +
+      "in collaboration with the <a href=\"https://sortee.org/\" target=\"_blank\" rel=\"noopener\">SORTEE</a> Canada Chapter.",
     "filtersToggle": "☰ Menu & filters",
     "navCollapse": "Hide menu",
     "navExpand": "Show menu",
@@ -226,7 +227,8 @@ const I18N = {
       "inspiré de <a href=\"https://open.coki.ac/\" target=\"_blank\" rel=\"noopener\">COKI</a>.",
     "header.pilot": "PILOTE · données réelles OpenAlex",
     "header.credit": "Développé par la " +
-      "<a href=\"https://cossee.org/\" target=\"_blank\" rel=\"noopener\">Collaboration for Open Science and Synthesis in Ecology and Evolution (COSSEE)</a>.",
+      "<a href=\"https://cossee.org/\" target=\"_blank\" rel=\"noopener\">Collaboration for Open Science and Synthesis in Ecology and Evolution (COSSEE)</a>, " +
+      "en collaboration avec le chapitre canadien de <a href=\"https://sortee.org/\" target=\"_blank\" rel=\"noopener\">SORTEE</a>.",
     "filtersToggle": "☰ Menu et filtres",
     "navCollapse": "Masquer le menu",
     "navExpand": "Afficher le menu",
