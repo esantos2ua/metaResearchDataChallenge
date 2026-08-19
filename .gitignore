@@ -37,7 +37,11 @@ build/
 
 # OS / editors
 .DS_Store
+~$*          # Word/Excel lock files
 Thumbs.db
 .vscode/
 .idea/
 .claude/
+
+# Local notes
+notes/

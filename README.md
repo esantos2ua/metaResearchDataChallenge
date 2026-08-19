@@ -66,6 +66,12 @@ GitHub Pages and stays fully reproducible:
 
 See [dashboard/README.md](dashboard/README.md) for details.
 
+## Status — selected proposal, implementation underway
+
+The proposal was **selected** for the challenge. The submitted text is
+[proposal/proposal-final.md](proposal/proposal-final.md) (source: `proposal/proposal-final.docx`),
+and it is the authoritative statement of what we committed to deliver before the conference.
+
 ## Reproducibility
 
 Every step from raw OpenAlex retrieval to dashboard is scripted and version-controlled.
