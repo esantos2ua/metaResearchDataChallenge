@@ -1,42 +1,78 @@
 # Versioned definition of the Canadian metaresearch corpus.
-# Editing this file changes the corpus definition — commit changes with a clear message.
+#
+# THIS FILE IS THE SINGLE SOURCE OF TRUTH. build_records.py reads every corpus-defining
+# constraint from here and refuses to run if it cannot. Editing this file changes the corpus —
+# commit changes with a clear message; the builder records this file's git SHA and content hash
+# in records.json -> meta.provenance so any snapshot can be traced back to the exact definition.
+#
+# Status: v1 pilot definition, under team review (see notes/TOPIC-VALIDATION.md). Freeze after
+# the team's comments are adjudicated.
 
-# OpenAlex topic / concept IDs that constitute "metaresearch".
-# Fill with verified OpenAlex IDs (https://api.openalex.org/topics).
+version: "2026-09-03-pilot"
+
+# --- What counts as metaresearch -------------------------------------------------------------
+# OpenAlex Topics taxonomy (the legacy Concepts taxonomy is deprecated). A work joins the corpus
+# if ANY of its assigned topics (primary or secondary) is one of these.
+# Verify IDs at https://api.openalex.org/topics/<id>.
 topics:
-  # - T#####  # Metascience
-  # - C#####  # Bibliometrics / scientometrics
-  # - C#####  # Science & technology studies
-  # - C#####  # Research integrity / reproducibility
-  # - C#####  # Scholarly communication
-  # - C#####  # Open science
+  - id: T10102
+    name: Scientometrics and bibliometrics research
+    rationale: >-
+      The quantitative study of science itself — citation analysis, research evaluation,
+      indicators, mapping of fields. The historical core of metaresearch.
+  - id: T13607
+    name: Academic Publishing and Open Access
+    rationale: >-
+      The scholarly publishing system: open access, APCs, journal and publisher policies,
+      predatory publishing, preprints.
+  - id: T13516
+    name: Publishing and Scholarly Communication
+    rationale: >-
+      Scholarly communication practices — peer review, authorship, dissemination, the
+      social organisation of publishing.
+  - id: T11492
+    name: Academic integrity and plagiarism
+    rationale: >-
+      Research integrity, misconduct, retractions, plagiarism. Known false-positive class:
+      student/classroom academic integrity (cheating, contract cheating) — flag for review.
+  - id: T13976
+    name: Web visibility and informetrics
+    rationale: >-
+      Altmetrics and web-based indicators of research visibility and use.
 
-# Lexical filters (title/abstract), English + French.
-keywords:
+# --- Optional lexical layer (title + abstract search), English + French ----------------------
+# Off by default. When enabled the builder runs a second pass with
+# title_and_abstract.search:<terms joined by OR>, unions it with the topic pass, deduplicates by
+# work ID, and records how many works the keyword layer contributed on its own.
+keyword_layer:
+  enabled: false
   en:
     - metascience
     - metaresearch
     - meta-research
     - bibliometric
     - scientometric
-    - research integrity
+    - "research integrity"
     - reproducibility
-    - open science
+    - "open science"
   fr:
     - métascience
     - métarecherche
     - bibliométrie
-    - intégrité de la recherche
+    - "intégrité de la recherche"
     - reproductibilité
-    - science ouverte
+    - "science ouverte"
 
-# "Canadian" definition for the primary corpus.
+# --- What counts as Canadian ----------------------------------------------------------------
+# The retrieval pulls the broadest definition (any author affiliated with an institution in
+# `country`). Narrower definitions (first author, corresponding author, Canadian funder) are
+# computed as flags/counts on that pull for the sensitivity analysis, not retrieved separately.
 country: CA
-canadian_definition: any_author_institution   # alternatives: first_author | corresponding | any_coauthor | funder
+canadian_definition: any_author_institution   # only value the builder retrieves; others are sensitivity flags
 
-# Time window. Floor at 1970: "bibliometrics"/"scientometrics" were coined c.1969, so
-# topic tags before then are anachronistic misclassifications. Tighten to 2000-01-01
-# for a modern-only view.
+# --- Time window and excluded types ---------------------------------------------------------
+# Floor at 1970: "bibliometrics"/"scientometrics" were coined c.1969, so topic tags before then
+# are anachronistic misclassifications of digitised old content.
 from_publication_date: "1970-01-01"
-to_publication_date: null   # null = snapshot date
-exclude_types: [paratext]   # journal covers/indexes/back-matter are mis-tagged by topic
+to_publication_date: null          # null = open-ended (the snapshot date bounds it)
+exclude_types: [paratext]          # journal covers/indexes/back-matter mis-tagged by topic
