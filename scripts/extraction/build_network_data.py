@@ -94,20 +94,34 @@ def institutions_of(work: dict) -> dict[str, dict]:
 
 def main() -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
-    print(f"Building collaboration network from OpenAlex (mailto={EMAIL or 'not set'}) ...")
+    records_file = OUT_DIR / "records.json"
 
     node_info: dict[str, dict] = {}
     node_works: dict[str, int] = {}
     edge_weight: dict[tuple[str, str], int] = {}
 
-    for work in iter_works():
-        insts = institutions_of(work)
-        for iid, info in insts.items():
-            node_info[iid] = info
-            node_works[iid] = node_works.get(iid, 0) + 1
-        # Co-occurrence edges (undirected, sorted pair key).
-        for a, b in combinations(sorted(insts), 2):
-            edge_weight[(a, b)] = edge_weight.get((a, b), 0) + 1
+    if records_file.exists():
+        print(f"Building collaboration network from {records_file.relative_to(ROOT)} ...")
+        records_data = json.loads(records_file.read_text(encoding="utf-8"))
+        records = records_data["records"]
+        base_filter = records_data.get("meta", {}).get("base_filter", BASE_FILTER)
+        for r in records:
+            insts = {inst["id"]: inst for inst in r.get("institutions", []) if inst.get("id")}
+            for iid, info in insts.items():
+                node_info[iid] = info
+                node_works[iid] = node_works.get(iid, 0) + 1
+            for a, b in combinations(sorted(insts), 2):
+                edge_weight[(a, b)] = edge_weight.get((a, b), 0) + 1
+    else:
+        print(f"Building collaboration network from OpenAlex (mailto={EMAIL or 'not set'}) ...")
+        base_filter = BASE_FILTER
+        for work in iter_works():
+            insts = institutions_of(work)
+            for iid, info in insts.items():
+                node_info[iid] = info
+                node_works[iid] = node_works.get(iid, 0) + 1
+            for a, b in combinations(sorted(insts), 2):
+                edge_weight[(a, b)] = edge_weight.get((a, b), 0) + 1
 
     # Keep top-N institutions by corpus output.
     top_ids = {iid for iid, _ in sorted(node_works.items(), key=lambda kv: kv[1], reverse=True)[:TOP_N_NODES]}

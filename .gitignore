@@ -44,5 +44,8 @@ Thumbs.db
 .claude/
 
 # Local notes
-notes/
+notes/*
+!notes/ADJUDICATION-REPORT.md
+!notes/TOPIC-VALIDATION-DECISIONS.md
+!notes/figures/
 !data/raw/SNAPSHOT.md

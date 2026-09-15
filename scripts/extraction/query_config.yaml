@@ -5,10 +5,10 @@
 # commit changes with a clear message; the builder records this file's git SHA and content hash
 # in records.json -> meta.provenance so any snapshot can be traced back to the exact definition.
 #
-# Status: v1 pilot definition, under team review (see notes/TOPIC-VALIDATION.md). Freeze after
-# the team's comments are adjudicated.
+# Status: v1 frozen corpus definition, adjudicated and frozen on 2026-09-15 following
+# team codesign validation (see notes/TOPIC-VALIDATION-DECISIONS.md).
 
-version: "2026-09-03-pilot"
+version: "2026-09-15-frozen-v1"
 
 # --- What counts as metaresearch -------------------------------------------------------------
 # OpenAlex Topics taxonomy (the legacy Concepts taxonomy is deprecated). A work joins the corpus
@@ -39,6 +39,12 @@ topics:
     name: Web visibility and informetrics
     rationale: >-
       Altmetrics and web-based indicators of research visibility and use.
+  - id: T11937
+    name: Research Data Management Practices
+    rationale: >-
+      Research data management, data sharing, FAIR principles, data repositories, and
+      data citation. Unanimously added by team codesign (Phase 1 validation, Sep 2026) to
+      capture landmark Canadian open data and open science scholarship.
 
 # --- Optional lexical layer (title + abstract search), English + French ----------------------
 # Off by default. When enabled the builder runs a second pass with
