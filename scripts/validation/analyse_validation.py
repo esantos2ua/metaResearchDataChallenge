@@ -3,7 +3,8 @@
 Three steps, run in order as the sheets come back:
 
     python scripts/validation/analyse_validation.py check
-        Which coder sheets are in `returned/`, and is each one complete and untampered?
+        Which coder sheets are in `returned/` (and adjudication sheets in `adjudication/returned/`),
+        and is each one complete and untampered?
 
     python scripts/validation/analyse_validation.py adjudicate
         Cohen's κ (pooled and per pair) and Fleiss' κ for both questions, plus Gwet's AC1 and
@@ -244,7 +245,7 @@ def cmd_check(args) -> None:
             print(f"[x] {spec['coder']:<18} complete")
     print(f"\n{n_ok}/8 sheets complete.")
     for pair_id, adj in ADJUDICATORS.items():
-        f = args.returned / f"adjudication_{slug(adj)}.xlsx"
+        f = args.adjudicated / f"adjudication_{slug(adj)}.xlsx"
         if f.exists():
             print(f"Adjudication from {adj} ({pair_id}) is in.")
 
@@ -301,7 +302,7 @@ def write_adjudication_sheet(path: Path, adjudicator: str, pair_id: str,
         "3. Answer only the question(s) marked NEEDED; leave the other answer cell empty.",
         "4. Do not look the record up in OpenAlex or on the dashboard.",
         "5. Your answer is final. UNCLEAR is allowed and counts as out of scope in the primary estimate.",
-        f"6. Save as adjudication_{slug(adjudicator)}.xlsx in data/validation/returned/.",
+        f"6. Save as adjudication_{slug(adjudicator)}.xlsx in data/validation/adjudication/returned/.",
     ]
     for i, line in enumerate(lines, start=1):
         c = info.cell(row=i, column=1, value=line)
@@ -406,7 +407,7 @@ def precision_block(finals: list[str]) -> dict:
 def cmd_results(args) -> None:
     master = load_master()
     pairs = load_codings(args.returned, master, strict=True)
-    adjud = load_adjudications(args.returned)
+    adjud = load_adjudications(args.adjudicated)
     topics = corpus_topics()
     topic_names = {n.strip().lower() for n in topics.values()}
     stats = agreement_stats(pairs)
@@ -557,7 +558,9 @@ def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("command", choices=("check", "adjudicate", "results"))
     ap.add_argument("--returned", type=Path, default=VALIDATION / "returned",
-                    help="folder with the returned coder and adjudication sheets")
+                    help="folder with the returned coder sheets")
+    ap.add_argument("--adjudicated", type=Path, default=VALIDATION / "adjudication" / "returned",
+                    help="folder with the returned adjudication sheets")
     ap.add_argument("--out", type=Path, default=VALIDATION, help="where outputs are written")
     ap.add_argument("--provisional", action="store_true",
                     help="results: count unadjudicated disagreements as UNCLEAR and mark outputs PROVISIONAL")
