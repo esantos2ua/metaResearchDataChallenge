@@ -6,5 +6,8 @@ pandas
 pyarrow
 python-dotenv
 
+# Validation coding sheets (scripts/validation): read and write .xlsx.
+openpyxl
+
 # Optional analysis / notebook stack (planned for the full study, NOT yet used by
 # any code in this repo): see requirements-analysis.txt.

@@ -6,7 +6,8 @@ Three steps, run in order as the sheets come back:
         Which coder sheets are in `returned/`, and is each one complete and untampered?
 
     python scripts/validation/analyse_validation.py adjudicate
-        Cohen's κ (pooled and per pair) and Fleiss' κ for both questions, then one blind
+        Cohen's κ (pooled and per pair) and Fleiss' κ for both questions, plus Gwet's AC1 and
+        per-category specific agreement (supplementary, not preregistered), then one blind
         adjudication workbook per adjudicator listing only the records their pair disagreed on.
 
     python scripts/validation/analyse_validation.py results [--provisional]
@@ -86,6 +87,30 @@ def cohen_kappa(a: list[str], b: list[str]) -> float:
     ca, cb = Counter(a), Counter(b)
     pe = sum(ca[c] * cb[c] for c in set(a) | set(b)) / (n * n)
     return math.nan if pe == 1 else (po - pe) / (1 - pe)
+
+
+def gwet_ac1(a: list[str], b: list[str], categories: tuple[str, ...] = VALID) -> float:
+    """Gwet's AC1: chance agreement from category spread, so it stays stable when one answer dominates.
+
+    Not preregistered (κ is); reported alongside κ because Q2 is nearly all YES (kappa paradox).
+    """
+    n, q = len(a), len(categories)
+    if n == 0:
+        return math.nan
+    po = sum(x == y for x, y in zip(a, b)) / n
+    pi = [(a.count(c) + b.count(c)) / (2 * n) for c in categories]
+    pe = sum(p * (1 - p) for p in pi) / (q - 1)
+    return math.nan if pe == 1 else (po - pe) / (1 - pe)
+
+
+def specific_agreement(a: list[str], b: list[str]) -> dict[str, float]:
+    """Per-category specific agreement 2·n_kk / (n_k(a) + n_k(b)); e.g. YES = positive agreement."""
+    out = {}
+    for c in VALID:
+        denom = a.count(c) + b.count(c)
+        both = sum(x == y == c for x, y in zip(a, b))
+        out[c] = 2 * both / denom if denom else math.nan
+    return out
 
 
 def fleiss_kappa(pairs: list[tuple[str, str]]) -> float:
@@ -247,12 +272,15 @@ def agreement_stats(pairs: dict[str, dict]) -> dict:
             all_pairs += list(zip(ra, rb))
             stats["per_pair"].setdefault(pair_id, {})[q] = {
                 "n": len(ra), "agreement": sum(x == y for x, y in zip(ra, rb)) / len(ra),
-                "cohen_kappa": cohen_kappa(ra, rb)}
+                "cohen_kappa": cohen_kappa(ra, rb), "gwet_ac1": gwet_ac1(ra, rb)}
+        pa, pb = [x for x, _ in all_pairs], [y for _, y in all_pairs]
         stats["pooled"][q] = {
             "n": len(all_pairs),
             "agreement": sum(x == y for x, y in all_pairs) / len(all_pairs),
-            "cohen_kappa": cohen_kappa([x for x, _ in all_pairs], [y for _, y in all_pairs]),
+            "cohen_kappa": cohen_kappa(pa, pb),
             "fleiss_kappa": fleiss_kappa(all_pairs),
+            "gwet_ac1": gwet_ac1(pa, pb),
+            "specific_agreement": specific_agreement(pa, pb),
             "table": Counter(f"{x}/{y}" for x, y in all_pairs).most_common()}
     return stats
 
@@ -326,9 +354,13 @@ def cmd_adjudicate(args) -> None:
     for q, field in QUESTIONS.items():
         s = stats["pooled"][q]
         print(f"  {field:<16} agreement {s['agreement']:.1%}  Cohen κ {fmt(s['cohen_kappa'])}  "
-              f"Fleiss κ {fmt(s['fleiss_kappa'])}  (target κ ≥ 0.70)")
+              f"Fleiss κ {fmt(s['fleiss_kappa'])}  Gwet AC1 {fmt(s['gwet_ac1'])}  (target κ ≥ 0.70)")
+        sa = s["specific_agreement"]
+        print(f"  {'':<16} specific agreement YES {fmt(sa['YES'])}  NO {fmt(sa['NO'])}  "
+              f"UNCLEAR {fmt(sa['UNCLEAR'])}")
     for pair_id, s in stats["per_pair"].items():
-        print(f"  {pair_id:<26} κ Q1 {fmt(s['q1']['cohen_kappa'])}  κ Q2 {fmt(s['q2']['cohen_kappa'])}")
+        print(f"  {pair_id:<26} κ Q1 {fmt(s['q1']['cohen_kappa'])}  κ Q2 {fmt(s['q2']['cohen_kappa'])}  "
+              f"AC1 Q1 {fmt(s['q1']['gwet_ac1'])}  AC1 Q2 {fmt(s['q2']['gwet_ac1'])}")
 
     out_dir = args.out / "adjudication"
     total = 0
@@ -417,6 +449,15 @@ def cmd_results(args) -> None:
                "unresolved": len(unresolved), "agreement": stats, "precision": {}, "exploratory": {}}
     for q, field in QUESTIONS.items():
         results["precision"][field] = precision_block([r[f"{field}_final"] for r in rows])
+    # Provisional only: where precision can land once adjudication is in (every open
+    # disagreement resolved NO vs. every one resolved YES).
+    results["bounds"] = {}
+    if unresolved:
+        for field in QUESTIONS.values():
+            yes = sum(r[f"{field}_final"] == "YES" for r in rows)
+            open_ = sum(r[f"{field}_resolution"] == "unresolved" for r in rows)
+            results["bounds"][field] = {"unresolved": open_, "min": yes / len(rows),
+                                        "max": (yes + open_) / len(rows)}
     results["precision"]["both"] = precision_block(
         ["YES" if r["is_metaresearch_final"] == r["is_canadian_final"] == "YES" else
          "UNCLEAR" if "UNCLEAR" in (r["is_metaresearch_final"], r["is_canadian_final"]) else "NO"
@@ -473,16 +514,30 @@ def render_markdown(res: dict) -> str:
         b = res["precision"][key]
         L.append(f"| {label} | {b['yes']} / {b['no']} / {b['unclear']} | {ci(b)} | "
                  f"{ci(b, 'unclear_excluded')} (n = {b['unclear_excluded']['n']}) |")
+    if res.get("bounds"):
+        L += ["", "Where the primary estimate can land once adjudication is in "
+              "(point estimates, no CI):", "",
+              "| Question | Open disagreements | All resolved NO | All resolved YES |",
+              "| --- | --- | --- | --- |"]
+        for field, b in res["bounds"].items():
+            L.append(f"| {labels[field]} | {b['unresolved']} | {fmt(b['min'])} | {fmt(b['max'])} |")
     L += ["", "## Inter-coder agreement (before adjudication)", "",
-          "| Question | Raw agreement | Cohen κ (pooled) | Fleiss κ |", "| --- | --- | --- | --- |"]
+          "| Question | Raw agreement | Cohen κ (pooled) | Fleiss κ | Gwet AC1 | "
+          "Specific agreement YES / NO / UNCLEAR |", "| --- | --- | --- | --- | --- | --- |"]
     for q, field in QUESTIONS.items():
         s = res["agreement"]["pooled"][q]
-        L.append(f"| {field} | {s['agreement']:.1%} | {fmt(s['cohen_kappa'])} | {fmt(s['fleiss_kappa'])} |")
-    L += ["", "Target κ ≥ 0.70. When one answer dominates (Q2 is nearly all YES), κ can be low "
-          "despite high raw agreement; report both.", "",
-          "| Pair | κ Q1 | κ Q2 | Agreement Q1 | Agreement Q2 |", "| --- | --- | --- | --- | --- |"]
+        sa = s["specific_agreement"]
+        L.append(f"| {field} | {s['agreement']:.1%} | {fmt(s['cohen_kappa'])} | {fmt(s['fleiss_kappa'])} | "
+                 f"{fmt(s['gwet_ac1'])} | {fmt(sa['YES'])} / {fmt(sa['NO'])} / {fmt(sa['UNCLEAR'])} |")
+    L += ["", "Cohen κ is the preregistered index (target ≥ 0.70). When one answer dominates "
+          "(Q2 is nearly all YES), κ can be low despite high raw agreement (the kappa paradox), so "
+          "Gwet's AC1 and per-category specific agreement are added as a **declared deviation**: "
+          "supplementary, not a replacement for κ.", "",
+          "| Pair | κ Q1 | κ Q2 | AC1 Q1 | AC1 Q2 | Agreement Q1 | Agreement Q2 |",
+          "| --- | --- | --- | --- | --- | --- | --- |"]
     for pair_id, s in res["agreement"]["per_pair"].items():
         L.append(f"| {pair_id.split('_')[0]} | {fmt(s['q1']['cohen_kappa'])} | {fmt(s['q2']['cohen_kappa'])} | "
+                 f"{fmt(s['q1']['gwet_ac1'])} | {fmt(s['q2']['gwet_ac1'])} | "
                  f"{s['q1']['agreement']:.0%} | {s['q2']['agreement']:.0%} |")
     titles = {"stratum_era": "era", "language": "language",
               "entry": "how the record entered the corpus",
