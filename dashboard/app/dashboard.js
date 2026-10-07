@@ -730,9 +730,10 @@ function renderMap(recs) {
   if (!lmap) {
     lmap = L.map("mapChart", { worldCopyJump: true, minZoom: 1, scrollWheelZoom: true })
       .setView([35, -30], 2);
-    L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
-      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> · © <a href="https://carto.com/attributions">CARTO</a>',
-      subdomains: "abcd", maxZoom: 19,
+    // Esri Light Gray Canvas: keyless (CARTO basemaps began requiring an API key in Oct 2026).
+    L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}", {
+      attribution: 'Tiles © <a href="https://www.esri.com/">Esri</a> — Esri, HERE, Garmin, © OpenStreetMap contributors',
+      maxZoom: 16,
     }).addTo(lmap);
     lmapLayer = L.layerGroup().addTo(lmap);
   }
