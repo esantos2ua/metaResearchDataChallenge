@@ -8,6 +8,8 @@ data/processed/*
 *.jsonl
 *.db
 *.sqlite
+# Community validation form exports hold names and emails; only de-identified outputs are committed
+data/validation/community/raw/
 
 # Python
 __pycache__/
@@ -47,5 +49,6 @@ Thumbs.db
 notes/*
 !notes/ADJUDICATION-REPORT.md
 !notes/TOPIC-VALIDATION-DECISIONS.md
+!notes/COMMUNITY-VALIDATION-DECISIONS.md
 !notes/figures/
 !data/raw/SNAPSHOT.md

@@ -1,0 +1,886 @@
+{
+  "generated": "2026-10-02",
+  "source": {
+    "file": "stage2_responses_export_2026-10-02.csv",
+    "sha256": "da6b9823b10b0ca49e86529cae6d0420969dff52c8394292dadfc3e4c4c14e6c"
+  },
+  "n_respondents": 36,
+  "window": [
+    "2026-09-22",
+    "2026-10-01"
+  ],
+  "community_groups": {
+    "SORTEE": 15,
+    "Other": 9,
+    "SIPS": 8,
+    "AIMOS": 4
+  },
+  "answering_as": {
+    "As an individual member": 36
+  },
+  "n_acknowledged": 28,
+  "closed": {
+    "q1_definition": {
+      "label": "Q1 Working definition",
+      "by_group": {
+        "All": {
+          "n": 36,
+          "counts": {
+            "Agree": 27,
+            "Disagree": 7,
+            "Unsure": 2
+          },
+          "support": 27,
+          "support_share": 0.75,
+          "ci95": [
+            0.5892954609852031,
+            0.8624952240303573
+          ]
+        },
+        "AIMOS": {
+          "n": 4,
+          "counts": {
+            "Disagree": 3,
+            "Agree": 1
+          },
+          "support": 1,
+          "support_share": 0.25,
+          "ci95": [
+            0.04558726029536886,
+            0.6993581599030918
+          ]
+        },
+        "SORTEE": {
+          "n": 15,
+          "counts": {
+            "Agree": 14,
+            "Unsure": 1
+          },
+          "support": 14,
+          "support_share": 0.9333333333333333,
+          "ci95": [
+            0.7018346989112435,
+            0.9881331046384677
+          ]
+        },
+        "SIPS": {
+          "n": 8,
+          "counts": {
+            "Agree": 6,
+            "Unsure": 1,
+            "Disagree": 1
+          },
+          "support": 6,
+          "support_share": 0.75,
+          "ci95": [
+            0.40927542792725174,
+            0.9285207879020445
+          ]
+        },
+        "Other": {
+          "n": 9,
+          "counts": {
+            "Agree": 6,
+            "Disagree": 3
+          },
+          "support": 6,
+          "support_share": 0.6666666666666666,
+          "ci95": [
+            0.35420213352505864,
+            0.8794161825659264
+          ]
+        }
+      }
+    },
+    "q2a_scientometrics": {
+      "label": "Q2a Scientometrics and bibliometrics",
+      "by_group": {
+        "All": {
+          "n": 36,
+          "counts": {
+            "Is metaresearch": 34,
+            "Unsure": 2
+          },
+          "support": 34,
+          "support_share": 0.9444444444444444,
+          "ci95": [
+            0.8185534265532164,
+            0.9846300134744463
+          ]
+        },
+        "AIMOS": {
+          "n": 4,
+          "counts": {
+            "Is metaresearch": 3,
+            "Unsure": 1
+          },
+          "support": 3,
+          "support_share": 0.75,
+          "ci95": [
+            0.3006418400969081,
+            0.954412739704631
+          ]
+        },
+        "SORTEE": {
+          "n": 15,
+          "counts": {
+            "Is metaresearch": 15
+          },
+          "support": 15,
+          "support_share": 1.0,
+          "ci95": [
+            0.7961166964035129,
+            1.0
+          ]
+        },
+        "SIPS": {
+          "n": 8,
+          "counts": {
+            "Is metaresearch": 8
+          },
+          "support": 8,
+          "support_share": 1.0,
+          "ci95": [
+            0.6755924316585924,
+            1.0
+          ]
+        },
+        "Other": {
+          "n": 9,
+          "counts": {
+            "Is metaresearch": 8,
+            "Unsure": 1
+          },
+          "support": 8,
+          "support_share": 0.8888888888888888,
+          "ci95": [
+            0.565000291629209,
+            0.9801091125830901
+          ]
+        }
+      }
+    },
+    "q2b_publishing": {
+      "label": "Q2b Publishing and scholarly communication",
+      "by_group": {
+        "All": {
+          "n": 36,
+          "counts": {
+            "Is metaresearch": 33,
+            "Unsure": 2,
+            "Is not metaresearch": 1
+          },
+          "support": 33,
+          "support_share": 0.9166666666666666,
+          "ci95": [
+            0.781733086137824,
+            0.9712513888881098
+          ]
+        },
+        "AIMOS": {
+          "n": 4,
+          "counts": {
+            "Is metaresearch": 4
+          },
+          "support": 4,
+          "support_share": 1.0,
+          "ci95": [
+            0.5101091596030786,
+            0.9999999999999999
+          ]
+        },
+        "SORTEE": {
+          "n": 15,
+          "counts": {
+            "Is metaresearch": 13,
+            "Unsure": 1,
+            "Is not metaresearch": 1
+          },
+          "support": 13,
+          "support_share": 0.8666666666666667,
+          "ci95": [
+            0.6211801694601944,
+            0.9626387412357151
+          ]
+        },
+        "SIPS": {
+          "n": 8,
+          "counts": {
+            "Is metaresearch": 7,
+            "Unsure": 1
+          },
+          "support": 7,
+          "support_share": 0.875,
+          "ci95": [
+            0.5291118149439162,
+            0.9775825088000281
+          ]
+        },
+        "Other": {
+          "n": 9,
+          "counts": {
+            "Is metaresearch": 9
+          },
+          "support": 9,
+          "support_share": 1.0,
+          "ci95": [
+            0.700854948272956,
+            1.0
+          ]
+        }
+      }
+    },
+    "q2c_rdm_open_science": {
+      "label": "Q2c Research data management and open science",
+      "by_group": {
+        "All": {
+          "n": 36,
+          "counts": {
+            "Is metaresearch": 36
+          },
+          "support": 36,
+          "support_share": 1.0,
+          "ci95": [
+            0.9035813700311206,
+            1.0
+          ]
+        },
+        "AIMOS": {
+          "n": 4,
+          "counts": {
+            "Is metaresearch": 4
+          },
+          "support": 4,
+          "support_share": 1.0,
+          "ci95": [
+            0.5101091596030786,
+            0.9999999999999999
+          ]
+        },
+        "SORTEE": {
+          "n": 15,
+          "counts": {
+            "Is metaresearch": 15
+          },
+          "support": 15,
+          "support_share": 1.0,
+          "ci95": [
+            0.7961166964035129,
+            1.0
+          ]
+        },
+        "SIPS": {
+          "n": 8,
+          "counts": {
+            "Is metaresearch": 8
+          },
+          "support": 8,
+          "support_share": 1.0,
+          "ci95": [
+            0.6755924316585924,
+            1.0
+          ]
+        },
+        "Other": {
+          "n": 9,
+          "counts": {
+            "Is metaresearch": 9
+          },
+          "support": 9,
+          "support_share": 1.0,
+          "ci95": [
+            0.700854948272956,
+            1.0
+          ]
+        }
+      }
+    },
+    "q2d_integrity": {
+      "label": "Q2d Research integrity and misconduct",
+      "by_group": {
+        "All": {
+          "n": 36,
+          "counts": {
+            "Is metaresearch": 33,
+            "Unsure": 3
+          },
+          "support": 33,
+          "support_share": 0.9166666666666666,
+          "ci95": [
+            0.781733086137824,
+            0.9712513888881098
+          ]
+        },
+        "AIMOS": {
+          "n": 4,
+          "counts": {
+            "Is metaresearch": 4
+          },
+          "support": 4,
+          "support_share": 1.0,
+          "ci95": [
+            0.5101091596030786,
+            0.9999999999999999
+          ]
+        },
+        "SORTEE": {
+          "n": 15,
+          "counts": {
+            "Is metaresearch": 13,
+            "Unsure": 2
+          },
+          "support": 13,
+          "support_share": 0.8666666666666667,
+          "ci95": [
+            0.6211801694601944,
+            0.9626387412357151
+          ]
+        },
+        "SIPS": {
+          "n": 8,
+          "counts": {
+            "Is metaresearch": 8
+          },
+          "support": 8,
+          "support_share": 1.0,
+          "ci95": [
+            0.6755924316585924,
+            1.0
+          ]
+        },
+        "Other": {
+          "n": 9,
+          "counts": {
+            "Is metaresearch": 8,
+            "Unsure": 1
+          },
+          "support": 8,
+          "support_share": 0.8888888888888888,
+          "ci95": [
+            0.565000291629209,
+            0.9801091125830901
+          ]
+        }
+      }
+    },
+    "q2e_evaluation_careers": {
+      "label": "Q2e Research evaluation, careers and equity",
+      "by_group": {
+        "All": {
+          "n": 36,
+          "counts": {
+            "Is metaresearch": 31,
+            "Unsure": 5
+          },
+          "support": 31,
+          "support_share": 0.8611111111111112,
+          "ci95": [
+            0.7134046947289879,
+            0.9391818502934882
+          ]
+        },
+        "AIMOS": {
+          "n": 4,
+          "counts": {
+            "Is metaresearch": 4
+          },
+          "support": 4,
+          "support_share": 1.0,
+          "ci95": [
+            0.5101091596030786,
+            0.9999999999999999
+          ]
+        },
+        "SORTEE": {
+          "n": 15,
+          "counts": {
+            "Is metaresearch": 12,
+            "Unsure": 3
+          },
+          "support": 12,
+          "support_share": 0.8,
+          "ci95": [
+            0.5481455107594471,
+            0.9295245070826608
+          ]
+        },
+        "SIPS": {
+          "n": 8,
+          "counts": {
+            "Is metaresearch": 7,
+            "Unsure": 1
+          },
+          "support": 7,
+          "support_share": 0.875,
+          "ci95": [
+            0.5291118149439162,
+            0.9775825088000281
+          ]
+        },
+        "Other": {
+          "n": 9,
+          "counts": {
+            "Is metaresearch": 8,
+            "Unsure": 1
+          },
+          "support": 8,
+          "support_share": 0.8888888888888888,
+          "ci95": [
+            0.565000291629209,
+            0.9801091125830901
+          ]
+        }
+      }
+    },
+    "q4a_exclude_classroom_integrity": {
+      "label": "Q4a Exclude classroom academic integrity",
+      "by_group": {
+        "All": {
+          "n": 36,
+          "counts": {
+            "Agree": 34,
+            "Unsure": 2
+          },
+          "support": 34,
+          "support_share": 0.9444444444444444,
+          "ci95": [
+            0.8185534265532164,
+            0.9846300134744463
+          ]
+        },
+        "AIMOS": {
+          "n": 4,
+          "counts": {
+            "Agree": 4
+          },
+          "support": 4,
+          "support_share": 1.0,
+          "ci95": [
+            0.5101091596030786,
+            0.9999999999999999
+          ]
+        },
+        "SORTEE": {
+          "n": 15,
+          "counts": {
+            "Agree": 15
+          },
+          "support": 15,
+          "support_share": 1.0,
+          "ci95": [
+            0.7961166964035129,
+            1.0
+          ]
+        },
+        "SIPS": {
+          "n": 8,
+          "counts": {
+            "Agree": 7,
+            "Unsure": 1
+          },
+          "support": 7,
+          "support_share": 0.875,
+          "ci95": [
+            0.5291118149439162,
+            0.9775825088000281
+          ]
+        },
+        "Other": {
+          "n": 9,
+          "counts": {
+            "Agree": 8,
+            "Unsure": 1
+          },
+          "support": 8,
+          "support_share": 0.8888888888888888,
+          "ci95": [
+            0.565000291629209,
+            0.9801091125830901
+          ]
+        }
+      }
+    },
+    "q4b_exclude_applied_reviews": {
+      "label": "Q4b Exclude applied systematic reviews / meta-analyses",
+      "by_group": {
+        "All": {
+          "n": 36,
+          "counts": {
+            "Agree": 30,
+            "Unsure": 4,
+            "Disagree": 2
+          },
+          "support": 30,
+          "support_share": 0.8333333333333334,
+          "ci95": [
+            0.6810920555117621,
+            0.9212955245089851
+          ]
+        },
+        "AIMOS": {
+          "n": 4,
+          "counts": {
+            "Agree": 4
+          },
+          "support": 4,
+          "support_share": 1.0,
+          "ci95": [
+            0.5101091596030786,
+            0.9999999999999999
+          ]
+        },
+        "SORTEE": {
+          "n": 15,
+          "counts": {
+            "Agree": 12,
+            "Unsure": 2,
+            "Disagree": 1
+          },
+          "support": 12,
+          "support_share": 0.8,
+          "ci95": [
+            0.5481455107594471,
+            0.9295245070826608
+          ]
+        },
+        "SIPS": {
+          "n": 8,
+          "counts": {
+            "Agree": 6,
+            "Unsure": 2
+          },
+          "support": 6,
+          "support_share": 0.75,
+          "ci95": [
+            0.40927542792725174,
+            0.9285207879020445
+          ]
+        },
+        "Other": {
+          "n": 9,
+          "counts": {
+            "Agree": 8,
+            "Disagree": 1
+          },
+          "support": 8,
+          "support_share": 0.8888888888888888,
+          "ci95": [
+            0.565000291629209,
+            0.9801091125830901
+          ]
+        }
+      }
+    },
+    "q5_canadian": {
+      "label": "Q5 \"Canadian\" = any Canadian-affiliated author",
+      "by_group": {
+        "All": {
+          "n": 36,
+          "counts": {
+            "Agree": 26,
+            "Unsure": 7,
+            "Disagree": 3
+          },
+          "support": 26,
+          "support_share": 0.7222222222222222,
+          "ci95": [
+            0.560075098694387,
+            0.8415166213194445
+          ]
+        },
+        "AIMOS": {
+          "n": 4,
+          "counts": {
+            "Agree": 2,
+            "Unsure": 2
+          },
+          "support": 2,
+          "support_share": 0.5,
+          "ci95": [
+            0.15003898774401986,
+            0.8499610122559802
+          ]
+        },
+        "SORTEE": {
+          "n": 15,
+          "counts": {
+            "Agree": 13,
+            "Unsure": 1,
+            "Disagree": 1
+          },
+          "support": 13,
+          "support_share": 0.8666666666666667,
+          "ci95": [
+            0.6211801694601944,
+            0.9626387412357151
+          ]
+        },
+        "SIPS": {
+          "n": 8,
+          "counts": {
+            "Agree": 4,
+            "Unsure": 2,
+            "Disagree": 2
+          },
+          "support": 4,
+          "support_share": 0.5,
+          "ci95": [
+            0.21521606069626764,
+            0.7847839393037324
+          ]
+        },
+        "Other": {
+          "n": 9,
+          "counts": {
+            "Agree": 7,
+            "Unsure": 2
+          },
+          "support": 7,
+          "support_share": 0.7777777777777778,
+          "ci95": [
+            0.4525889666922117,
+            0.9367748934594303
+          ]
+        }
+      }
+    }
+  },
+  "themes": {
+    "def_theoretical": {
+      "label": "Definition: 'empirical' excludes theoretical / conceptual metaresearch",
+      "n": 6,
+      "respondents": [
+        "R01",
+        "R04",
+        "R05",
+        "R13",
+        "R20",
+        "R35"
+      ]
+    },
+    "def_reform_goal": {
+      "label": "Definition: should state the aim of improving / reforming research",
+      "n": 2,
+      "respondents": [
+        "R17",
+        "R32"
+      ]
+    },
+    "def_broaden_list": {
+      "label": "Definition: list is too narrow or should be non-exhaustive",
+      "n": 5,
+      "respondents": [
+        "R03",
+        "R14",
+        "R18",
+        "R19",
+        "R30"
+      ]
+    },
+    "def_distinguish": {
+      "label": "Definition: sharpen the boundary with meta-analysis, science studies, or substantive work",
+      "n": 3,
+      "respondents": [
+        "R12",
+        "R22",
+        "R36"
+      ]
+    },
+    "dom_methods_stats": {
+      "label": "Missing domain: research methods, statistical practice, QRPs, replicability",
+      "n": 8,
+      "respondents": [
+        "R07",
+        "R09",
+        "R10",
+        "R12",
+        "R13",
+        "R17",
+        "R18",
+        "R36"
+      ]
+    },
+    "dom_policy_funding": {
+      "label": "Missing domain: science policy and research funding",
+      "n": 4,
+      "respondents": [
+        "R10",
+        "R17",
+        "R26",
+        "R31"
+      ]
+    },
+    "dom_training_workforce": {
+      "label": "Missing domain: research training, pedagogy, scientific workforce",
+      "n": 3,
+      "respondents": [
+        "R02",
+        "R05",
+        "R25"
+      ]
+    },
+    "dom_evidence_synthesis": {
+      "label": "Missing domain: evidence synthesis / meta-analysis as metaresearch",
+      "n": 3,
+      "respondents": [
+        "R16",
+        "R18",
+        "R20"
+      ]
+    },
+    "dom_research_waste": {
+      "label": "Missing domain: research waste, efficiency, priority setting",
+      "n": 2,
+      "respondents": [
+        "R03",
+        "R18"
+      ]
+    },
+    "dom_ethics": {
+      "label": "Missing domain: research ethics and oversight",
+      "n": 2,
+      "respondents": [
+        "R07",
+        "R18"
+      ]
+    },
+    "dom_science_society": {
+      "label": "Missing domain: citizen science, science communication, societies",
+      "n": 1,
+      "respondents": [
+        "R07"
+      ]
+    },
+    "dom_hps": {
+      "label": "Missing domain: philosophy / sociology / history of science",
+      "n": 3,
+      "respondents": [
+        "R17",
+        "R19",
+        "R20"
+      ]
+    },
+    "dom_beyond_os": {
+      "label": "Missing domain: coverage is too centred on open science",
+      "n": 1,
+      "respondents": [
+        "R23"
+      ]
+    },
+    "excl_field_level_integrity": {
+      "label": "Exclusion 4a: student behaviour studied at field level should stay in",
+      "n": 1,
+      "respondents": [
+        "R25"
+      ]
+    },
+    "excl_student_rdm": {
+      "label": "Exclusion 4a: student RDM / open-science practice studies should stay in",
+      "n": 1,
+      "respondents": [
+        "R29"
+      ]
+    },
+    "excl_reviews_of_reviews": {
+      "label": "Exclusion 4b: studies of the review literature itself should stay in",
+      "n": 1,
+      "respondents": [
+        "R02"
+      ]
+    },
+    "can_lead_author": {
+      "label": "Canadian: large teams with one Canadian are over-counted; prefer lead / majority",
+      "n": 4,
+      "respondents": [
+        "R02",
+        "R23",
+        "R24",
+        "R25"
+      ]
+    },
+    "can_union": {
+      "label": "Canadian: first OR corresponding author OR Canadian funder",
+      "n": 1,
+      "respondents": [
+        "R15"
+      ]
+    },
+    "can_funder": {
+      "label": "Canadian: Canadian funder as primary",
+      "n": 1,
+      "respondents": [
+        "R21"
+      ]
+    },
+    "can_setting": {
+      "label": "Canadian: Canadian data, setting or subject (not in bibliographic metadata)",
+      "n": 4,
+      "respondents": [
+        "R16",
+        "R22",
+        "R23",
+        "R35"
+      ]
+    },
+    "can_nationality": {
+      "label": "Canadian: author nationality or birthplace (not in bibliographic metadata)",
+      "n": 1,
+      "respondents": [
+        "R30"
+      ]
+    },
+    "blind_replication": {
+      "label": "Blind spot: replication, multi-analyst, robustness studies",
+      "n": 3,
+      "respondents": [
+        "R03",
+        "R13",
+        "R19"
+      ]
+    },
+    "blind_rr_prereg_policy": {
+      "label": "Blind spot: registered reports, preregistration audits, OS policy are in",
+      "n": 3,
+      "respondents": [
+        "R13",
+        "R19",
+        "R29"
+      ]
+    },
+    "blind_conceptual_editorial": {
+      "label": "Blind spot: conceptual papers and editorials carry no metaresearch tag",
+      "n": 1,
+      "respondents": [
+        "R05"
+      ]
+    },
+    "blind_language_indigenous": {
+      "label": "Blind spot: French / multilingual work, Indigenous research governance",
+      "n": 1,
+      "respondents": [
+        "R07"
+      ]
+    },
+    "blind_classification_bias": {
+      "label": "Blind spot: OpenAlex files methods studies under the substantive field",
+      "n": 1,
+      "respondents": [
+        "R12"
+      ]
+    },
+    "blind_program_evaluation": {
+      "label": "Blind spot: evaluation of interventions and reform programmes",
+      "n": 1,
+      "respondents": [
+        "R17"
+      ]
+    },
+    "advice_librarians": {
+      "label": "Advice: consult systematic-review librarians",
+      "n": 1,
+      "respondents": [
+        "R02"
+      ]
+    }
+  }
+}
