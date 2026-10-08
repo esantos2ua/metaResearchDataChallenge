@@ -112,6 +112,7 @@ const filters = {
   institution: new Set(),   // OpenAlex ids of Canadian institutions
   mrTopics: new Set(),  // selected metaresearch topic ids (filled once data loads)
   oaOnly: false,
+  authorship: "any",    // "any" (primary) or "lead": first OR corresponding author in Canada
 };
 let ALL_MR_TOPICS = [];   // all corpus-defining metaresearch topic ids (for reset)
 const tomSelects = {};    // id -> TomSelect instance (searchable multi-select widgets)
@@ -266,6 +267,9 @@ function wireUI() {
     }
   });
   document.getElementById("f-oa-only").onchange = (e) => { filters.oaOnly = e.target.checked; apply(); };
+  document.getElementById("f-authorship").addEventListener("change", (e) => {
+    if (e.target.matches("input[type=radio]")) { filters.authorship = e.target.value; apply(); }
+  });
   document.getElementById("f-oa").addEventListener("change", (e) => {
     if (e.target.matches("input[type=checkbox]")) {
       e.target.checked ? filters.oaStatus.add(e.target.value) : filters.oaStatus.delete(e.target.value);
@@ -346,10 +350,12 @@ function resetFilters() {
   MULTI.forEach((cfg) => { filters[cfg.key] = new Set(); });
   filters.mrTopics = new Set(ALL_MR_TOPICS);
   filters.oaOnly = false;
+  filters.authorship = "any";
   document.getElementById("f-year-min").value = filters.yearMin;
   document.getElementById("f-year-max").value = filters.yearMax;
   MULTI.forEach((cfg) => { if (tomSelects[cfg.id]) tomSelects[cfg.id].clear(true); });  // silent
   document.getElementById("f-oa-only").checked = false;
+  document.querySelectorAll("#f-authorship input").forEach((c) => (c.checked = c.value === "any"));
   document.querySelectorAll("#f-oa input").forEach((c) => (c.checked = true));
   document.querySelectorAll("#f-concepts input").forEach((c) => (c.checked = true));
   apply();
@@ -365,6 +371,7 @@ function currentFiltered() {
     if (r.year < lo || r.year > hi) return false;
     if (!filters.oaStatus.has(r.oa_status)) return false;
     if (filters.oaOnly && !r.is_oa) return false;
+    if (filters.authorship === "lead" && !(r.first_ca || r.corr_ca)) return false;
     if (filters.language.size && !filters.language.has(r.language)) return false;
     if (filters.type.size && !filters.type.has(r.type)) return false;
     if (filters.field.size && !filters.field.has(r.field)) return false;
@@ -815,7 +822,8 @@ function refreshValidation() {
 function renderSensitivity() {
   const s = META.sensitivity;
   if (!s || !s.definitions) return;
-  const defs = s.definitions;
+  const lead = { key: "lead_author", count: ALL.filter((r) => r.first_ca || r.corr_ca).length };
+  const defs = s.definitions.flatMap((d) => (d.key === "first_author" ? [d, lead] : [d]));
   const primary = (defs.find((d) => d.primary) || defs[0]).count || 1;
   upsert("sensChart", {
     type: "bar",
