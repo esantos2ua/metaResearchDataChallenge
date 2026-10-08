@@ -21,7 +21,9 @@ Rules fixed in docs/PROTOCOL.md (B2) and docs/CODING_GUIDE.md:
 - Primary precision counts a final UNCLEAR as out of scope; the sensitivity estimate drops
   UNCLEAR from the denominator.
 - Breakdowns by era, language and topic are exploratory.
-Coders appear in the published sample under pseudonymous IDs (C1–C8), not by name.
+Coders appear in the per-record sample as C1–C8 for brevity. These IDs are not anonymous: coding
+is attributed, the mapping is CODER_IDS below, and the returned sheets are published under each
+coder's name.
 """
 
 from __future__ import annotations
