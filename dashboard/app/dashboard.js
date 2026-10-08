@@ -51,8 +51,24 @@ function applyStatic() {
   });
 }
 
+// B2 precision per metaresearch topic, shown next to each topic checkbox.
+const fmtP = (x) => x.toLocaleString(LANG === "fr" ? "fr-CA" : "en-CA",
+  { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+function relabelPrecision() {
+  if (!PREC) return;
+  document.querySelectorAll("#f-concepts .mr-prec").forEach((s) => {
+    const b = PREC.by_topic[s.dataset.t]; if (!b) return;
+    s.textContent = t("filters.prec").replace("{p}", fmtP(b.estimate));
+    s.title = t("filters.precTip").replace("{lo}", fmtP(b.ci95[0])).replace("{hi}", fmtP(b.ci95[1]))
+      .replace("{n}", b.n);
+  });
+  document.getElementById("prec-note").textContent = t("filters.precNote")
+    .replace("{p}", fmtP(PREC.overall.estimate)).replace("{t}", fmtP(PREC.threshold));
+}
+
 function relabelFilters() {
   document.querySelectorAll("#f-oa .oa-name").forEach((s) => { s.textContent = oaLabel(s.dataset.k); });
+  relabelPrecision();
   // Rebuild the multi-selects so language/type option labels and the "all" placeholders
   // follow the active language; current selections are preserved (filters Sets).
   if (Object.keys(multiOptions).length) { computeMultiOptions(); buildMultiSelects(); }
@@ -73,6 +89,7 @@ function setLang(lang) {
 // ----------------------------------------------------------------------------
 let ALL = [];          // all records
 let META = {};
+let PREC = null;       // B2 precision, overall and per metaresearch topic (optional file)
 const charts = {};     // id -> Chart instance
 let network = null;    // vis.Network instance
 let netData = null;    // {nodes, edges} DataSets
@@ -152,6 +169,12 @@ let fieldCounts = [], topicCounts = [], instCounts = [];   // [value, count] sor
     if (res.ok) GEO = await res.json();
   } catch (_) { /* leave GEO null */ }
 
+  // B2 validation precision per topic (optional — topic filter shows no precision if absent).
+  try {
+    const res = await fetch("data/validation_precision.json", { cache: "no-store" });
+    if (res.ok) PREC = await res.json();
+  } catch (_) { /* leave PREC null */ }
+
   document.getElementById("loading").hidden = true;
   document.getElementById("dash").hidden = false;
   document.getElementById("methods-note").textContent = META.note || "";
@@ -217,14 +240,18 @@ function buildFilterControls() {
   ALL.forEach((r) => (r.topics || []).forEach((tp) => mrTopicCounts.set(tp, (mrTopicCounts.get(tp) || 0) + 1)));
   ALL_MR_TOPICS = Object.keys(mrTopicNames);
   filters.mrTopics = new Set(ALL_MR_TOPICS);
+  // Most precise topic first when B2 precision is available, otherwise largest first.
+  const precOf = (id) => (PREC && PREC.by_topic[id] ? PREC.by_topic[id].estimate : -1);
   ALL_MR_TOPICS
-    .sort((a, b) => (mrTopicCounts.get(b) || 0) - (mrTopicCounts.get(a) || 0))
+    .sort((a, b) => (precOf(b) - precOf(a)) || ((mrTopicCounts.get(b) || 0) - (mrTopicCounts.get(a) || 0)))
     .forEach((id) => {
       const wrap = document.createElement("label");
       wrap.innerHTML = `<input type="checkbox" value="${id}" checked> ` +
-        `<span>${escapeHtml(mrTopicNames[id])} (${mrTopicCounts.get(id) || 0})</span>`;
+        `<span>${escapeHtml(mrTopicNames[id])} (${mrTopicCounts.get(id) || 0})` +
+        (PREC && PREC.by_topic[id] ? ` <span class="mr-prec" data-t="${id}"></span>` : "") + `</span>`;
       mrTopicBox.appendChild(wrap);
     });
+  document.getElementById("prec-note").hidden = !PREC;
 }
 
 // Build the [value, label] option lists for the five multi-selects. Language and
