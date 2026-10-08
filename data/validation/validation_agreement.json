@@ -1,0 +1,134 @@
+{
+  "pooled": {
+    "q1": {
+      "n": 200,
+      "agreement": 0.62,
+      "cohen_kappa": 0.31383170819790535,
+      "fleiss_kappa": 0.3090437984408028,
+      "table": [
+        [
+          "NO/NO",
+          78
+        ],
+        [
+          "YES/YES",
+          43
+        ],
+        [
+          "NO/YES",
+          24
+        ],
+        [
+          "YES/NO",
+          24
+        ],
+        [
+          "NO/UNCLEAR",
+          20
+        ],
+        [
+          "UNCLEAR/NO",
+          3
+        ],
+        [
+          "YES/UNCLEAR",
+          3
+        ],
+        [
+          "UNCLEAR/UNCLEAR",
+          3
+        ],
+        [
+          "UNCLEAR/YES",
+          2
+        ]
+      ]
+    },
+    "q2": {
+      "n": 200,
+      "agreement": 0.93,
+      "cohen_kappa": 0.4354838709677423,
+      "fleiss_kappa": 0.43371422793002323,
+      "table": [
+        [
+          "YES/YES",
+          181
+        ],
+        [
+          "YES/NO",
+          7
+        ],
+        [
+          "NO/NO",
+          3
+        ],
+        [
+          "UNCLEAR/YES",
+          3
+        ],
+        [
+          "NO/UNCLEAR",
+          2
+        ],
+        [
+          "YES/UNCLEAR",
+          2
+        ],
+        [
+          "UNCLEAR/UNCLEAR",
+          2
+        ]
+      ]
+    }
+  },
+  "per_pair": {
+    "pair1_bruno_elena": {
+      "q1": {
+        "n": 50,
+        "agreement": 0.46,
+        "cohen_kappa": 0.1493383742911153
+      },
+      "q2": {
+        "n": 50,
+        "agreement": 0.92,
+        "cohen_kappa": 0.47229551451187346
+      }
+    },
+    "pair2_stephanie_valentin": {
+      "q1": {
+        "n": 50,
+        "agreement": 0.7,
+        "cohen_kappa": 0.5036399735274651
+      },
+      "q2": {
+        "n": 50,
+        "agreement": 0.98,
+        "cohen_kappa": 0.6598639455782308
+      }
+    },
+    "pair3_shinichi_losia": {
+      "q1": {
+        "n": 50,
+        "agreement": 0.58,
+        "cohen_kappa": 0.23580786026200862
+      },
+      "q2": {
+        "n": 50,
+        "agreement": 0.88,
+        "cohen_kappa": 0.0
+      }
+    },
+    "pair4_marija_eduardo": {
+      "q1": {
+        "n": 50,
+        "agreement": 0.74,
+        "cohen_kappa": 0.5272727272727272
+      },
+      "q2": {
+        "n": 50,
+        "agreement": 0.94,
+        "cohen_kappa": 0.6402877697841722
+      }
+    }
+  }
+}
