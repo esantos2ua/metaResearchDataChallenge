@@ -13,8 +13,10 @@ records.json -> meta.provenance.
 
 Run:
     OPENALEX_EMAIL=you@example.org python3 scripts/extraction/build_records.py
+    (OPENALEX_API_KEY=<free key> enables cursor paging; without it the pull goes in year slices)
     python3 scripts/extraction/build_records.py --dry-run          # resolve + count, write nothing
     python3 scripts/extraction/build_records.py --dry-run --keywords  # also test the keyword layer
+    python3 scripts/extraction/build_records.py --out data/raw/records_YYYY-MM-DD.json  # comparison pull
 """
 
 from __future__ import annotations
@@ -42,6 +44,8 @@ OUT_DIR = ROOT / "dashboard" / "app" / "data"
 CONFIG_PATH = Path(__file__).resolve().parent / "query_config.yaml"
 BASE = "https://api.openalex.org/works"
 EMAIL = os.environ.get("OPENALEX_EMAIL", "").strip()  # optional OpenAlex polite-pool contact
+API_KEY = os.environ.get("OPENALEX_API_KEY", "").strip()  # free key; needed for cursor paging
+PAGE_LIMIT = 10_000  # without a key, page= paging reaches only the first 10,000 results
 SELECT = "id,title,publication_year,type,language,cited_by_count,open_access,authorships,primary_topic,topics"
 
 
@@ -161,6 +165,8 @@ def api(params: dict) -> dict:
     params = {**params}
     if EMAIL:
         params["mailto"] = EMAIL
+    if API_KEY:
+        params["api_key"] = API_KEY
     url = f"{BASE}?{urllib.parse.urlencode(params)}"
     for attempt in range(4):
         try:
@@ -217,6 +223,8 @@ def canadian_funder_filter() -> tuple[str, list[dict]]:
     params = {"filter": "country_code:ca", "sort": "works_count:desc", "per-page": 25}
     if EMAIL:
         params["mailto"] = EMAIL
+    if API_KEY:
+        params["api_key"] = API_KEY
     url = f"{FUNDERS_API}?{urllib.parse.urlencode(params)}"
     with urllib.request.urlopen(url, timeout=60) as resp:
         results = json.loads(resp.read())["results"]
@@ -262,6 +270,16 @@ def build_sensitivity(records: list[dict], defn: CorpusDefinition) -> dict:
 
 
 def fetch_all(filter_str: str, label: str) -> list[dict]:
+    """Every work matching the filter: cursor paging with an API key, year slices without one."""
+    if API_KEY:
+        return _fetch_cursor(filter_str, label)
+    works: list[dict] = []
+    for lo, hi in _year_slices(filter_str):
+        works.extend(_fetch_pages(f"{filter_str},publication_year:{lo}-{hi}", f"{label} {lo}-{hi}"))
+    return works
+
+
+def _fetch_cursor(filter_str: str, label: str) -> list[dict]:
     works: list[dict] = []
     cursor = "*"
     while cursor:
@@ -272,6 +290,37 @@ def fetch_all(filter_str: str, label: str) -> list[dict]:
         if not data["results"]:
             break
     return works
+
+
+def _fetch_pages(filter_str: str, label: str) -> list[dict]:
+    works: list[dict] = []
+    page = 1
+    while True:
+        data = api({"filter": filter_str, "select": SELECT, "per-page": 200, "page": page})
+        works.extend(data["results"])
+        print(f"  [{label}] fetched {len(works)} works", file=sys.stderr)
+        if len(works) >= data["meta"]["count"] or not data["results"]:
+            return works
+        page += 1
+
+
+def _year_slices(filter_str: str) -> list[tuple[int, int]]:
+    """Consecutive publication-year ranges, each under the 10,000-result page limit."""
+    groups = api({"filter": filter_str, "group_by": "publication_year"})["group_by"]
+    counts = sorted((int(g["key"]), g["count"]) for g in groups)
+    slices, start, total = [], None, 0
+    for year, n in counts:
+        if n > PAGE_LIMIT:
+            sys.exit(f"{year} alone has {n} works; set OPENALEX_API_KEY to use cursor paging")
+        if start is not None and total + n > PAGE_LIMIT:
+            slices.append((start, prev))
+            start, total = None, 0
+        if start is None:
+            start = year
+        total, prev = total + n, year
+    if start is not None:
+        slices.append((start, prev))
+    return slices
 
 
 def to_record(w: dict, defn: CorpusDefinition, via: str) -> dict:
@@ -306,6 +355,8 @@ def main() -> None:
     ap.add_argument("--config", type=Path, default=CONFIG_PATH, help="corpus definition (YAML)")
     ap.add_argument("--dry-run", action="store_true", help="resolve the definition and count; write nothing")
     ap.add_argument("--keywords", action="store_true", help="force the keyword layer on (overrides config)")
+    ap.add_argument("--out", type=Path, default=OUT_DIR / "records.json",
+                    help="where to write the records (default: the dashboard's records.json)")
     args = ap.parse_args()
 
     defn = CorpusDefinition(args.config)
@@ -329,7 +380,7 @@ def main() -> None:
         print(json.dumps(defn.provenance(), indent=1, ensure_ascii=False))
         return
 
-    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    args.out.parent.mkdir(parents=True, exist_ok=True)
     retrieved_at = datetime.now(timezone.utc).isoformat(timespec="seconds")
     print(f"Building record-level dataset from OpenAlex (mailto={EMAIL or 'not set'}) ...")
 
@@ -372,7 +423,7 @@ def main() -> None:
         "records": records,
     }
 
-    out = OUT_DIR / "records.json"
+    out = args.out.resolve()
     out.write_text(json.dumps(payload, ensure_ascii=False, separators=(",", ":")))
     size_mb = out.stat().st_size / 1e6
     print(f"  wrote {len(records)} records -> {out.relative_to(ROOT)} ({size_mb:.2f} MB)")

@@ -17,3 +17,15 @@ Record of the exact retrieval for full reproducibility and auditability.
   - First author Canadian: recorded in `records.json` -> `meta.sensitivity`
   - Corresponding author Canadian: recorded in `records.json` -> `meta.sensitivity`
   - Funded by major Canadian funder: recorded in `records.json` -> `meta.sensitivity`
+
+## Later OpenAlex releases (added 2026-10-15)
+
+- OpenAlex re-tagged every work with a new topic classifier and merged ~14M duplicate works in
+  its release of 2026-10-14. The same filter returned 20,369 works on 2026-10-15. That pull is
+  kept for comparison only (`data/raw/records_2026-10-14.json`, not committed); **v1 above stays
+  the primary corpus** (deviation D5). See [`docs/CORPUS-VERSIONS.md`](../../docs/CORPUS-VERSIONS.md).
+- To reproduce v1's topic assignments after the change: OpenAlex froze the old topics and scores
+  on 2026-10-05 and attached them to its v2.0.0 release; the old classifier serves
+  `/text/topics?version=1` until 2027-01-13.
+- Re-pulling now needs a free OpenAlex API key for cursor paging (`OPENALEX_API_KEY`);
+  without one, `build_records.py` pulls in publication-year slices.

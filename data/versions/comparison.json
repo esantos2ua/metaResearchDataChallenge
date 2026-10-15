@@ -1,0 +1,153 @@
+{
+  "versions": {
+    "pilot": {
+      "label": "Pilot (proposal)",
+      "source": "OpenAlex API, 2026-06-19",
+      "file": "data/raw/records_pilot_2026-06-19.json",
+      "works": 7062,
+      "topics_in_definition": 5,
+      "works_per_topic": {
+        "T10102": 3456,
+        "T13607": 2202,
+        "T13976": 383,
+        "T13516": 934,
+        "T11492": 1209
+      },
+      "since_2015": 0.645,
+      "open_access": 0.5675,
+      "diamond": 0.118,
+      "french": 0.0394,
+      "editorials": 0.0384,
+      "international_coauthor": 0.4485,
+      "canadian_lead_author": 5584,
+      "canadian_institutions": 669,
+      "top_institutions": [
+        [
+          "University of Toronto",
+          849
+        ],
+        [
+          "University of British Columbia",
+          456
+        ],
+        [
+          "Université de Montréal",
+          447
+        ],
+        [
+          "University of Ottawa",
+          429
+        ],
+        [
+          "McGill University",
+          413
+        ]
+      ],
+      "top_institutions_share": 0.3309
+    },
+    "v1": {
+      "label": "v1 frozen (after team + community)",
+      "source": "OpenAlex API, 2026-09-15",
+      "file": "dashboard/app/data/records.json",
+      "works": 9464,
+      "topics_in_definition": 6,
+      "works_per_topic": {
+        "T10102": 3667,
+        "T13607": 2338,
+        "T13976": 393,
+        "T11937": 2594,
+        "T13516": 972,
+        "T11492": 1289
+      },
+      "since_2015": 0.6946,
+      "open_access": 0.6244,
+      "diamond": 0.116,
+      "french": 0.033,
+      "editorials": 0.0341,
+      "international_coauthor": 0.4765,
+      "canadian_lead_author": 7180,
+      "canadian_institutions": 811,
+      "top_institutions": [
+        [
+          "University of Toronto",
+          1119
+        ],
+        [
+          "University of British Columbia",
+          672
+        ],
+        [
+          "McGill University",
+          594
+        ],
+        [
+          "Université de Montréal",
+          551
+        ],
+        [
+          "University of Ottawa",
+          550
+        ]
+      ],
+      "top_institutions_share": 0.3313
+    },
+    "oct": {
+      "label": "v1 config, October OpenAlex",
+      "source": "OpenAlex API, 2026-10-15 (snapshot of 2026-10-14)",
+      "file": "data/raw/records_2026-10-14.json",
+      "works": 20369,
+      "topics_in_definition": 6,
+      "works_per_topic": {
+        "T11937": 4271,
+        "T13607": 6167,
+        "T10102": 6044,
+        "T13976": 947,
+        "T11492": 2581,
+        "T13516": 6661
+      },
+      "since_2015": 0.6954,
+      "open_access": 0.6351,
+      "diamond": 0.126,
+      "french": 0.047,
+      "editorials": 0.0502,
+      "international_coauthor": 0.4591,
+      "canadian_lead_author": 15131,
+      "canadian_institutions": 922,
+      "top_institutions": [
+        [
+          "University of Toronto",
+          2772
+        ],
+        [
+          "University of British Columbia",
+          1700
+        ],
+        [
+          "McGill University",
+          1483
+        ],
+        [
+          "University of Ottawa",
+          1352
+        ],
+        [
+          "McMaster University",
+          1255
+        ]
+      ],
+      "top_institutions_share": 0.3751
+    }
+  },
+  "flows": {
+    "pilot->v1": {
+      "kept": 6824,
+      "left": 238,
+      "entered": 2640
+    },
+    "v1->oct": {
+      "kept": 5232,
+      "left": 4232,
+      "entered": 15137
+    }
+  }
+}
