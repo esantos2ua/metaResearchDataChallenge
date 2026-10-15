@@ -6,7 +6,7 @@ const I18N = {
   en: {
     // Sidebar / brand / nav
     "brand.title": "Metaresearch Dashboard",
-    "brand.sub": "Canada · pilot",
+    "brand.sub": "Canada · v1",
     "nav.insights": "Metaresearch report",
     "nav.trends": "Publication trends",
     "nav.institutions": "Institutions",
@@ -48,7 +48,7 @@ const I18N = {
     "header.subtitle": "An open, reproducible view of Canada's metaresearch landscape, built on " +
       "<a href=\"https://openalex.org/\" target=\"_blank\" rel=\"noopener\">OpenAlex</a> · " +
       "inspired by <a href=\"https://open.coki.ac/\" target=\"_blank\" rel=\"noopener\">COKI</a>.",
-    "header.pilot": "PILOT · real OpenAlex data",
+    "header.pilot": "v1 · OpenAlex, 15 Sep 2026",
     "header.credit": "Developed by the " +
       "<a href=\"https://cossee.org/\" target=\"_blank\" rel=\"noopener\">Collaboration for Open Science and Synthesis in Ecology and Evolution (COSSEE)</a>, " +
       "in collaboration with the <a href=\"https://sortee.org/\" target=\"_blank\" rel=\"noopener\">SORTEE</a> Canada Chapter.",
@@ -130,10 +130,8 @@ const I18N = {
     "legend.intl": "International",
     // About
     "about.filter": "Corpus filter (OpenAlex):",
-    "about.body": "Pilot mock-up demonstrating the dashboard stack. The corpus definition " +
-      "(concepts/keywords, \"Canadian\" criteria) is intentionally simple and will be refined per " +
-      "<a href=\"https://github.com/esantos2ua/metaResearchDataChallenge/blob/main/docs/METHODOLOGY.md\" " +
-      "target=\"_blank\" rel=\"noopener\">docs/METHODOLOGY.md</a>. " +
+    "about.body": "Corpus v1, retrieved from OpenAlex on 15 September 2026 and frozen. The definition lives in one versioned file (query_config.yaml), was reviewed by the team and 36 community reviewers (see Community validation), and was measured by blind double-coding of 200 works: precision 0.27, shown per topic in the filters. " +
+      "Methods: <a href=\"https://github.com/esantos2ua/metaResearchDataChallenge/blob/main/docs/METHODOLOGY.md\" target=\"_blank\" rel=\"noopener\">docs/METHODOLOGY.md</a>; versions: <a href=\"https://github.com/esantos2ua/metaResearchDataChallenge/blob/main/docs/CORPUS-VERSIONS.md\" target=\"_blank\" rel=\"noopener\">docs/CORPUS-VERSIONS.md</a>; deviations: <a href=\"https://github.com/esantos2ua/metaResearchDataChallenge/blob/main/docs/DEVIATIONS.md\" target=\"_blank\" rel=\"noopener\">docs/DEVIATIONS.md</a>. " +
       "All charts, the network, and the CSV export update with the filters on the left. " +
       "Data & documentation: CC BY 4.0 · Code: MIT.",
     // KPIs
@@ -192,6 +190,39 @@ const I18N = {
     "val.sensColN": "Works",
     "val.sensColPct": "% of primary",
     "val.sensCorrNote": "Corresponding-author affiliation is recorded for only {c} of {n} works in OpenAlex, so that count is a lower bound.",
+    // Community validation
+    "nav.community": "Community validation",
+    "sec.community": "Community validation",
+    "comm.intro": "The boundary of this corpus was set with the people who do metaresearch. In a team round (eight members, September 2026) we chose the OpenAlex topics and the inclusion rules. Then 36 reviewers from SORTEE (15), SIPS (8), AIMOS (4) and other communities (9) reviewed the definition and the rules (22 September – 1 October 2026). Every answer is logged; the decisions and the dissent are <a href=\"https://github.com/esantos2ua/metaResearchDataChallenge/blob/main/notes/COMMUNITY-VALIDATION-DECISIONS.md\" target=\"_blank\" rel=\"noopener\">published on GitHub</a>.",
+    "comm.votesTitle": "What the reviewers said",
+    "comm.votesDesc": "Share of the 36 reviewers who agreed with each part of the definition.",
+    "comm.v.def": "Working definition of metaresearch",
+    "comm.v.rdm": "Domain: research data management and open science",
+    "comm.v.sci": "Domain: scientometrics",
+    "comm.v.int": "Domain: research integrity",
+    "comm.v.pub": "Domain: publishing and scholarly communication",
+    "comm.v.eval": "Domain: research evaluation, careers and equity",
+    "comm.v.class": "Exclude classroom academic integrity",
+    "comm.v.sr": "Exclude applied systematic reviews",
+    "comm.v.ca": "“Canadian” = any author at a Canadian institution",
+    "comm.changedTitle": "What changed because of it",
+    "comm.now": "Now in this dashboard",
+    "comm.now1": "Research data management added as a sixth topic (team round)",
+    "comm.now2": "“Canadian authorship” switch in the filters: any author or lead author",
+    "comm.now3": "Classroom academic integrity and applied reviews coded out",
+    "comm.now4": "This page: the votes, the dissent and the blind spots, in the open",
+    "comm.v2": "Committed for corpus v2",
+    "comm.v2a": "Topics for research methods and statistical practice, the gap reviewers named most, tested against seed papers with a librarian",
+    "comm.v2b": "A test for a science-policy and funding topic",
+    "comm.v2c": "Revised definition wording, so theoretical and modelling metaresearch is not excluded",
+    "comm.v2d": "A share-of-Canadian-authors view",
+    "comm.v2e": "Replication studies count when they make claims about a population of findings",
+    "comm.blind": "Known blind spots",
+    "comm.blind1": "Editorials and conceptual papers without a metaresearch tag",
+    "comm.blind2": "French-language and multilingual work",
+    "comm.blind3": "Indigenous research governance",
+    "comm.blind4": "Evaluations of research-reform programmes",
+    "comm.note": "Reviewers answered as individuals. Most came from ecology and evolution (SORTEE) and psychology (SIPS); clinical, library and French-language communities were thin, and that is a limit of this validation.",
     "sens.any_author": "Any author at a Canadian institution (primary)",
     "sens.first_author": "First author at a Canadian institution",
     "sens.lead_author": "Lead author (first or corresponding) at a Canadian institution",
@@ -201,7 +232,7 @@ const I18N = {
 
   fr: {
     "brand.title": "Tableau de la métarecherche",
-    "brand.sub": "Canada · pilote",
+    "brand.sub": "Canada · v1",
     "nav.insights": "Rapport de métarecherche",
     "nav.trends": "Tendances de publication",
     "nav.institutions": "Établissements",
@@ -240,7 +271,7 @@ const I18N = {
     "header.subtitle": "Une vue ouverte et reproductible du paysage de la métarecherche au Canada, " +
       "à partir d'<a href=\"https://openalex.org/\" target=\"_blank\" rel=\"noopener\">OpenAlex</a> · " +
       "inspiré de <a href=\"https://open.coki.ac/\" target=\"_blank\" rel=\"noopener\">COKI</a>.",
-    "header.pilot": "PILOTE · données réelles OpenAlex",
+    "header.pilot": "v1 · OpenAlex, 15 sept. 2026",
     "header.credit": "Développé par la " +
       "<a href=\"https://cossee.org/\" target=\"_blank\" rel=\"noopener\">Collaboration for Open Science and Synthesis in Ecology and Evolution (COSSEE)</a>, " +
       "en collaboration avec le chapitre canadien de <a href=\"https://sortee.org/\" target=\"_blank\" rel=\"noopener\">SORTEE</a>.",
@@ -315,10 +346,8 @@ const I18N = {
     "legend.ca": "Canadien",
     "legend.intl": "International",
     "about.filter": "Filtre du corpus (OpenAlex) :",
-    "about.body": "Maquette pilote illustrant la plateforme du tableau de bord. La définition du corpus " +
-      "(concepts/mots-clés, critères « canadien ») est volontairement simple et sera affinée selon " +
-      "<a href=\"https://github.com/esantos2ua/metaResearchDataChallenge/blob/main/docs/METHODOLOGY.md\" " +
-      "target=\"_blank\" rel=\"noopener\">docs/METHODOLOGY.md</a>. " +
+    "about.body": "Corpus v1, extrait d'OpenAlex le 15 septembre 2026 puis figé. La définition tient dans un seul fichier versionné (query_config.yaml); elle a été examinée par l'équipe et 36 évaluateurs et évaluatrices de la communauté (voir Validation communautaire), puis mesurée par un double codage à l'aveugle de 200 travaux : précision de 0,27, indiquée par sujet dans les filtres. " +
+      "Méthodes : <a href=\"https://github.com/esantos2ua/metaResearchDataChallenge/blob/main/docs/METHODOLOGY.md\" target=\"_blank\" rel=\"noopener\">docs/METHODOLOGY.md</a>; versions : <a href=\"https://github.com/esantos2ua/metaResearchDataChallenge/blob/main/docs/CORPUS-VERSIONS.md\" target=\"_blank\" rel=\"noopener\">docs/CORPUS-VERSIONS.md</a>; écarts : <a href=\"https://github.com/esantos2ua/metaResearchDataChallenge/blob/main/docs/DEVIATIONS.md\" target=\"_blank\" rel=\"noopener\">docs/DEVIATIONS.md</a>. " +
       "Tous les graphiques, le réseau et l'export CSV se mettent à jour avec les filtres à gauche. " +
       "Données et documentation : CC BY 4.0 · Code : MIT.",
     "kpi.works": "Travaux (filtrés)",
@@ -370,6 +399,39 @@ const I18N = {
     "val.sensColN": "Travaux",
     "val.sensColPct": "% du principal",
     "val.sensCorrNote": "L'affiliation de l'auteur correspondant n'est consignée que pour {c} des {n} travaux dans OpenAlex; ce décompte est donc une borne inférieure.",
+    // Validation communautaire
+    "nav.community": "Validation communautaire",
+    "sec.community": "Validation communautaire",
+    "comm.intro": "Les limites de ce corpus ont été fixées avec les personnes qui font de la métarecherche. Lors d'une ronde d'équipe (huit membres, septembre 2026), nous avons choisi les sujets OpenAlex et les règles d'inclusion. Ensuite, 36 évaluateurs et évaluatrices de SORTEE (15), SIPS (8), AIMOS (4) et d'autres communautés (9) ont examiné la définition et les règles (du 22 septembre au 1er octobre 2026). Chaque réponse est consignée; les décisions et les désaccords sont <a href=\"https://github.com/esantos2ua/metaResearchDataChallenge/blob/main/notes/COMMUNITY-VALIDATION-DECISIONS.md\" target=\"_blank\" rel=\"noopener\">publiés sur GitHub</a>.",
+    "comm.votesTitle": "Ce qu'en ont dit les évaluateurs",
+    "comm.votesDesc": "Part des 36 évaluateurs et évaluatrices en accord avec chaque élément de la définition.",
+    "comm.v.def": "Définition de travail de la métarecherche",
+    "comm.v.rdm": "Domaine : gestion des données de recherche et science ouverte",
+    "comm.v.sci": "Domaine : scientométrie",
+    "comm.v.int": "Domaine : intégrité de la recherche",
+    "comm.v.pub": "Domaine : édition et communication savante",
+    "comm.v.eval": "Domaine : évaluation de la recherche, carrières et équité",
+    "comm.v.class": "Exclure l'intégrité académique en classe",
+    "comm.v.sr": "Exclure les revues systématiques appliquées",
+    "comm.v.ca": "« Canadien » = au moins un auteur dans un établissement canadien",
+    "comm.changedTitle": "Ce qui a changé en conséquence",
+    "comm.now": "Déjà dans ce tableau de bord",
+    "comm.now1": "Gestion des données de recherche ajoutée comme sixième sujet (ronde d'équipe)",
+    "comm.now2": "Option « Autorat canadien » dans les filtres : tout auteur ou auteur principal",
+    "comm.now3": "Intégrité académique en classe et revues appliquées codées hors champ",
+    "comm.now4": "Cette page : les votes, les désaccords et les angles morts, en toute transparence",
+    "comm.v2": "Engagements pour la version 2 du corpus",
+    "comm.v2a": "Des sujets sur les méthodes de recherche et les pratiques statistiques, la lacune la plus citée, testés sur des articles de référence avec un ou une bibliothécaire",
+    "comm.v2b": "Un test pour un sujet sur la politique scientifique et le financement",
+    "comm.v2c": "Une définition reformulée, pour ne pas exclure la métarecherche théorique et de modélisation",
+    "comm.v2d": "Une vue selon la part d'auteurs canadiens",
+    "comm.v2e": "Les études de réplication comptent lorsqu'elles portent sur un ensemble de résultats",
+    "comm.blind": "Angles morts connus",
+    "comm.blind1": "Éditoriaux et articles conceptuels sans étiquette de métarecherche",
+    "comm.blind2": "Travaux en français et multilingues",
+    "comm.blind3": "Gouvernance autochtone de la recherche",
+    "comm.blind4": "Évaluations de programmes de réforme de la recherche",
+    "comm.note": "Les évaluateurs ont répondu à titre individuel. La plupart venaient de l'écologie et de l'évolution (SORTEE) et de la psychologie (SIPS); les communautés cliniques, des bibliothèques et francophones étaient peu représentées, ce qui limite cette validation.",
     "sens.any_author": "Un auteur au moins dans un établissement canadien (principal)",
     "sens.first_author": "Premier auteur dans un établissement canadien",
     "sens.lead_author": "Auteur principal (premier ou correspondant) dans un établissement canadien",

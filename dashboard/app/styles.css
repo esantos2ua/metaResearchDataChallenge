@@ -315,3 +315,20 @@ code { background: var(--bg); padding: 2px 6px; border-radius: 6px; font-size: 0
   .card-grid { grid-template-columns: 1fr; }
   .card.wide { grid-column: auto; }
 }
+
+/* Community validation */
+.vote-list { display: flex; flex-direction: column; gap: 8px; margin: 4px 0 20px; }
+.vote-row { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(120px, 2fr) 104px; gap: 14px; align-items: center; font-size: 0.86rem; }
+.vote-bar { display: block; height: 14px; background: var(--accent-soft); border-radius: 7px; overflow: hidden; }
+.vote-bar > span { display: block; height: 100%; background: var(--accent); border-radius: 7px; }
+.vote-val { color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; text-align: right; }
+.comm-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 6px 0 14px; }
+.comm-col { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; }
+.comm-col h4 { margin: 0 0 8px; font-size: 0.9rem; color: var(--accent-dark); }
+.comm-col ul { margin: 0; padding-left: 18px; font-size: 0.84rem; line-height: 1.45; }
+.comm-col li + li { margin-top: 5px; }
+@media (max-width: 900px) {
+  .comm-grid { grid-template-columns: 1fr; }
+  .vote-row { grid-template-columns: 1fr 88px; }
+  .vote-row > span:first-child { grid-column: 1 / -1; }
+}

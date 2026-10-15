@@ -10,7 +10,7 @@
   <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css" />
   <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
-  <link rel="stylesheet" href="styles.css?v=20261008b" />
+  <link rel="stylesheet" href="styles.css?v=20261015a" />
   <!-- GoatCounter: privacy-friendly, cookieless analytics.
        Swap GOATCOUNTER_CODE below for your site code (e.g. "metaresearch")
        after registering a free site at https://www.goatcounter.com -->
@@ -25,7 +25,7 @@
       <span class="leaf">🍁</span>
       <div>
         <strong data-i18n="brand.title">Metaresearch Dashboard</strong>
-        <span class="brand-sub" data-i18n="brand.sub">Canada · pilot</span>
+        <span class="brand-sub" data-i18n="brand.sub">Canada · v1</span>
       </div>
       <button class="sidebar-close" id="sidebar-close" aria-label="Close menu" title="Close">✕</button>
     </div>
@@ -39,6 +39,7 @@
       <a href="#topics" data-i18n="nav.topics">Topics &amp; fields</a>
       <a href="#outputs" data-i18n="nav.outputs">Outputs &amp; open access</a>
       <a href="#validation" data-i18n="nav.validation">Search &amp; validation</a>
+      <a href="#community" data-i18n="nav.community">Community validation</a>
       <a href="#about" data-i18n="nav.about">About &amp; methods</a>
     </nav>
 
@@ -142,7 +143,7 @@
                alt="COSSEE — Collaboration for Open Science and Synthesis in Ecology and Evolution"
                onerror="this.style.display='none'" />
         </a>
-        <span class="pilot-badge" data-i18n="header.pilot">PILOT · real OpenAlex data</span>
+        <span class="pilot-badge" data-i18n="header.pilot">v1 · OpenAlex, 15 Sep 2026</span>
       </div>
     </header>
 
@@ -305,6 +306,61 @@
           </div>
         </section>
 
+        <!-- COMMUNITY VALIDATION -->
+        <section id="community" class="section">
+          <h2 class="section-title" data-i18n="sec.community">Community validation</h2>
+          <div class="card">
+            <p class="card-desc" data-i18n-html="comm.intro">The boundary of this corpus was set with the people who do metaresearch.</p>
+
+            <h3 data-i18n="comm.votesTitle">What the reviewers said</h3>
+            <p class="card-desc" data-i18n="comm.votesDesc">Share of the 36 reviewers who agreed with each part of the definition.</p>
+            <div class="vote-list">
+              <div class="vote-row"><span data-i18n="comm.v.def">Working definition of metaresearch</span><span class="vote-bar" aria-hidden="true"><span style="width:75%"></span></span><span class="vote-val">27/36 · 75%</span></div>
+              <div class="vote-row"><span data-i18n="comm.v.rdm">Domain: research data management and open science</span><span class="vote-bar" aria-hidden="true"><span style="width:100%"></span></span><span class="vote-val">36/36 · 100%</span></div>
+              <div class="vote-row"><span data-i18n="comm.v.sci">Domain: scientometrics</span><span class="vote-bar" aria-hidden="true"><span style="width:94%"></span></span><span class="vote-val">34/36 · 94%</span></div>
+              <div class="vote-row"><span data-i18n="comm.v.int">Domain: research integrity</span><span class="vote-bar" aria-hidden="true"><span style="width:92%"></span></span><span class="vote-val">33/36 · 92%</span></div>
+              <div class="vote-row"><span data-i18n="comm.v.pub">Domain: publishing and scholarly communication</span><span class="vote-bar" aria-hidden="true"><span style="width:92%"></span></span><span class="vote-val">33/36 · 92%</span></div>
+              <div class="vote-row"><span data-i18n="comm.v.eval">Domain: research evaluation, careers and equity</span><span class="vote-bar" aria-hidden="true"><span style="width:86%"></span></span><span class="vote-val">31/36 · 86%</span></div>
+              <div class="vote-row"><span data-i18n="comm.v.class">Exclude classroom academic integrity</span><span class="vote-bar" aria-hidden="true"><span style="width:94%"></span></span><span class="vote-val">34/36 · 94%</span></div>
+              <div class="vote-row"><span data-i18n="comm.v.sr">Exclude applied systematic reviews</span><span class="vote-bar" aria-hidden="true"><span style="width:83%"></span></span><span class="vote-val">30/36 · 83%</span></div>
+              <div class="vote-row"><span data-i18n="comm.v.ca">“Canadian” = any author at a Canadian institution</span><span class="vote-bar" aria-hidden="true"><span style="width:72%"></span></span><span class="vote-val">26/36 · 72%</span></div>
+            </div>
+
+            <h3 data-i18n="comm.changedTitle">What changed because of it</h3>
+            <div class="comm-grid">
+              <div class="comm-col">
+                <h4 data-i18n="comm.now">Now in this dashboard</h4>
+                <ul>
+                  <li data-i18n="comm.now1">Research data management added as a sixth topic (team round)</li>
+                  <li data-i18n="comm.now2">“Canadian authorship” switch in the filters: any author or lead author</li>
+                  <li data-i18n="comm.now3">Classroom academic integrity and applied reviews coded out</li>
+                  <li data-i18n="comm.now4">This page: the votes, the dissent and the blind spots, in the open</li>
+                </ul>
+              </div>
+              <div class="comm-col">
+                <h4 data-i18n="comm.v2">Committed for corpus v2</h4>
+                <ul>
+                  <li data-i18n="comm.v2a">Topics for research methods and statistical practice, the gap reviewers named most, tested against seed papers with a librarian</li>
+                  <li data-i18n="comm.v2b">A test for a science-policy and funding topic</li>
+                  <li data-i18n="comm.v2c">Revised definition wording, so theoretical and modelling metaresearch is not excluded</li>
+                  <li data-i18n="comm.v2d">A share-of-Canadian-authors view</li>
+                  <li data-i18n="comm.v2e">Replication studies count when they make claims about a population of findings</li>
+                </ul>
+              </div>
+              <div class="comm-col">
+                <h4 data-i18n="comm.blind">Known blind spots</h4>
+                <ul>
+                  <li data-i18n="comm.blind1">Editorials and conceptual papers without a metaresearch tag</li>
+                  <li data-i18n="comm.blind2">French-language and multilingual work</li>
+                  <li data-i18n="comm.blind3">Indigenous research governance</li>
+                  <li data-i18n="comm.blind4">Evaluations of research-reform programmes</li>
+                </ul>
+              </div>
+            </div>
+            <p class="muted" data-i18n="comm.note">Reviewers answered as individuals. Most came from ecology and evolution (SORTEE) and psychology (SIPS); clinical, library and French-language communities were thin, and that is a limit of this validation.</p>
+          </div>
+        </section>
+
         <!-- ABOUT -->
         <section id="about" class="section">
           <h2 class="section-title" data-i18n="sec.about">About &amp; methods</h2>
@@ -354,7 +410,7 @@
   </div>
 </div>
 
-<script src="i18n.js?v=20261008b"></script>
-<script src="dashboard.js?v=20261008b"></script>
+<script src="i18n.js?v=20261015a"></script>
+<script src="dashboard.js?v=20261015a"></script>
 </body>
 </html>
