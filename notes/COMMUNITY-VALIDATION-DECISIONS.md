@@ -1,6 +1,6 @@
 # Community Validation (Stage 2 / F1): Proposed Adjudication Record
 
-**Date:** 2026-10-02 (updated from the 2026-09-29 draft with three late responses, R34–R36) — **DRAFT for co-lead sign-off** (Eduardo, Shinichi, Losia, Marija)  
+**Date:** 2026-10-02 (updated from the 2026-09-29 draft with three late responses, R34–R36) — **Signed off by the co-leads on 2026-10-15** (Eduardo, Shinichi, Losia, Marija)  
 **Context:** External community review of the corpus definition, run as the Stage 2 form
 (`notes/community-validation-form.gs`, message in `notes/EMAIL-COMMUNITY-VALIDATION.md`).  
 **Data:** [`data/validation/community/stage2_summary.md`](../data/validation/community/stage2_summary.md),

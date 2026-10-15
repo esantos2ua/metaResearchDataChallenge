@@ -18,7 +18,7 @@ Results referred to below: [`data/validation/validation_results.md`](../data/val
 | **What we did instead** | We report round 1 only. Round 2 (retraining on a clarified coding guide, then re-coding) is planned after the conference and will be reported next to round 1. |
 | **Why** | The conference talk is on 2026-10-28. Retraining eight volunteer coders, re-coding 200 records and adjudicating again does not fit before then. |
 | **Mitigations** | Every disagreement (76 on Q1, 14 on Q2) was adjudicated blind by a co-lead outside the pair, so the precision estimate does not rest on any single coder. κ stays the headline agreement statistic. Pair-level κ is published. |
-| **Decided** | 2026-10-08, by Eduardo Santos (project lead). **After** the results were seen. Co-lead confirmation pending. |
+| **Decided** | 2026-10-08, by Eduardo Santos (project lead). **After** the results were seen. Confirmed by the co-leads on 2026-10-15. |
 
 ## D2. Supplementary agreement statistics
 
@@ -46,3 +46,23 @@ Results referred to below: [`data/validation/validation_results.md`](../data/val
 | **Registered** | Recall against a community-curated seed set (≥ 150 nominations, target ≥ 0.85), and a coverage benchmark against one comparator database (Web of Science or Scopus), both before the conference. |
 | **Status** | Neither is complete. No community seed set was collected: the only nominations are 35 works from the eight team members in Phase 1, and they were used to choose the topic set, so they cannot give an unbiased recall. We have no API access to Scopus or Web of Science from the project pipeline. |
 | **Decided** | 2026-10-08, by Eduardo Santos. |
+
+## D5. October OpenAlex release: corpus re-pulled for comparison, primary corpus unchanged
+
+| | |
+|---|---|
+| **Registered** | One dated, version-pinned pull (2026-09-15, `2026-09-15-frozen-v1`) is the corpus. |
+| **What happened** | OpenAlex re-tagged every work with a new topic classifier and merged ~14M duplicates (release of 2026-10-14). The unchanged `query_config.yaml` now returns 20,369 works instead of 9,464; 5,232 of the v1 works remain. |
+| **What we did** | v1 stays the primary corpus on the dashboard and in the release. We re-pulled the corpus as a comparison (`data/raw/records_2026-10-14.json`), compared pilot, v1 and October in [`CORPUS-VERSIONS.md`](CORPUS-VERSIONS.md), and checked which B2-coded records the new classifier kept (exploratory: 42 of the 100 that stayed are metaresearch). |
+| **Why** | v1 is the only version whose precision people measured. Replacing it would be the silent swap the preregistration rules out. |
+| **Decided** | 2026-10-15, by Eduardo Santos. **After** the October counts and the retention of the B2 records were seen. |
+
+## D6. AI agents as coders for a first precision reading of the October corpus
+
+| | |
+|---|---|
+| **Registered** | Human double-coding only. |
+| **What we did** | A quick check, not a replacement for B2: 50 works that entered with the October release (era-stratified, seed 20261015) were mixed with the 200 human-coded B2 records, shuffled and relabelled, and double-coded blind by four AI agent instances (two per half) using `CODING_GUIDE.md` only, with OpenAlex IDs and DOIs removed. Disagreements went to a blind agent adjudicator. The 200 B2 records are the benchmark: agent verdicts are scored against the human finals, and the precision on the 50 new works is reported raw and corrected for the agents' measured sensitivity and specificity. Scripts: `sample_agent_check.py`, `analyse_agent_check.py`; outputs in `data/validation/agent_check/`. |
+| **Why** | Three quarters of the October corpus has never been coded, and a human round does not fit before 2026-10-28. |
+| **Limits** | The four agents are instances of one model with the same instructions, so their errors are correlated and their agreement overstates independence. 50 records give a wide interval. The result is labelled exploratory everywhere it appears. |
+| **Decided** | 2026-10-15, by Eduardo Santos, at the co-leads' suggestion of a quick check. **Before** any agent result was seen. |
