@@ -1,0 +1,111 @@
+{
+  "agreement_between_agents": {
+    "is_metaresearch": {
+      "raw": 0.952,
+      "kappa": 0.92,
+      "ac1": 0.93
+    },
+    "is_canadian": {
+      "raw": 0.992,
+      "kappa": 0.91,
+      "ac1": 0.99
+    }
+  },
+  "benchmark": {
+    "is_metaresearch": {
+      "human_precision": {
+        "yes": 53,
+        "n": 200,
+        "estimate": 0.265,
+        "ci95": [
+          0.209,
+          0.33
+        ]
+      },
+      "agent_precision": {
+        "yes": 94,
+        "n": 200,
+        "estimate": 0.47,
+        "ci95": [
+          0.402,
+          0.539
+        ]
+      },
+      "kappa_agent_vs_human": 0.41,
+      "agreement_yes_vs_not": 0.745,
+      "sensitivity": 0.906,
+      "specificity": 0.687
+    },
+    "is_canadian": {
+      "human_precision": {
+        "yes": 188,
+        "n": 200,
+        "estimate": 0.94,
+        "ci95": [
+          0.898,
+          0.965
+        ]
+      },
+      "agent_precision": {
+        "yes": 189,
+        "n": 200,
+        "estimate": 0.945,
+        "ci95": [
+          0.904,
+          0.969
+        ]
+      },
+      "kappa_agent_vs_human": 0.64,
+      "agreement_yes_vs_not": 0.985,
+      "sensitivity": 0.995,
+      "specificity": 0.833
+    }
+  },
+  "new": {
+    "is_metaresearch": {
+      "agent_precision": {
+        "yes": 20,
+        "n": 50,
+        "estimate": 0.4,
+        "ci95": [
+          0.276,
+          0.538
+        ]
+      },
+      "corrected_for_agent_error": 0.147,
+      "corrected_ci95_bootstrap": [
+        0.0,
+        0.386
+      ]
+    },
+    "is_canadian": {
+      "agent_precision": {
+        "yes": 50,
+        "n": 50,
+        "estimate": 1.0,
+        "ci95": [
+          0.929,
+          1.0
+        ]
+      },
+      "corrected_for_agent_error": 1.0,
+      "corrected_ci95_bootstrap": [
+        1.0,
+        1.0
+      ]
+    }
+  },
+  "october_corpus_rough": {
+    "kept_works": 5232,
+    "kept_precision_human": 0.42,
+    "entered_works": 15137,
+    "entered_precision_agent": 0.147,
+    "overall": 0.217,
+    "overall_range_from_entered_ci": [
+      0.108,
+      0.395
+    ],
+    "metaresearch_works_estimate": 4423,
+    "v1_metaresearch_works_estimate": 2555
+  }
+}

@@ -1,0 +1,812 @@
+[
+ {
+  "source": "new",
+  "source_id": "W4301479766",
+  "year": 1975,
+  "venue": "Unknown",
+  "title": "Guide to authors (a guide for the preparation of geological maps and reports)",
+  "abstract": "",
+  "authors_and_affiliations": "R G Blackadar | H Dumych (Natural Resources Canada) | P J Griffin",
+  "stratum_era": "1970-1999",
+  "type": "report",
+  "language": "en",
+  "topics": [
+   "T13516"
+  ],
+  "primary_topic": "Academic Writing and Publishing"
+ },
+ {
+  "source": "new",
+  "source_id": "W2001297923",
+  "year": 1980,
+  "venue": "ABCA Bulletin",
+  "title": "Oral Communications: Survey and Suggestions",
+  "abstract": "",
+  "authors_and_affiliations": "James Wyllie (Fleming College)",
+  "stratum_era": "1970-1999",
+  "type": "article",
+  "language": "en",
+  "topics": [
+   "T13516"
+  ],
+  "primary_topic": "Academic Writing and Publishing"
+ },
+ {
+  "source": "new",
+  "source_id": "W1996945129",
+  "year": 1995,
+  "venue": "Research Policy",
+  "title": "National priorities in academic research-strategic research and contracts in renewable energies",
+  "abstract": "",
+  "authors_and_affiliations": "Robert Dalpé (Université de Montréal) | Frances Anderson (National Research Council Canada)",
+  "stratum_era": "1970-1999",
+  "type": "article",
+  "language": "en",
+  "topics": [
+   "T10102"
+  ],
+  "primary_topic": "scientometrics and bibliometrics research"
+ },
+ {
+  "source": "new",
+  "source_id": "W2081069584",
+  "year": 2005,
+  "venue": "Annals of Surgery",
+  "title": "Evaluating Meta-analyses in the General Surgical Literature",
+  "abstract": "OBJECTIVE: To assess the methodologic quality of meta-analyses of general surgery topics published in peer-reviewed journals. SUMMARY BACKGROUND DATA: Systematic reviews and meta-analysis are used to seek, summarize, and interpret primary studies on a given topic. Accordingly, systematic reviews and meta-analyses of high-quality primary studies may be the highest level of evidence for issues of prevention and treatment in evidence-based medicine. However, not all published meta-analyses are rigorously performed. METHODS: We searched MEDLINE (from January 1, 1997, to September 1, 2002) and reference lists and solicited general surgery specialists to identify relevant meta-analyses. Inclusion criteria were use of meta-analytic methods to pool the results of primary studies in general surgery on issues of diagnosis, causation, prognosis, or treatment. Our search strategies identified 487 potentially relevant articles. After excluding articles based on a priori criteria, 51 meta-analyses fulfilled eligibility criteria. In duplicate and independently, 2 reviewers assessed the quality of these meta-analyses using a 10-item index called the Overview Quality Assessment Questionnaire. RESULTS: Overall concordance between 2 independent reviewers was good (interobserver agreement 81%, and a kappa of 0.62 (95% CI 0.55-0.69). Of 51 relevant articles, 38 were published in surgical journals. Most studies had major methodologic flaws (median score of 3.3, scale of 1-7). Factors associated with low overall scientific quality included the absence of any prior meta-analyses publications by authors and meta-analyses produced by surgical department members without external collaboration. CONCLUSIONS: This critical appraisal of meta-analyses published in the general surgery literature demonstrates frequent methodologic flaws. The quality of these reports limits the validity of the findings and the inferences that can be made about the primary studies reviewed. To improve the quality of future meta-analyses, we recommend following guidelines for the optimal conduct and reporting of meta-analyses in general surgery.",
+  "authors_and_affiliations": "Elijah Dixon (University of Calgary) | Morad S. Hameed (University of Calgary) | Francis R. Sutherland (University of Calgary) | Deborah J. Cook (McMaster University) | Christopher James Doig",
+  "stratum_era": "2000-2014",
+  "type": "article",
+  "language": "en",
+  "topics": [
+   "T10102"
+  ],
+  "primary_topic": "Meta-analysis and systematic reviews"
+ },
+ {
+  "source": "new",
+  "source_id": "W2097910870",
+  "year": 2014,
+  "venue": "Systematic Reviews",
+  "title": "Recovering the raw data behind a non-parametric survival curve",
+  "abstract": "BACKGROUND: Researchers often wish to carry out additional calculations or analyses using the survival data from one or more studies of other authors. When it is not possible to obtain the raw data directly, reconstruction techniques provide a valuable alternative. Several authors have proposed methods/tools for extracting data from such curves using a digitizing software. Instead of using a digitizer to read in the coordinates from a raster image, we propose directly reading in the lines of the PostScript file of a vector image. METHODS: Using examples, and a formal error analysis, we illustrate the extent to which, with what accuracy and precision, and in what circumstances, this information can be recovered from the various electronic formats in which such curves are published. We focus on the additional precision, and elimination of observer variation, achieved by using vector-based formats rendered by PostScript, rather than the lower resolution image-based formats that have been analyzed up to now. We provide some R code to process these. RESULTS: If the raster-based images are available, one can reliably recover much of the original information that seems to be 'hidden' beneath published survival curves. If the original images can be obtained as a PostScript file, the data recovered from it can then be either input into these tools or processed directly. We found that the PostScript used by Stata discloses considerably more of the data hidden behind survival curves than that generated by other statistical packages. CONCLUSIONS: When it is not possible to obtain the raw data from the authors, reconstruction techniques are a valuable alternative. Compared with previous approaches, one advantage of ours is that there is no observer variation: there is no need to repeat the digitization process, since the extraction is completely replicable.",
+  "authors_and_affiliations": "Zhihui Liu (University of Toronto; Cancer Care Ontario) | Benjamin Rich (McGill University Health Centre; McGill University) | James A. Hanley (McGill University)",
+  "stratum_era": "2000-2014",
+  "type": "article",
+  "language": "en",
+  "topics": [
+   "T11937"
+  ],
+  "primary_topic": "Meta-analysis and systematic reviews"
+ },
+ {
+  "source": "new",
+  "source_id": "W136813016",
+  "year": 2013,
+  "venue": "Success in academic surgery",
+  "title": "Getting Your Work Published",
+  "abstract": "",
+  "authors_and_affiliations": "Melina C. Vassiliou (McGill University Health Centre) | Liane S. Feldman (McGill University Health Centre) | Gerald M. Fried (McGill University Health Centre)",
+  "stratum_era": "2000-2014",
+  "type": "book-chapter",
+  "language": "en",
+  "topics": [
+   "T13516"
+  ],
+  "primary_topic": "Academic Writing and Publishing"
+ },
+ {
+  "source": "new",
+  "source_id": "W4205240162",
+  "year": 2007,
+  "venue": "Springer eBooks",
+  "title": "Research Applications",
+  "abstract": "",
+  "authors_and_affiliations": "Kathryn J. Hannah (University of Calgary) | Marion J. Ball (IBM (United States); Johns Hopkins University) | Margaret J. A. Edwards (Athabasca University)",
+  "stratum_era": "2000-2014",
+  "type": "book-chapter",
+  "language": "en",
+  "topics": [
+   "T11937"
+  ],
+  "primary_topic": "Health Sciences Research and Education"
+ },
+ {
+  "source": "new",
+  "source_id": "W4212936539",
+  "year": 2004,
+  "venue": "ACP Journal Club",
+  "title": "Acpjc.org adds enhanced searching to many other features",
+  "abstract": "",
+  "authors_and_affiliations": "R. Brian Haynes, MD, PhD (McMaster University)",
+  "stratum_era": "2000-2014",
+  "type": "article",
+  "language": "en",
+  "topics": [
+   "T13607"
+  ],
+  "primary_topic": "Information Retrieval and Search Behavior"
+ },
+ {
+  "source": "new",
+  "source_id": "W1533628276",
+  "year": 2014,
+  "venue": "arXiv (Cornell University)",
+  "title": "A Brief History of Web Crawlers",
+  "abstract": "Web crawlers visit internet applications, collect data, and learn about new web pages from visited pages. Web crawlers have a long and interesting history. Early web crawlers collected statistics about the web. In addition to collecting statistics about the web and indexing the applications for search engines, modern crawlers can be used to perform accessibility and vulnerability checks on the application. Quick expansion of the web, and the complexity added to web applications have made the process of crawling a very challenging one. Throughout the history of web crawling many researchers and industrial groups addressed different issues and challenges that web crawlers face. Different solutions have been proposed to reduce the time and cost of crawling. Performing an exhaustive crawl is a challenging question. Additionally capturing the model of a modern web application and extracting data from it automatically is another open question. What follows is a brief history of different technique and algorithms used from the early days of crawling up to the recent days. We introduce criteria to evaluate the relative performance of web crawlers. Based on these criteria we plot the evolution of web crawlers and compare their performance",
+  "authors_and_affiliations": "Seyed M. Mirtaheri (University of Ottawa) | Mustafa Emre Dinçtürk (University of Ottawa) | Salman Hooshmand (University of Ottawa) | Gregor von Bochmann (University of Ottawa) | Guy-Vincent Jourdan (University of Ottawa) | Iosif-Viorel Onut (IBM (Canada))",
+  "stratum_era": "2000-2014",
+  "type": "preprint",
+  "language": "en",
+  "topics": [
+   "T13976"
+  ],
+  "primary_topic": "Web Data Mining and Analysis"
+ },
+ {
+  "source": "new",
+  "source_id": "W1510469291",
+  "year": 2011,
+  "venue": "Evidence Based Library and Information Practice",
+  "title": "Disseminating Your Research",
+  "abstract": "No abstract.",
+  "authors_and_affiliations": "Virginia Wilson (University of Saskatchewan)",
+  "stratum_era": "2000-2014",
+  "type": "article",
+  "language": "en",
+  "topics": [
+   "T13607"
+  ],
+  "primary_topic": "Academic Publishing and Open Access"
+ },
+ {
+  "source": "new",
+  "source_id": "W2153441878",
+  "year": 2013,
+  "venue": "Urban Studies",
+  "title": "Cities and the geographical deconcentration of scientific activity: A multilevel analysis of publications (1987–2007)",
+  "abstract": "Most current scientific policies incorporate debates on cities and the geographic organisation of scientific activity. Research on ‘world cities’ develops the idea that interconnected agglomerations can better take advantage of international competition. Thus, the increasing concentration of activities in these cities at the expense of others could be observed by certain scholars using measures based on scientific publications. Others, however, show that an opposite trend is emerging: the largest cities are undergoing a relative decline in a country’s scientific activities. To go beyond this seeming contradiction, this paper provides a global analysis of all countries with papers in the Web of Science over the period 1987–2007. The author’s addresses were geocoded and grouped into agglomerations. Registering of papers was based on the fractional counting of multi-authored publications, and the results are unambiguous: deconcentration is the dominant trend both globally and within countries, with some exceptions for which explanations are suggested.",
+  "authors_and_affiliations": "Michel Grossetti (Centre National de la Recherche Scientifique; Laboratoire Interdisciplinaire Solidarités Sociétés Territoires; Université de Toulouse) | Denis Eckert (Centre National de la Recherche Scientifique; Laboratoire Interdisciplinaire Solidarités Sociétés Territoires; Université de Toulouse) | Yves Gingras (Université du Québec à Montréal) | Laurent Jégou (Centre National de la Recherche Scientifique; Laboratoire Interdisciplinaire Solidarités Sociétés Territoires; Université de Toulouse) | Vincent Larivière (Université de Montréal) | Béatrice Milard (Centre National de la Recherche Scientifique; Laboratoire Interdisciplinaire Solidarités Sociétés Territoires; Université de Toulouse)",
+  "stratum_era": "2000-2014",
+  "type": "article",
+  "language": "en",
+  "topics": [
+   "T10102"
+  ],
+  "primary_topic": "Global Urban Networks and Dynamics"
+ },
+ {
+  "source": "new",
+  "source_id": "W1987513612",
+  "year": 2013,
+  "venue": "Teaching & Learning Inquiry The ISSOTL Journal",
+  "title": "Of Cooks and Broth",
+  "abstract": "Introduction to Volume 1, Number 2.",
+  "authors_and_affiliations": "Gary Poole (University of British Columbia) | Nancy L. Chick (Vanderbilt University)",
+  "stratum_era": "2000-2014",
+  "type": "article",
+  "language": "en",
+  "topics": [
+   "T13516"
+  ],
+  "primary_topic": "Evaluation of Teaching Practices"
+ },
+ {
+  "source": "new",
+  "source_id": "W2118247223",
+  "year": 2014,
+  "venue": "Developments in marketing science: proceedings of the Academy of Marketing Science",
+  "title": "A Preliminary Investigation of the Universality of the Personal Selling Ethics Scale",
+  "abstract": "",
+  "authors_and_affiliations": "Casey L. Donoho (Northern Arizona University) | Michael Jay Polonsky | David A. Cohen (Northern Arizona University) | Anne L. Balazs (University of Oklahoma) | Joel Herché (University of the Pacific) | Michael J. Swenson (Brigham Young University) | Malcolm Smith (University of Manitoba) | Keith J. Fabes",
+  "stratum_era": "2000-2014",
+  "type": "book-chapter",
+  "language": "en",
+  "topics": [
+   "T11492"
+  ],
+  "primary_topic": "Ethics in Business and Education"
+ },
+ {
+  "source": "new",
+  "source_id": "W4230789171",
+  "year": 2001,
+  "venue": "Publishing Research Quarterly",
+  "title": "Book reviews",
+  "abstract": "",
+  "authors_and_affiliations": "Gerge P. Davidson | David Stanford Burr | David R. Spencer (Western University) | Richard W. Eiger | Stephen C. Mooney",
+  "stratum_era": "2000-2014",
+  "type": "book-review",
+  "language": "en",
+  "topics": [
+   "T13516"
+  ],
+  "primary_topic": "Publishing and Scholarly Communication"
+ },
+ {
+  "source": "new",
+  "source_id": "W2073998194",
+  "year": 2010,
+  "venue": "Nature",
+  "title": "Industry in academia: ethical frameworks would clarify links",
+  "abstract": "",
+  "authors_and_affiliations": "Annalee Yassi (University of British Columbia) | Shafik Dharamsi (University of British Columbia) | Jerry Spiegel (University of British Columbia)",
+  "stratum_era": "2000-2014",
+  "type": "article",
+  "language": "en",
+  "topics": [
+   "T11492"
+  ],
+  "primary_topic": "Pharmaceutical industry and healthcare"
+ },
+ {
+  "source": "new",
+  "source_id": "W4250164945",
+  "year": 2004,
+  "venue": "BMJ Evidence-Based Medicine",
+  "title": "Contribution of the Cochrane Library to the evidence-based journals",
+  "abstract": "",
+  "authors_and_affiliations": "Cindy Walker‐Dilks (McMaster University)",
+  "stratum_era": "2000-2014",
+  "type": "article",
+  "language": "en",
+  "topics": [
+   "T10102"
+  ],
+  "primary_topic": "Meta-analysis and systematic reviews"
+ },
+ {
+  "source": "new",
+  "source_id": "W4386385650",
+  "year": 2023,
+  "venue": "SSRN Electronic Journal",
+  "title": "Approaches to Generative Artificial Intelligence, A Social Justice Perspective",
+  "abstract": "In the 2023-2024 academic year, the widespread availability of generative artificial intelligence, exemplified by ChatGPT's 1.6 billion monthly visits, is set to impact academic integrity. With 77% of high school students previously reporting engagement in dishonest behaviour, the rise of AI-driven writing assistance, dubbed 'AI-giarism' by Chan (https://arxiv.org/abs/2306.03358v2), will make plagiarism more accessible and less detectable. While these concerns are urgent, they also raise broader questions about the revolutionary nature of this technology, including autonomy, data privacy, copyright, and equity. This paper aims to explore generative AI from a social justice perspective, examining the training of these models, the inherent biases, and the potential injustices in detecting AI-generated writing.",
+  "authors_and_affiliations": "Myke Healy (University of Calgary)",
+  "stratum_era": "2015-present",
+  "type": "preprint",
+  "language": "en",
+  "topics": [
+   "T11492"
+  ],
+  "primary_topic": "Ethics and Social Impacts of AI"
+ },
+ {
+  "source": "new",
+  "source_id": "W7130731219",
+  "year": 2026,
+  "venue": "Zenodo (CERN European Organization for Nuclear Research)",
+  "title": "Teaching Support Guide: Introduction to Responsible Research Assessment Course",
+  "abstract": "These resources are a set of teaching support materials for DORA’s Introduction to Responsible Research Assessment Course. DORA’s Introduction to Responsible Research Assessment Course aims to empower anyone to challenge existing assumptions around research quality and impact, by introducing them to the concept of responsible research assessment, its foundational principles, and how RRA aims to improve evaluation practices. The online course is free and self-paced (registration required). This Teaching Support Guide and accompanying PowerPoint slide decks were created to help trainers use the course for training and guided discussions. The Teaching Support Guide includes an overview of key takeaways from each lesson, suggestions for how to approach teaching each lesson, discussion questions, and a short slide deck to help trainers incorporate lesson concepts into their materials. Find the accompanying slides for the Teaching Support Guide linked in the guide or below. Accompanying slides Lesson 1 Slides Lesson 2 Slides Lesson 3 Slides Lesson 4 Slides Who is this guide for?This guide is for trainers (e.g., anyone who will teach or educate about responsible research assessment). Trainers could be: research mentors or principle investigators, human resources professionals, librarians, administrators, speakers who are giving a talk about responsible research assessment, and so on. How to use the guide?Trainers can review this Guide to determine which lesson best fits their context and needs. For each lesson, the Guide offers: learning objectives, key concepts, discussion questions, and a slide deck. Below are examples of how trainers can use the Course and this Guide: Take the course: Have learners register online to take the course and use it as a springboard for deeper discussion during a lesson, workshop, etc. Use for training: Incorporate key lesson concepts and definitions into training processes. For example: seminars/workshops that introduce responsible research assessment, graduate student ethics courses, or faculty training. Why use this guide?Because responsible research assessment is a topic relevant to all members of the academic system (e.g., researchers and research performing organizations, research funding organizations, national bodies, publishers), learners can come from different levels of understanding, and different professional and disciplinary backgrounds. It can be time-consuming to create learning materials from scratch. This flexible resource aims to reduce some of that burden by providing trainers with a brief set of key concepts, definitions, discussion questions, and practical case study examples for foundational responsible research assessment topics to inspire you to take these further.",
+  "authors_and_affiliations": "Haley F. Hazlett | Virginia Barbour | Kelly Denise Cobey (University of Stirling; University of Ottawa; Ottawa Heart Institute) | Rebecca N Lawrence (Faculty of 1000 (United States)) | Giovanna de Moura Rocha Lima",
+  "stratum_era": "2015-present",
+  "type": "other",
+  "language": "unknown",
+  "topics": [
+   "T10102",
+   "T11492"
+  ],
+  "primary_topic": "scientometrics and bibliometrics research"
+ },
+ {
+  "source": "new",
+  "source_id": "W4385703043",
+  "year": 2023,
+  "venue": "Comprehensive Psychoneuroendocrinology",
+  "title": "Sex and gender measurement for scientific rigor and data harmonization across studies",
+  "abstract": "",
+  "authors_and_affiliations": "Charlie Rioux (University of Oklahoma) | Kira London-Nadeau (Centre Hospitalier Universitaire Sainte-Justine; CHU Sainte-Justine Research Center; Université de Montréal) | Robert‐Paul Juster",
+  "stratum_era": "2015-present",
+  "type": "article",
+  "language": "en",
+  "topics": [
+   "T11937"
+  ],
+  "primary_topic": "Sex and Gender in Healthcare"
+ },
+ {
+  "source": "new",
+  "source_id": "W3152330735",
+  "year": 2021,
+  "venue": "Journal of the American Statistical Association",
+  "title": "Balancing Inferential Integrity and Disclosure Risk Via Model Targeted Masking and Multiple Imputation",
+  "abstract": "There is a growing expectation that data collected by government-funded studies should be openly available to ensure research reproducibility, and so is the concern on data-privacy. A strategy to protect individuals' identity is to release multiply imputed (MI) synthetic datasets with masked sensitivity values (Rubin, 1993). However, information loss or incorrectly specified imputation models can weaken or invalidate the inferences obtained from the MI-datasets. Studying a restricted-use Canadian Scleroderma Research Group (CSRG) dataset, the authors investigate the use of a new masking framework with a data-augmentation (DA) component and a tuning mechanism that balances between protecting identity-disclosure and preserving data-utility. They found, respectively in a work-disability and an interstitial lung disease study, using this DA-MI strategy reached 0% identity disclosure-risk, preserved all inferential conclusions, and on average produced 98.5% and 95.5% confidence intervals (CI) overlaps when compared to the 95% CIs constructed using the generic CSGR dataset; the lowest CI-overlap value is 91%. In contrast, the same is not true for the currently used methods; with the CI-overlap values ranging from 73.9% to 91.8% and the lowest value being 28.1%. These findings indicate that the DA-MI masking framework facilitates sharing of useful research data while protecting participants' identities.",
+  "authors_and_affiliations": "Bei Jiang (University of Alberta) | Adrian E. Raftery (University of Washington) | Russell John Steele (McGill University) | Naisyin Wang (University of Michigan)",
+  "stratum_era": "2015-present",
+  "type": "article",
+  "language": "en",
+  "topics": [
+   "T11937"
+  ],
+  "primary_topic": "Privacy-Preserving Technologies in Data"
+ },
+ {
+  "source": "new",
+  "source_id": "W4408130366",
+  "year": 2025,
+  "venue": "Environmental Impact Assessment Review",
+  "title": "Improving impact assessment efficiency: Connecting research and practice in times of change",
+  "abstract": "The current push towards increased efficiency in impact assessment (IA) creates new opportunities for research to inform future practice. This includes investigating approaches for gaining efficiency at various stages of IA conduct and reporting, and for evaluating their feasibility, utility and how they may be applied without compromising IA quality and effectiveness. This article highlights some potential areas for such research to help address current efficiency issues and needs in IA practice. • Enhancing IA efficiency will require innovation in future IA conduct and reporting. • This presents new opportunities for research to inform and improve IA practice. • This article suggests areas for future research that span various IA components.",
+  "authors_and_affiliations": "Steve Bonnell (Memorial University of Newfoundland)",
+  "stratum_era": "2015-present",
+  "type": "article",
+  "language": "en",
+  "topics": [
+   "T10102"
+  ],
+  "primary_topic": "Environmental and Social Impact Assessments"
+ },
+ {
+  "source": "new",
+  "source_id": "W2589138239",
+  "year": 2016,
+  "venue": "Palgrave Macmillan US eBooks",
+  "title": "Following the Tweets: What Happened to the IPCC AR5 Synthesis Report on Twitter?",
+  "abstract": "This chapter focuses on the role of Twitter in reporting and circulating the IPCC Synthesis Report (SYR). The report is considered an empirical entry point to understand the dynamics of the new media environment and the dynamic actor-networks in which IPCC communication takes place. Using this brief document as a launching point, the chapter probes into the network of digital communication and analyzes how the scientific knowledge of SYR translated into a complex system of transnational stakeholders and their local sub-networks. Ultimately the chapter addresses the question: Does the use of social media call for reconsideration of the role of professional journalism in science communication?",
+  "authors_and_affiliations": "Dmitry Yagodin (Tampere University; University of Tampere) | Matthew Tegelberg (York University) | Débora Medeiros (Freie Universität Berlin) | Adrienne Russell (University of Denver)",
+  "stratum_era": "2015-present",
+  "type": "book-chapter",
+  "language": "en",
+  "topics": [
+   "T13607"
+  ],
+  "primary_topic": "Climate Change Communication and Perception"
+ },
+ {
+  "source": "new",
+  "source_id": "W3156510658",
+  "year": 2021,
+  "venue": "Nature",
+  "title": "Sharing COVID data? Check these recommendations and guidelines",
+  "abstract": "",
+  "authors_and_affiliations": "Hilary Hanahoe (Research Data Alliance) | Claire C. Austin (Environment and Climate Change Canada) | Hugh P. Shanahan (Royal Holloway University of London)",
+  "stratum_era": "2015-present",
+  "type": "article",
+  "language": "en",
+  "topics": [
+   "T11937",
+   "T13607"
+  ],
+  "primary_topic": "Research Data Management Practices"
+ },
+ {
+  "source": "new",
+  "source_id": "W4417286768",
+  "year": 2025,
+  "venue": "bioRxiv (Cold Spring Harbor Laboratory)",
+  "title": "Using GPT-4 to Automate the Generation of Lay Summaries for Cancer Publications",
+  "abstract": "Abstract Background Cancer research literature is often riddled with technical jargon that is not digestible to the average person. Individuals interested in research studies may want to contribute through patient partner engagement or sample donation but find the relevant literature overwhelming. Through the generation of lay summaries, previously inaccessible research papers become easier to comprehend, especially for patient partners or data donors. With large language models (LLMs) continuing to advance, so does their capability to summarize large texts. Objectives In this study, we examined whether LLMs can produce lay summaries of scientific literature at-scale, while maintaining readability and accuracy to their source texts. Methods We developed a tool to generate lay summaries of open-access article abstracts and their full texts with GPT-4-Turbo. Prompt development aimed for a target 8th grade reading level assessed with Flesch-Kincaid Grade Level. Human-review metrics were used to evaluate readability and accuracy when generated using abstracts versus full text articles. Results The average Flesch-Kincaid Grade Level Score was 7.13 for abstract-based summaries and 7.39 for full text-based summaries, indicating summaries at around 7th grade reading level. Human-review metrics showed these summaries were of similar readability and accuracy when generated using abstracts versus full text articles, with mean accuracy scores from human review of 7.09 vs 7.42 out of 10 respectively. Additionally, qualitative patient-based assessment indicated these summaries would encourage participation in research studies. Conclusion By generating lay summaries for complex and lengthy research papers, their scientific information becomes accessible to a larger audience, including patient partners interested in contributing to cancer research. Summaries that are easy to understand will allow participants to make informed decisions about their involvement and appreciate the impact of their contributions if and when their results are published. Lay Summary This study explores if artificial intelligence (AI) can help make hard to read cancer research papers easier to understand for members of the public. Problem When people donate cancer tissue samples or participate in research studies, they often want to know how their contributions are being used. However, scientific papers are full of technical language that’s hard for most people to grasp. People in past studies have said this can make them less willing to take part in research. Methods The study created a computer program using AI (GPT-4-Turbo) to turn complex kidney cancer research papers into simple summaries. They tested whether the AI could summarize both short abstracts and full-length papers effectively. They aimed for summaries at a 6th to 8th-grade reading level. This was to follow Canadian and U.S. health communication guidelines. Results The AI created 106 summaries. Computer measures showed the summaries were close to a 7th-grade reading level. Though, researchers had to tell the AI to write for a 2nd-grade audience to achieve this. Of note, summaries from short abstracts were just as accurate and readable as those from full papers. Eighteen volunteers, including five patient partners, reviewed the summaries and rated them for clarity and accuracy. They were rated at around 7 out of 10 points. All patient partners said these summaries would help them decide whether to join research studies and feel more informed about how their contributions matter. Why It Matters This tool could help patients and donors better understand research without needing a science degree. When people can see how studies work, they are more likely to participate in future research. While patient partners emphasized the need for summaries to be accurate and reliable, this approach shows promise as a unique strategy to better connect the public with research.",
+  "authors_and_affiliations": "Emma Purdie (Ontario Institute for Cancer Research) | Tony Yu (Ontario Institute for Cancer Research) | Jochen Weile (Ontario Institute for Cancer Research) | Diana Lemaire (Ontario Institute for Cancer Research) | Mélanie Courtot (Ontario Institute for Cancer Research)",
+  "stratum_era": "2015-present",
+  "type": "preprint",
+  "language": "unknown",
+  "topics": [
+   "T13607"
+  ],
+  "primary_topic": "Text Readability and Simplification"
+ },
+ {
+  "source": "new",
+  "source_id": "W3023921590",
+  "year": 2020,
+  "venue": "Annals of Global Health",
+  "title": "Comparing Approaches to Research in Global and International Health: An Exploratory Study",
+  "abstract": "Background: Global health is a term often used interchangeably with international health due to overlapping similarities and unclear distinctions. While some international health supporters argue that global health as a field is unnecessary as it is simply a duplicate of international health, global health supporters argue that global health is unique; for instance, it actively includes elements of empowerment and promotes cross-border collaboration. Objective: To investigate differences and similarities in research representing the fields of global and international health. Methods: , IHJ). Abstracted data included: research design and methods, income status of country of study, empowerment recommendations for practice, participation and research collaboration. Findings: Most studies in both AGH and IHJ used quantitative research methods but were significantly more common in IHJ (70%) compared to AGH (48%), whereas mores studies in AGH (17%) than IHJ (9%) used mixed methods. The majority of studies in both journals focused on low- or lower-middle income countries whereas more AGH studies (16%) focused on high-income countries compared to the IHJ studies (4%). It was more common in the AGH studies to make empowerment recommendations (90%) and to include stakeholders/users in the study (40%) compared to the IHJ studies (75% empowerment recommendations and 18% stakeholder/user participation). No difference was observed regarding cross-border research collaboration. Conclusions: This study does not show great differences between global health and international health research; however, there are still some differences indicating that global health emphasises different aspects of research compared to international health. More research is necessary to understand whether and how the distinctions between the definitions of global and international health are applied in real life, in research and beyond.",
+  "authors_and_affiliations": "Kristy C.Y. Yiu (University of South-Eastern Norway; McMaster University) | Eva Merethe Solum (University of South-Eastern Norway) | Deborah DiLiberto (McMaster University) | Steffen Torp (University of South-Eastern Norway)",
+  "stratum_era": "2015-present",
+  "type": "article",
+  "language": "en",
+  "topics": [
+   "T10102"
+  ],
+  "primary_topic": "Global Health and Surgery"
+ },
+ {
+  "source": "new",
+  "source_id": "W2599824899",
+  "year": 2015,
+  "venue": "Academy of Management Proceedings",
+  "title": "Current Themes in Behavioral Business Ethics: Implications for HR Training and Development",
+  "abstract": "A growing responsibility for ethics training and development has been ascribed to human resources professionals, not only by global HRM and business ethics scholars, but also, within organizations themselves. However, despite the actual or expected involvement of HR professionals in selecting, designing or implementing ethics-related training and development initiatives, ethics coverage has typically been quite limited within HRM textbooks. Moreover, even when HR scholars have tried to ameliorate this gap in ethics coverage, the information provided has not necessarily reflected the novel, significant and often counter-intuitive insights that have emerged through recent research in behavioral business ethics. The purpose of this article is two-fold. First, in order to fill the gap in content coverage of business ethics that often occurs in HRM texts, an overview of recent themes from behavioral business ethics will be provided, many of which challenge conventional and commonly-held beliefs about workplace ethical decision-making and action. Second, based on this research-supported understanding of workplace ethics, practical guidance for HR professionals on the provision of ethics-related training and development is offered.",
+  "authors_and_affiliations": "Sheldene K. Simola (University of Trento; Trent University)",
+  "stratum_era": "2015-present",
+  "type": "conference-abstract",
+  "language": "en",
+  "topics": [
+   "T11492"
+  ],
+  "primary_topic": "Ethics in Business and Education"
+ },
+ {
+  "source": "new",
+  "source_id": "W4200308123",
+  "year": 2021,
+  "venue": "Multidisciplinary Business Review",
+  "title": "Editorial",
+  "abstract": "Being an academic researcher implies making several decisions in the course of one’s career. For instance, what topic to investigate, which methodology to use, where to study and test the hypotheses, whether to cover as many topics as possible or concentrate on a specific line of research, where to submit and publish the finished articles, etc. Yet another important decision is to decide whether to work as a single author or as part of a team, which is the focus of this editorial.",
+  "authors_and_affiliations": "José I. Rojas‐Méndez (Carleton University)",
+  "stratum_era": "2015-present",
+  "type": "editorial",
+  "language": "en",
+  "topics": [
+   "T10102"
+  ],
+  "primary_topic": "Interdisciplinary Research and Collaboration"
+ },
+ {
+  "source": "new",
+  "source_id": "W2612955670",
+  "year": 2017,
+  "venue": "Annals of Geophysics",
+  "title": "The Cape Town Statement on Geoethics",
+  "abstract": "Recently the interest by geoscientists in (geo)ethical aspects of geoscience knowledge, education, research, practice and communication has grown considerably. Today the topic of geoethics has gained a significant visibility within the scientific community. The IAPG – International Association for Promoting Geoethics (http://www.geoethics.org), founded in 2012, has worked to widen the discussion and create awareness about issues of ethics as applied to the geosciences. Thanks to continuous voluntary work, the respectful exchange, and fruitful sharing of ideas, the IAPG community has produced a conceptual substratum on which to base the future development of geoethics, by clarifying the meaning of the word “geoethics”, formalizing its definition, and better identifying a framework of reference values on which the geoscience community can base more effective codes of conduct and guidance. The members of the IAPG community have published various books and articles in peer-reviewed international journals, and organized numerous scientific sessions to bring geoethics to the most important geoscience conferences. Geoethical issues have been also included in the European project ENVRI-Plus, which is dedicated to the environmental and solid Earth research infrastructures. The tangible result of these efforts is that, now, many prestigious geoscience organizations recognize geoethics as a fundamental issue, worthy of attention. This result was confirmed by the high quality of content and the large participation of scientists in the six technical sessions and a panel session on geoethics organized by IAPG at the 35th IGC – International Geological Congress, held in 2016 in Cape Town (South Africa). Largely successful due to the cooperative work of different geoscience organizations (IUGS-TGGP – Task Group on Global Geoscience Professionalism; GSL - Geological Society of London; EFG - European Federation of Geologists; EGS - EuroGeoSurveys; AGI – American Geosciences Institute; AGU – American Geophysical Union, and AAWG – African Association of Women in Geosciences). The IAPG considers the 35th IGC as the scientific event that opened a new phase for furthering the concept of geoethics. In order to mark this milestone, the \"Cape Town Statement on Geoethics\" (CTSG) was tabled by the IAPG and reviewed in an international effort. It shall focus the attention of geoscientists on the development of shared values, policies, guidelines, strategies and tools, with the long-range goal of fostering the regular adoption of ethical values and practices within the geoscience community. The document summarizes the values, concepts, and contents developed by IAPG so far, providing a perspective for the future development of geoethical thinking. This paper addresses in detail the content of the “Cape Town Statement on Geoethics”, which is now supported officially by several geoscience organizations.",
+  "authors_and_affiliations": "Giuseppe Di Capua (Istituto Nazionale di Geofisica e Vulcanologia) | Silvia Peppoloni (Istituto Nazionale di Geofisica e Vulcanologia) | Peter Bobrowsky (Natural Resources Canada; Geological Survey of Canada; International Association for Promoting Geoethics)",
+  "stratum_era": "2015-present",
+  "type": "article",
+  "language": "en",
+  "topics": [
+   "T11492"
+  ],
+  "primary_topic": "Flooding and Environmental Impact"
+ },
+ {
+  "source": "new",
+  "source_id": "W4312661653",
+  "year": 2022,
+  "venue": "Lecture notes in information systems and organisation",
+  "title": "Caption and Observation Based on the Algorithm for Triangulation (COBALT): Preliminary Results from a Beta Trial",
+  "abstract": "",
+  "authors_and_affiliations": "Pierre‐Majorique Léger (HEC Montréal) | Alexander John Karran (HEC Montréal) | François Courtemanche (HEC Montréal) | Marc Frédette (HEC Montréal) | Salima Tazi (HEC Montréal) | Mariko Dupuis (HEC Montréal) | Zeyad Hamza (HEC Montréal) | Juan Fernández-Shaw (HEC Montréal) | Myriam Côté (HEC Montréal) | Laurène Del-Aguila (HEC Montréal) | Chantel Chandler (HEC Montréal) | Pascal Snow (HEC Montréal) | Domenico Vilone (HEC Montréal) | Sylvain Sénécal (HEC Montréal)",
+  "stratum_era": "2015-present",
+  "type": "conference-paper",
+  "language": "en",
+  "topics": [
+   "T11937"
+  ],
+  "primary_topic": "Scientific Computing and Data Management"
+ },
+ {
+  "source": "new",
+  "source_id": "W3161309948",
+  "year": 2020,
+  "venue": "Canadian Journal of Science Mathematics and Technology Education",
+  "title": "On the Occasion of an Anniversary, Eh: Confessions of a Canadian Math Ed Editor",
+  "abstract": "As its title suggests, this commentary utilizes the 20th year of publication of the Canadian Journal of Science, Mathematics, and Technology Education as an opportunity for me, the current English language mathematics education editor, to confess. I confess to imposter syndrome and editorial naiveté. I confess to evolving from putting the pathetic in empathetic to near-total emotional desensitization. I confess to having stumbled upon the notions of form letters and desk rejections. I confess that my former French teachers would be disappointed in me. I confess to having never forgotten my first, to seeing ghosts, and to attempting to handle multiple concurrent timelines based on the geologic time scale. Lastly, most importantly, and utilizing an entirely different meaning of the word confess, I confess to giving credit where credit is due. In other words, what follows are the absolutely true confessions of a Canadian mathematics education editor.",
+  "authors_and_affiliations": "Egan J. Chernoff (University of Saskatchewan)",
+  "stratum_era": "2015-present",
+  "type": "article",
+  "language": "en",
+  "topics": [
+   "T13516"
+  ],
+  "primary_topic": "Publishing and Scholarly Communication"
+ },
+ {
+  "source": "new",
+  "source_id": "W4200163457",
+  "year": 2021,
+  "venue": "Nature",
+  "title": "Decision makers need constantly updated evidence synthesis",
+  "abstract": "",
+  "authors_and_affiliations": "Julian Elliott (Durham University; Monash University) | Rebecca N Lawrence (Faculty of 1000 (United Kingdom)) | Jan Christoph Minx (University of Leeds; Mercator Research Institute on Global Commons and Climate Change) | Olufemi Taiwo Oladapo (World Health Organization) | Philippe Ravaud (Inserm; Université Paris Cité; Sorbonne Paris Cité; Hôtel-Dieu de Paris; Equipe de Recherche en Epidémiologie Nutritionnelle; Centre de Recherche Épidémiologie et Statistique; Columbia University) | Britta Tendal Jeppesen | James Thomas (University College London) | Tari Turner (Monash University) | Per Olav Vandvik (University of Oslo) | Jeremy Grimshaw (University of Ottawa; Ottawa Hospital Research Institute)",
+  "stratum_era": "2015-present",
+  "type": "article",
+  "language": "en",
+  "topics": [
+   "T13607"
+  ],
+  "primary_topic": "Meta-analysis and systematic reviews"
+ },
+ {
+  "source": "new",
+  "source_id": "W7214040242",
+  "year": 2026,
+  "venue": "Zenodo (CERN European Organization for Nuclear Research)",
+  "title": "Changing Research Culture from the Ground Up: Framework for Open and Reproducible Research Training",
+  "abstract": "Changing Research Culture from the Ground Up: FORRT and the Future of Open Research How can we change research culture—not just research practices—from the ground up? This talk explores the evolution of FORRT, a grassroots, researcher-driven initiative that has grown into a global community working across open science, replication, education, social justice, and community sustainability. We’ll explore how FORRT uses community-driven approaches, values-based research, training, infrastructure, and collaboration to support a more open, rigorous, inclusive, and sustainable research culture. The talk will highlight FORRT’s contributions and partnerships while asking a bigger question: what does it look like to put people and communities at the centre of research culture change? Presented at the ReproducibiliTea Conference 2026, called Spilling the ReproducibiliTea: A decade on & decades ahead (https://reproducibilitea.org/conference2026) This talk is presented in Session 2 (https://reproducibilitea.org/session-2). The session is a symposium featuring FORRT, the African Reproducibility Network, ReproducibiliTea, and Octopus.ac.",
+  "authors_and_affiliations": "Adira Daniel (Western University)",
+  "stratum_era": "2015-present",
+  "type": "article",
+  "language": "unknown",
+  "topics": [
+   "T13607",
+   "T11937"
+  ],
+  "primary_topic": "Academic Publishing and Open Access"
+ },
+ {
+  "source": "new",
+  "source_id": "W4385505419",
+  "year": 2021,
+  "venue": "Front Matter",
+  "title": "Three questions with… Alice!",
+  "abstract": "Our lab is growing! In our Three Questions series, we're profiling each of our members and the amazing work they're doing. In this week's post, PhD student and writer Alice Fleerackers shares her thoughts on managing the ScholCommLab blog, learning through collaboration, and letting commitments go. Q#1 What are you working on at the lab? The TLDR version? I communicate research and I research communication.",
+  "authors_and_affiliations": "Alice Fleerackers (Simon Fraser University)",
+  "stratum_era": "2015-present",
+  "type": "other",
+  "language": "en",
+  "topics": [
+   "T13607",
+   "T13516"
+  ],
+  "primary_topic": "Academic Publishing and Open Access"
+ },
+ {
+  "source": "new",
+  "source_id": "W3016024802",
+  "year": 2020,
+  "venue": "IEEE Transactions on NanoBioscience",
+  "title": "Editorial A(nother) New Beginning in 2020!",
+  "abstract": "Severe circumstances, such as the present pandemic, require us to focus on immediate and major concerns, but they also ask us to reflect on where we were, are, and want to be in the future. In doing so, severe circumstances are, essentially, asking us todesigna future, one with new emphases, attitudes and activities, and which will mitigate, solve, or outright remove the present critical problems. To this end, this editorial is sharing few thoughts about the future of the IEEE Transactions on Bio Nanoscience—affectionately called TNB.",
+  "authors_and_affiliations": "Dan Veniamin Nicolau (McGill University)",
+  "stratum_era": "2015-present",
+  "type": "editorial",
+  "language": "en",
+  "topics": [
+   "T13516",
+   "T13607"
+  ],
+  "primary_topic": "Publishing and Scholarly Communication"
+ },
+ {
+  "source": "new",
+  "source_id": "W2272534858",
+  "year": 2016,
+  "venue": "Systematic Reviews",
+  "title": "Implementing PRISMA-P: recommendations for prospective authors",
+  "abstract": "Systematic reviews have become very popular. A recent estimate suggests that 22 new systematic reviews are published daily [1]. One reason for this interest is that they serve many purposes. For example, the influential Institute of Medicine has indicated that a systematic review is an essential component when developing clinical practice guidelines within the USA [2]. Some granting agencies are now advocating for the use of systematic reviews as an evidence-based rationale for the conduct of a proposed randomized trial [3]. And journals are now demanding the use of systematic reviews to provide readers with context of the results of a clinical trial [4].\r\n\r\nFor systematic reviews to be useful, they need to be reported in the highest possible quality thus facilitating their accurate use across a wide spectrum of stakeholders, including patients. Unfortunately, surveys of the published literature indicate that the quality of reporting is not optimal. For example, there is evidence indicating that reporting biases, particularly selective outcome reporting, is prevalent. An early example of differences between outcomes reported in protocols and the paired completed review was an examination of 47 Cochrane reviews in which 43 (91 %) contained a major change, such as the addition or deletion of outcomes, between the protocol and the full publication [5]. More recently, in an examination of 485 Cochrane protocol-review pairs, 38 % (95 % CI 23 to 54 %) were found to have discrepant outcomes (i.e., added, omitted, or changed the priority) between the protocol and completed review [6]. The vast majority of these discrepancies were without attribution with more significant outcomes being upgraded or added. Whether or not, and to what extent, these examples reflect reporting biases is not clear. However, they represent inconsistencies that should be avoided by authors.\r\n\r\nThe gold standard for identifying reporting biases is a comparison of the completed review with its paired protocol. Such an examination is difficult with systematic reviews as too few of them report working from a protocol, although a growing number of funders are now requiring them. Perhaps, systematic reviewers do not report or use protocols because there has been little guidance on how to report them until recently. To help facilitate the use of reporting systematic review protocols, the three of us and several colleagues developed Preferred Reporting Items for Systematic Review and Meta-Analysis Protocols (PRISMA-P) [7]. This is a reporting guideline consisting of a 17-item checklist, to help prospective authors in the preparation and reporting of a scientifically rigorous systematic review protocol. We also prepared a pedagogical explanation and elaboration document to facilitate its use [8]. Readers appear interested in the guidance. Since its publication a little more than a year ago, it has been downloaded about 45,000 times and cited (Google scholar) nearly 100 times. This journal and others have endorsed PRISMA-P. Here, we describe how the journal intends to implement it.\r\n\r\nAll protocol submissions to the journal should use continuous line numbering in their manuscript. Authors should also include a completed PRISMA-P checklist indicating whether or not the requested item information is reported (by completing the check mark). If the item is checked, authors should then specify the line number (or range of line numbers) where this information is described. Manuscripts accepted for publication will have the completed PRIMSA-P checklist (on submission) included as an Appendix to their publication, which must be referenced within the main text (Additional file 1). Prospective authors can download a Word version of the PRISMA-P checklist, which includes the two added columns, from the journal’s website (URL to be added)or the PRISMA website (ttp://www.prisma-statement.org/Extensions/Protocols.aspx). If PRISMA-P was used to help report the protocol, it should be cited or the PRISMA-P URL (http://www.prisma-statement.org/Extensions/Protocols.aspx) on the PRISMA website should be reported.\r\n\r\nAbout half of what the journal publishes are protocols of systematic reviews. We want to ensure they are published to the highest possible quality. Endorsement and implementation of reporting guidelines appears to improve the completeness of reporting. For example, a systematic review examining the completeness of reporting in more than 16,000 randomized trials in journals that endorsed the CONSORT statement, compared to journals that did not, found more complete reporting [9]. Similarly, examining 300 systematic reviews published in February 2014 found that mention of PRISMA was associated with better reporting [1].\r\n\r\nThere is always a tension between an optimal implementation strategy and ensuring minimal barriers to submission for prospective authors. We believe the journal has achieved a good balance with this strategy. Protocols submitted for publication consideration from now on that do not include a completed checklist, including the two aforementioned columns, will be returned to the authors with instructions about the journal’s systematic review protocol implementation strategy and invited to resubmit their continuously line numbered manuscript and appropriately completed checklist.",
+  "authors_and_affiliations": "David Moher (University of Ottawa; Ottawa Hospital; Ottawa Hospital Research Institute) | Lesley A. Stewart (University of Ottawa; Ottawa Hospital Research Institute; University of York) | Paul Shekelle (University of Ottawa; VA West Los Angeles Medical Center; Ottawa Hospital Research Institute)",
+  "stratum_era": "2015-present",
+  "type": "article",
+  "language": "en",
+  "topics": [
+   "T13607"
+  ],
+  "primary_topic": "Meta-analysis and systematic reviews"
+ },
+ {
+  "source": "new",
+  "source_id": "W2521029362",
+  "year": 2016,
+  "venue": "D-Lib Magazine",
+  "title": "Temporal Properties of Recurring In-text References",
+  "abstract": "International audience",
+  "authors_and_affiliations": "Iana Atanassova (Centre de Recherches Interdisciplinaires et Transculturelles; Université de Franche-Comté) | Marc Bertin (Université du Québec à Montréal)",
+  "stratum_era": "2015-present",
+  "type": "article",
+  "language": "en",
+  "topics": [
+   "T10102"
+  ],
+  "primary_topic": "scientometrics and bibliometrics research"
+ },
+ {
+  "source": "new",
+  "source_id": "W1523242076",
+  "year": 2015,
+  "venue": "Érudit (Université de Montréal)",
+  "title": "Les entraves aux manuels numériques dans les écoles du Québec : de l’immobilisme ministériel à la concurrence entre les maisons d’édition scolaire",
+  "abstract": "Les entraves aux manuels numériques dans les écoles du Québec : de l’immobilisme ministériel à la concurrence entre les maisons d’édition scolaire. An article from journal Québec français (La francophonie dans les Amériques), on Érudit.",
+  "authors_and_affiliations": "Gabriel Dumouchel (Université de Montréal) | Aurélien Fiévez (Université de Montréal) | Audrey Raynault (Université de Montréal)",
+  "stratum_era": "2015-present",
+  "type": "article",
+  "language": "fr",
+  "topics": [
+   "T13516"
+  ],
+  "primary_topic": "Library Collection Development and Digital Resources"
+ },
+ {
+  "source": "new",
+  "source_id": "W4414757524",
+  "year": 2025,
+  "venue": "Journal of Proteome Research",
+  "title": "mzPeak: Designing a Scalable, Interoperable, and Future-Ready Mass Spectrometry Data Format",
+  "abstract": "Advances in mass spectrometry (MS) instrumentation, including higher resolution, faster scan speeds, and improved sensitivity, have dramatically increased the data volume and complexity. The adoption of imaging and ion mobility further amplifies these challenges in proteomics, metabolomics, and lipidomics. Current open formats such as mzML and imzML struggle to keep pace due to large file sizes, slow data access, and limited metadata support. Vendor-specific formats offer faster access but lack interoperability and long-term archival guarantees. We here lay the groundwork for mzPeak, a next-generation community data format designed to address these challenges and support high-throughput, multidimensional MS workflows. By adopting a hybrid model that combines efficient binary storage for numerical data and both human- and machine-readable metadata storage, mzPeak will reduce file sizes, accelerate data access, and offer a scalable, adaptable solution for evolving MS technologies. For researchers, mzPeak will support complex workflows and regulatory compliance through faster access, improved metadata, and interoperability. For vendors, it offers a streamlined, open alternative to proprietary formats. mzPeak aims to become a cornerstone of MS data management, enabling sustainable, high-performance solutions for future data types and fostering collaboration across the mass spectrometry community.",
+  "authors_and_affiliations": "Tim Van Den Bossche (Ghent University; VIB-UGent Center for Medical Biotechnology) | Theodore Alexandrov (University of California San Diego) | Aivett Bilbao Pena (United States Department of Energy; Pacific Northwest National Laboratory; Environmental Molecular Sciences Laboratory) | Wout Bittremieux (University of Antwerp) | Federico Iván Brigante (Czech Academy of Sciences; Czech Academy of Sciences, Institute of Organic Chemistry and Biochemistry) | Matthew Chambers (University of Washington) | Joshua Charkow (University of Toronto) | Eric W. Deutsch (Institute for Systems Biology) | Andrew W. Dowsey (University of Bristol) | Yasin El Abiead (University of California San Diego) | Ralf Gabriels (Ghent University; VIB-UGent Center for Medical Biotechnology) | Helge Hecht (Masaryk University; RECETOX) | Steffen Heuckeroth (University of the Arts Bremen) | Joshua Klein (Boston University) | Michael D. Knierman (Agilent Technologies (United States)) | Lennart Martens (Centre National de la Recherche Scientifique; Institut Pluridisciplinaire Hubert Curien; Ghent University; VIB-UGent Center for Medical Biotechnology; Université de Strasbourg) | Robert L. Moritz (Institute for Systems Biology) | Laura‐Isobel McCall (San Diego State University) | Steffen Neumann (German Centre for Integrative Biodiversity Research; Leibniz Institute of Plant Biochemistry) | Yasset Pérez‐Riverol (European Bioinformatics Institute; European Molecular Biology Laboratory; European Molecular Biology Laboratory; Wellcome Trust) | Hannes Luc Röst (University of Toronto) | Elliott James Price (Masaryk University; RECETOX) | Jim Shofstahl (Thermo Fisher Scientific (United States)) | David L. Tabb (University Medical Center Groningen; University of Groningen) | Julian Uszkoreit (Ruhr University Bochum) | Juan Antonio Vizcaíno (European Bioinformatics Institute; European Molecular Biology Laboratory; European Molecular Biology Laboratory; Wellcome Trust) | Mingxun Wang (University of California, Riverside) | Sander Willems | Dirk Winkelhardt (Ruhr University Bochum) | Oliver Kohlbacher (Universitätsklinikum Tübingen; University of Tübingen) | Samuel P. Wein (University of Tübingen)",
+  "stratum_era": "2015-present",
+  "type": "article",
+  "language": "en",
+  "topics": [
+   "T11937"
+  ],
+  "primary_topic": "Advanced Proteomics Techniques and Applications"
+ },
+ {
+  "source": "new",
+  "source_id": "W4395114035",
+  "year": 2024,
+  "venue": "Unknown",
+  "title": "Ten simple rules for recognizing data and software contributions in hiring, promotion and tenure",
+  "abstract": "Hiring, tenure and promotion processes are powerful influences in driving innovation in research practices and in furthering adoption of open data and software. This ‘Ten simple rules’ article provides practical steps to update institutional processes to incorporate data and software, and to recognize those outputs on their own merit.",
+  "authors_and_affiliations": "Iratxe Puebla (DataCite) | Giorgio A. Ascoli (George Mason University) | Jeffrey D. Blume (University of Virginia) | John Chodacki (California Digital Library; University of California Office of the President) | Joshua Finnell (Colgate University) | David N. Kennedy (University of Massachusetts Chan Medical School) | B.A. Mair (Association of Public and Land-grant Universities) | Maryann Elizabeth Martone (University of California San Diego) | Jamie Wittenberg (University of Colorado Boulder) | Jean‐Baptiste Poline (McGill University)",
+  "stratum_era": "2015-present",
+  "type": "preprint",
+  "language": "en",
+  "topics": [
+   "T11937",
+   "T10102"
+  ],
+  "primary_topic": "Research Data Management Practices"
+ },
+ {
+  "source": "new",
+  "source_id": "W4392306720",
+  "year": 2024,
+  "venue": "Digital Discovery",
+  "title": "Guidelines for hardware-focused articles",
+  "abstract": "In this editorial we set expectations and requirements for submissions describing discovery-enabling hardware.",
+  "authors_and_affiliations": "Jason E. Hein (University of British Columbia) | Joshua Schrier (Fordham University)",
+  "stratum_era": "2015-present",
+  "type": "editorial",
+  "language": "en",
+  "topics": [
+   "T13516",
+   "T13607"
+  ],
+  "primary_topic": "Academic Writing and Publishing"
+ },
+ {
+  "source": "new",
+  "source_id": "W2999324721",
+  "year": 2020,
+  "venue": "Libraries and Cultural Resources (University of Calgary)",
+  "title": "Considerations of corruption, ethics and integrity in educational contexts: Guest editorial",
+  "abstract": "",
+  "authors_and_affiliations": "Sarah Elaine Eaton (University of Calgary)",
+  "stratum_era": "2015-present",
+  "type": "article",
+  "language": "en",
+  "topics": [
+   "T11492"
+  ],
+  "primary_topic": "Academic integrity and plagiarism"
+ },
+ {
+  "source": "new",
+  "source_id": "W2118007559",
+  "year": 2015,
+  "venue": "The International Review of Research in Open and Distributed Learning",
+  "title": "Who studies MOOCs? Interdisciplinarity in MOOC research and its changes over time",
+  "abstract": "The complexity of digital and online education is becoming increasingly evident in the context of research into networked learning/participation. Interdisciplinary research is often proposed as a way to address complex scientific problems and enable researchers to bring novel perspectives into a field other than their own. The degree to which research on Massive Open Online Courses (MOOCs) is interdisciplinary is unknown. We apply descriptive and inferential statistics to bibliometric data to investigate interdisciplinarity in MOOC research. Results show that MOOC research published in 2013-2015 was (a) mostly conducted by researchers affiliated with Education and Computer Science disciplines, (b) far from monolithic, (c) had a greater representation of authors from Computer Science than in the past, and (d) showed a trend toward being more interdisciplinary than MOOC research published in 2008-2012. Our results also suggest that empirical research on xMOOCs may be more interdisciplinary than research on cMOOCs. Greater interdisciplinarity in xMOOC research could reflect the burgeoning interest in the field, the general familiarity with the xMOOC pedagogical model, and the hype experienced by xMOOCs. Greater interdisciplinarity in the field may also provide researchers with rich opportunities to improve our understanding and practice of digital and online learning.",
+  "authors_and_affiliations": "George Veletsianos (Royal Roads University) | Peter Shepherdson (University of Zurich)",
+  "stratum_era": "2015-present",
+  "type": "article",
+  "language": "en",
+  "topics": [
+   "T10102"
+  ],
+  "primary_topic": "Online Learning and Analytics"
+ },
+ {
+  "source": "new",
+  "source_id": "W7203970911",
+  "year": 2026,
+  "venue": "New Horizons in Adult Education and Human Resource Development",
+  "title": "Ethics Plans for Autoethnographic Research: Challenging but Manageable",
+  "abstract": "In my role as an institutional review board (IRB) chair and when I teach research methodology courses for doctoral students, I often have conversations about ethics in autoethnographic research. Whether with novice or experienced researchers, new and perplexing concerns arise in many of these conversations. Some concerns stem from the fact that autoethnography typically involves researchers analysing their interactions with other people including family members, colleagues, current and former students, or friends. Other concerns seem to be rooted in a few misconceptions about how ethics policies apply to autoethnographic research. In this editorial, I describe some misconceptions I have observed that often create difficulties in the IRB process. I also suggest strategies for making the process of developing ethics plans for autoethnographic research more manageable.",
+  "authors_and_affiliations": "Martha Koch (University of Manitoba)",
+  "stratum_era": "2015-present",
+  "type": "editorial",
+  "language": "en",
+  "topics": [
+   "T11492"
+  ],
+  "primary_topic": "Qualitative Research Methods and Ethics"
+ },
+ {
+  "source": "new",
+  "source_id": "W4398496361",
+  "year": 2019,
+  "venue": "Harvard Dataverse",
+  "title": "Data for: How much research shared on Facebook is hidden from public view?",
+  "abstract": "All data required to reproduce results of \"How much research shared on Facebook is hidden from public view?\". More information about the manuscript, code, and reproducibility can be found here. This dataset contains five spreadsheets from two different sources: 1. Data collected with our own method described in Enkhbayar and Alperin (2018). More details and instructions can be found in this GitHub repository. plos_one_articles.csv: All articles published in PLOS ONE from 2015 - 2017 altmetric_counts.csv: POS and TW counts retrieved from Altmetric™ graph_api_counts.csv: AES counts collected with our methods using Facebook's Graph API query_details.csv: Responses from Graph API 2. Data provided by Piwowar et al. (2017) PLOS_2015-2017_idArt-DOI-PY-Journal-Title-LargerDiscipline-Discipline-Specialty.csv: Disciplinary categorisations for PLOS ONE publications as described in Piwowar et al. (2015) References Enkhbayar, A., & Alperin, J. P. (2018). Challenges of capturing engagement on Facebook for Altmetrics. STI 2018 Conference Proceedings, 1460–1469. Retrieved from http://arxiv.org/abs/1809.01194 Piwowar, H., Priem, J., Larivière, V., Alperin, J. P., Matthias, L., Norlander, B., … Haustein, S. (2018). The state of OA: A large-scale analysis of the prevalence and impact of Open Access articles. PeerJ, 6, e4375. doi: 10/ckh5",
+  "authors_and_affiliations": "Asura Enkhbayar (Simon Fraser University) | Stefanie Haustein (University of Ottawa) | Juan Pablo Alperín (Simon Fraser University)",
+  "stratum_era": "2015-present",
+  "type": "dataset",
+  "language": "en",
+  "topics": [
+   "T10102",
+   "T13607",
+   "T13976"
+  ],
+  "primary_topic": "scientometrics and bibliometrics research"
+ },
+ {
+  "source": "new",
+  "source_id": "W4407808216",
+  "year": 2025,
+  "venue": "Palliative Medicine",
+  "title": "Peer review and Palliative Medicine : Guiding reviewers’ contributions to ensuring high quality publications",
+  "abstract": "Peer review is an important, yet contested, part of the academic publishing process. It is argued that it is foundational to the process of scientific research and publication.1 Reviewers are asked to assess the quality of the research, identity potential issues or flaws and provide constructive feedback. Peer review is intended to improve the credibility, accuracy and rigour of academic research. As research can have far-reaching implications for science, individuals and society, peer review is seen as crucial to ensuring that reports of research undergo a process of quality control before they are published. There are, however, major challenges in peer review processes. Reviewers are typically not trained in how to review manuscripts. They can potentially introduce biases, fail to spot problems, make incorrect suggestions or only make a cursory assessment.2 People can be reluctant to act as peer reviewers. Peer reviewers are rarely properly acknowledged or remunerated. Reviewing tends to be an altruistic, unpaid activity done as part of the global scholarly effort rather than necessarily for individual reward.3 These issues all add delay and challenge into the publishing process. As editors of Palliative Medicine, we understand the strengths and limitations of peer review. Our aim in this editorial is not to critique the current peer review system (others have done this admirably4–6). Rather, we would like to guide reviewers, authors and readers as part of an ongoing series of editorials7 exploring issues associated with publishing processes. We want to be explicit about what we seek to publish, provide clarity as to the processes we follow and guide current and potential reviewers to perform their reviews in line with our hopes as editors.",
+  "authors_and_affiliations": "Catherine Walshe (Lancaster University) | Kim Beernaert (Vrije Universiteit Brussel) | Poh Heng Chong | Sonya S. Lowe (University of Alberta) | Sandra Martins Pereira (Universidade Católica Portuguesa) | Sarah J. Yardley (University College London)",
+  "stratum_era": "2015-present",
+  "type": "editorial",
+  "language": "en",
+  "topics": [
+   "T13516",
+   "T13607"
+  ],
+  "primary_topic": "Publishing and Scholarly Communication"
+ },
+ {
+  "source": "new",
+  "source_id": "W2588010777",
+  "year": 2017,
+  "venue": "Nature",
+  "title": "No publication without confirmation",
+  "abstract": "",
+  "authors_and_affiliations": "Jeffrey S. Mogil (McGill University) | Malcolm Robert Macleod (University of Edinburgh)",
+  "stratum_era": "2015-present",
+  "type": "article",
+  "language": "en",
+  "topics": [
+   "T13607"
+  ],
+  "primary_topic": "Academic Publishing and Open Access"
+ },
+ {
+  "source": "new",
+  "source_id": "W2891643641",
+  "year": 2018,
+  "venue": "Journal of Clinical Oncology",
+  "title": "Impact of Canadian Cancer Trials Group (CCTG) phase III trials (P3Ts).",
+  "abstract": "e18901 Background: P3Ts generate the highest level of evidence at the expense of investment from national agencies and institutional infrastructure. We evaluated the impact of CCTG P3Ts (primary publication) with respect to secondary (2°) publications, citations, citation by guidelines, meta-analyses, and new indications. Methods: Primary (1°) and 2° publications from CCTG led P3Ts (1984-2017) were identified from the CCTG website. Data extraction included: 1° endpoint type and outcome, setting, and 2° endpoints. An endpoint was categorized as positive if results were statistically significant in favor of the experimental arm or if non-inferiority criteria were met. Any 2° publications that used data from ≥ 1 trial were weighted by dividing by the number of trials. Chi square test was used to evaluate factors associated with guideline citation. Results: Characteristics of the 86 P3Ts included: median sample size 302 (range 31- 7576), median journal impact factor 24 (range 0-72) [see table]. The 1° endpoint was positive in 32.6% (n = 28) trials. A 2° endpoint was positive in the absence of a positive 1° endpoint in 17 trials (19.8%). Fifty-four trials (62.8%) generated 2° publications [40 quality of life, 25 correlative, 5 cost, range 0.3-27.3]. The number of citations per 1° publication ranged from 0-3859 (median 72). Guidelines cited 56 trials; this was associated with a positive 1° endpoint (23 positive vs 33 negative trials, p = 0.03), but not larger sample size (≥ median), nor a 1° endpoint of overall survival. There were 9 new chemotherapy indications and 1 delisting. Conclusions: CCTG P3Ts influenced new drug indications, generated numerous 2° publications, and were cited by guidelines and meta-analyses. Although guideline citation was associated with a positive 1° endpoint, many negative trials were also cited. Characteristic Number (n = 86) Percentage Tumor type Breast 16 18.6 Lung 14 16.3 Heme 11 12.8 Other 45 52.3 Setting Curative 38 44.2 Palliative 27 31.4 Supportive Care 18 20.9 Prevention 2 2.3 Other 1 1.2 1° endpoint Overall survival 39 45.3 Overall survival 14 16.3 Response rate 6 7.0 Other 27 31.4 Outcome of 1° endpoint Null 55 64.0 Favor experimental arm 28 32.6 Favor control arm 3 3.5 Citation Any 84 97.7 Meta-analysis or guideline 63 73.3 Guideline 56 65.1",
+  "authors_and_affiliations": "Patricia A. Tang (University of Calgary) | Joe Pater (Queen's University) | Maclean Harvey Thiessen (University of Calgary) | Richard M. Lee‐Ying (University of Calgary) | Jose Gerard Monzon (University of Calgary) | Winson Y. Cheung (University of Calgary)",
+  "stratum_era": "2015-present",
+  "type": "conference-abstract",
+  "language": "en",
+  "topics": [
+   "T10102"
+  ],
+  "primary_topic": "scientometrics and bibliometrics research"
+ },
+ {
+  "source": "new",
+  "source_id": "W2623257747",
+  "year": 2017,
+  "venue": "BMJ",
+  "title": "Evolution of poor reporting and inadequate methods over time in 20 920 randomised controlled trials included in Cochrane reviews: research on research study",
+  "abstract": "Objective To examine how poor reporting and inadequate methods for key methodological features in randomised controlled trials (RCTs) have changed over the past three decades. Design Mapping of trials included in Cochrane reviews. Data sources Data from RCTs included in all Cochrane reviews published between March 2011 and September 2014 reporting an evaluation of the Cochrane risk of bias items: sequence generation, allocation concealment, blinding, and incomplete outcome data. Data extraction For each RCT, we extracted consensus on risk of bias made by the review authors and identified the primary reference to extract publication year and journal. We matched journal names with Journal Citation Reports to get 2014 impact factors. Main outcomes measures We considered the proportions of trials rated by review authors at unclear and high risk of bias as surrogates for poor reporting and inadequate methods, respectively. Results We analysed 20 920 RCTs (from 2001 reviews) published in 3136 journals. The proportion of trials with unclear risk of bias was 48.7% for sequence generation and 57.5% for allocation concealment; the proportion of those with high risk of bias was 4.0% and 7.2%, respectively. For blinding and incomplete outcome data, 30.6% and 24.7% of trials were at unclear risk and 33.1% and 17.1% were at high risk, respectively. Higher journal impact factor was associated with a lower proportion of trials at unclear or high risk of bias. The proportion of trials at unclear risk of bias decreased over time, especially for sequence generation, which fell from 69.1% in 1986-1990 to 31.2% in 2011-14 and for allocation concealment (70.1% to 44.6%). After excluding trials at unclear risk of bias, use of inadequate methods also decreased over time: from 14.8% to 4.6% for sequence generation and from 32.7% to 11.6% for allocation concealment. Conclusions Poor reporting and inadequate methods have decreased over time, especially for sequence generation and allocation concealment. But more could be done, especially in lower impact factor journals.",
+  "authors_and_affiliations": "Agnès Dechartres (Inserm; Sorbonne Paris Cité; Assistance Publique – Hôpitaux de Paris; Hôtel-Dieu de Paris; Equipe de Recherche en Epidémiologie Nutritionnelle; Centre de Recherche Épidémiologie et Statistique; Université Paris Descartes; Cochrane) | Ludovic Trinquart (Inserm; Equipe de Recherche en Epidémiologie Nutritionnelle; Centre de Recherche Épidémiologie et Statistique; Cochrane) | Ignacio Atal (Inserm; Equipe de Recherche en Epidémiologie Nutritionnelle; Centre de Recherche Épidémiologie et Statistique; Cochrane) | David Moher (University of Ottawa; Ottawa Hospital Research Institute) | Kay Dickersin (Johns Hopkins University) | Isabelle Boutron (Inserm; Sorbonne Paris Cité; Assistance Publique – Hôpitaux de Paris; Hôtel-Dieu de Paris; Equipe de Recherche en Epidémiologie Nutritionnelle; Centre de Recherche Épidémiologie et Statistique; Université Paris Descartes; Cochrane) | Élodie Perrodeau (Inserm; Assistance Publique – Hôpitaux de Paris; Hôtel-Dieu de Paris; Equipe de Recherche en Epidémiologie Nutritionnelle; Centre de Recherche Épidémiologie et Statistique) | Douglas G. Altman (University of Oxford) | Philippe Ravaud (Inserm; Sorbonne Paris Cité; Assistance Publique – Hôpitaux de Paris; Hôtel-Dieu de Paris; Equipe de Recherche en Epidémiologie Nutritionnelle; Centre de Recherche Épidémiologie et Statistique; Université Paris Descartes; Cochrane; Columbia University)",
+  "stratum_era": "2015-present",
+  "type": "article",
+  "language": "en",
+  "topics": [
+   "T13607"
+  ],
+  "primary_topic": "Meta-analysis and systematic reviews"
+ },
+ {
+  "source": "new",
+  "source_id": "W3043333057",
+  "year": 2020,
+  "venue": "Chiropractic & Manual Therapies",
+  "title": "More published full-time researchers, early career researchers, clinician-researchers and graduate students unite to call for actions against the pseudoscientific claim that chiropractic care boosts immunity",
+  "abstract": "pseudoscientific claim that chiropractic care boosts immunity.",
+  "authors_and_affiliations": "Pierre Côté (University of Toronto; Ontario Tech University; Centre for Disability Prevention and Rehabilitation) | André Bussières (McGill University; Université du Québec à Trois-Rivières) | J. David Cassidy (University of Toronto) | Jan Hartvigsen (University of Southern Denmark; Nordisk Institut for Kiropraktik og Klinisk Biomekanik) | Greg N. Kawchuk (University of Alberta) | Charlotte Leboeuf‐Yde (University of Southern Denmark) | Silvano A Mior (Canadian Memorial Chiropractic College; Ontario Tech University; Centre for Disability Prevention and Rehabilitation) | Michael Schneider (University of Pittsburgh)",
+  "stratum_era": "2015-present",
+  "type": "article",
+  "language": "en",
+  "topics": [
+   "T13607"
+  ],
+  "primary_topic": "Complementary and Alternative Medicine Studies"
+ },
+ {
+  "source": "new",
+  "source_id": "W4414050984",
+  "year": 2025,
+  "venue": "Botany",
+  "title": "Processing and digitizing a nonstandard herbarium collection: a cautionary tale about research value",
+  "abstract": "Many private and nonstandard natural history collections have been discarded or denied inclusion in herbaria due to a lack of precise documentation or unusual preservation methods. This exclusion is often enabled by limited capacity for special projects and a lack of expertise or paid staff within herbaria to process such materials. As a result, despite an overall increase in digitized specimen data through time, valuable information remains omitted from these biodiversity datasets, which may be lost forever, unless strategies to incorporate them are developed. Using one nonstandard collection as a case study, we demonstrate how curators might assess, process, and digitize such collections, making them accessible to a wider audience, while preserving their original “character”. Through this example, we review a few ways to quantify research value within these types of collections, highlighting rare and endangered species, as well as extensions to geographic ranges or temporal coverage of otherwise known populations. We show that rather than discarding these specimens, with careful attention to assessment and processing, they can be efficiently cataloged and made usable by researchers, while maintaining the integrity of the collector’s “personality” and the unique story behind each collection.",
+  "authors_and_affiliations": "Linda P. J. Lipsen (University of British Columbia) | Barbara M. Neto‐Bradley (University of Cambridge) | McKenzie M. Will (University of British Columbia)",
+  "stratum_era": "2015-present",
+  "type": "article",
+  "language": "en",
+  "topics": [
+   "T11937"
+  ],
+  "primary_topic": "Research Data Management Practices"
+ }
+]

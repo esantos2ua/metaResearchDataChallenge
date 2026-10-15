@@ -1,0 +1,126 @@
+key,is_metaresearch,is_canadian,notes
+K126,NO,YES,Announcement of journal website features; paratext
+K127,YES,YES,Commentary on predatory journals; publishing
+K128,NO,YES,Editor-in-chief message; editorial paratext
+K129,YES,YES,Empirical study of authorship order and contributions
+K130,YES,YES,Study of methods used by review article authors
+K131,NO,YES,Affidavit of support document; unrelated
+K132,NO,YES,Book review of a finance book
+K133,YES,YES,Cohort study of citation rate determinants
+K134,YES,YES,Dataset on research shared on Facebook; altmetrics
+K135,UNCLEAR,YES,Book reviews section; content unknown
+K136,YES,YES,Fate of rejected manuscripts; peer review/publishing
+K137,UNCLEAR,YES,Editorial on integrity in educational contexts; scope unclear
+K138,YES,YES,Assesses quality of COVID child mental health research
+K139,NO,YES,Digital school textbooks in Quebec; education
+K140,NO,YES,Statistical disclosure-control method; not study of research
+K141,UNCLEAR,YES,Editorial on need for a Canadian journal; no abstract
+K142,UNCLEAR,YES,Editorial on free speech in academic publishing; no abstract
+K143,NO,YES,Health data system charter principles; not research process
+K144,NO,YES,Encyclopedia entry on biological metadata; informatics
+K145,NO,YES,Editorial on use of questions; not metaresearch
+K146,NO,YES,Book introduction on music; unrelated
+K147,YES,YES,Synthesis of researchers views on scholarly misconduct
+K148,NO,YES,Student digital writing strategies; pedagogy
+K149,NO,YES,Metadata platform for COVID studies; infrastructure tool
+K150,YES,YES,Research integrity in industrial research
+K151,YES,YES,Critique of Plan S rights retention; open access
+K152,YES,YES,Guide to responsible research assessment
+K153,NO,YES,Book review on descriptive bibliography
+K154,YES,YES,Commentary on living evidence synthesis practice
+K155,YES,YES,Dataset of journals using PKP publishing software
+K156,YES,UNCLEAR,NIH grant peer review reform
+K157,NO,YES,Mass spectrometry data format; software
+K158,NO,YES,Impact assessment practice efficiency; not metaresearch
+K159,UNCLEAR,YES,Editor reflection on journal editing; borderline
+K160,YES,YES,Adoption of search peer review in knowledge syntheses
+K161,YES,YES,Reverse flip journals; scholarly publishing
+K162,YES,YES,Bibliometric case study of a journal
+K163,YES,YES,Proposal on confirmation before publication; reproducibility
+K164,NO,YES,Program chairs message; conference paratext
+K165,YES,YES,Topic modeling of research production by business schools
+K166,YES,YES,Citation and publication impact of cancer trials
+K167,NO,YES,How-to chapter on publishing; not empirical study
+K168,UNCLEAR,YES,LLM lay summaries of publications; tool vs scholarly communication
+K169,NO,YES,Distinguished lecturers announcement; paratext
+K170,YES,YES,COVID data sharing recommendations
+K171,NO,UNCLEAR,Indexing notice for a journal; paratext
+K172,NO,YES,Personal selling ethics scale; marketing
+K173,YES,YES,Editorial on predatory journals
+K174,NO,YES,Editor notes on Russell studies; paratext
+K175,YES,YES,Bibliometric analysis of retractions
+K176,YES,YES,WoS vs Scopus journal coverage; bibliometrics
+K177,NO,YES,Canadian information science community overview
+K178,NO,YES,Herbarium digitization case; collections not research process
+K179,NO,YES,Software tool beta trial; not metaresearch
+K180,NO,YES,Blog ranking method; not scholarly
+K181,NO,YES,Bioassessment decision-making chapter
+K182,YES,YES,Data on news coverage of preprints
+K183,YES,YES,Open and reproducible research training culture
+K184,YES,YES,Journal data access and transparency policy
+K185,YES,YES,Dataset on open science debate during COVID
+K186,YES,YES,Coercive citation in peer review
+K187,YES,YES,Methodological quality of surgical meta-analyses
+K188,YES,YES,"Equity in publishing ecosystem, APCs"
+K189,NO,YES,Astronomy conference summary
+K190,NO,YES,Software release; unrelated
+K191,YES,YES,Economics of open access for scholarly associations
+K192,NO,YES,Software library for repeatable experiments; tool
+K193,YES,YES,Reporting guideline for bibliometric analyses
+K194,NO,YES,Digital library systems; computing
+K195,YES,YES,Authorship and ethics in collaborative writing
+K196,NO,YES,Marine lab annual report
+K197,NO,YES,Business data products for librarians
+K198,YES,YES,Bibliometric study of COVID publication changes
+K199,UNCLEAR,YES,Editor letter on international academic collaboration
+K200,NO,YES,Best paper announcement; paratext
+K201,YES,YES,Guide to data availability statements; RDM
+K202,YES,YES,RDM and digital preservation concepts
+K203,YES,YES,Debate on open access and peer review
+K204,NO,YES,Journal front matter; paratext
+K205,YES,YES,Contributorship and research career data
+K206,NO,YES,Academic integrity in professional training; classroom
+K207,YES,YES,Sharing and citing ground truth data; data practices
+K208,YES,YES,Geography of scientific publications; scientometrics
+K209,YES,YES,Methods of rapid reviews; review methodology
+K210,NO,YES,Math teacher resource reviews
+K211,YES,YES,Strategic research priorities in academic research; research policy
+K212,YES,YES,Data availability statements and funders
+K213,UNCLEAR,YES,Review comment on journal policy compliance; abstract is geophysics
+K214,UNCLEAR,YES,Patent citation dataset; no description
+K215,YES,YES,Survey of institutional repositories and publishing
+K216,NO,YES,Review of a text analysis app
+K217,YES,YES,Data archiving policy
+K218,NO,UNCLEAR,Project communication plan deliverable
+K219,YES,YES,Grant peer review process evaluation
+K220,NO,YES,Conference editorial; paratext
+K221,YES,YES,Comment on peer review in ecology
+K222,YES,YES,Data archiving best practices
+K223,YES,YES,Single vs double blind peer review
+K224,NO,YES,History of web crawlers; computing
+K225,YES,YES,Critique of bibliometrics for academic value
+K226,NO,YES,Business ethics HR training
+K227,UNCLEAR,YES,eDNA ethics and data ownership survey; borderline
+K228,YES,UNCLEAR,Educational video on predatory journals
+K229,UNCLEAR,YES,University academic integrity policies; student vs research unclear
+K230,YES,YES,PRISMA-P reporting guidance
+K231,NO,YES,Physics book review
+K232,NO,YES,Library instruction in bioinformatics databases
+K233,NO,YES,Indexing a historical letters edition
+K234,NO,YES,Medical book review
+K235,NO,YES,LinkedIn popularity data science
+K236,NO,YES,Student plagiarism perceptions; classroom integrity
+K237,YES,YES,Indigenous research data governance principles
+K238,YES,YES,Reporting and methods quality of RCTs over time
+K239,NO,YES,Discovery platform interoperability deliverable
+K240,NO,YES,Media polls history
+K241,NO,YES,Bioinformatics information flow model
+K242,NO,YES,Method to recover survival data; tool
+K243,YES,YES,Fabricated citations and AI; integrity
+K244,YES,UNCLEAR,Analysis of data management plans
+K245,UNCLEAR,YES,Editorial on journal impact factor; no abstract
+K246,NO,UNCLEAR,Journalism commentary
+K247,NO,YES,Readers choosing books for pleasure
+K248,YES,YES,Factors in academic research production
+K249,YES,YES,Glossary of open scholarship terms
+K250,UNCLEAR,YES,Column on research dissemination; no abstract

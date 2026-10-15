@@ -1,0 +1,126 @@
+key,is_metaresearch,is_canadian,notes
+K001,YES,YES,Commentary on supporting mothers in proteomics; equity in scientific workforce
+K002,NO,YES,Conference welcome message; paratext
+K003,YES,YES,Training materials on responsible research assessment (DORA)
+K004,NO,YES,Governance of open source EHR software projects; not about research
+K005,NO,YES,Student academic integrity handbook introduction
+K006,YES,YES,Industry-academia links and conflicts of interest in research
+K007,NO,YES,Style guide for preparing geological maps and reports
+K008,NO,YES,Tribute to a scientist as mentor
+K009,NO,YES,Editorial introducing a special section; paratext
+K010,NO,YES,Journal editorial on future direction; no research-on-research content
+K011,NO,YES,Computational music analysis infrastructure
+K012,YES,YES,Debate on replications and scientific inference
+K013,YES,YES,Comparative study of open science consortia governance
+K014,NO,YES,Software reuse repositories panel; software engineering
+K015,NO,YES,Economics history essay on Adam Smith
+K016,YES,YES,Dataset from mixed-methods study of research data management services
+K017,YES,YES,Electronic publishing and peer review of a scholarly journal
+K018,YES,YES,Analysis of the notion of predatory publishing
+K019,NO,YES,Academic integrity handbook introduction; student integrity focus
+K020,YES,YES,Peer review practices guidance for journal reviewers
+K021,YES,YES,Survey of librarians research data services skills
+K022,YES,YES,Empirical study of peer review of literature search strategies
+K023,YES,YES,Research ethics review of autoethnographic research
+K024,NO,YES,Student academic integrity websites of universities
+K025,YES,YES,Call for research data preservation and repository solution
+K026,YES,YES,Case study of research data management service
+K027,YES,YES,Scholarly journal publishing in Canada
+K028,YES,YES,Bibliometric analysis of in-text citation references
+K029,NO,YES,Journal issue introduction; paratext
+K030,YES,YES,De-identification framework to enable research data sharing
+K031,YES,YES,Open access in conservation research
+K032,NO,YES,Proceedings peer-review statement; paratext
+K033,NO,YES,Special issue introduction; paratext
+K034,NO,YES,Special section introduction; paratext
+K035,NO,YES,Library catalogue search behaviour; not research on research
+K036,YES,YES,Recognizing data and software in hiring and promotion
+K037,UNCLEAR,YES,Possibly citation analysis of tourism research; no abstract
+K038,YES,YES,Analysis of research designs in global vs international health journals
+K039,YES,YES,Peer review report of study on metrics of discontinued journals
+K040,NO,YES,Review report of co-authorship visualization software tool
+K041,NO,YES,History of electron microscopy; not metaresearch
+K042,YES,YES,Refereeing best practices for early career researchers
+K043,NO,YES,Classroom exam item reuse in medical education
+K044,YES,UNCLEAR,Science of science essay on open innovation in science
+K045,UNCLEAR,YES,"Conflict of interest policies in drug regulators, not clearly research"
+K046,YES,YES,Editorial on supplemental materials publishing trends
+K047,NO,YES,Special issue on student plagiarism and academic integrity
+K048,YES,YES,Meta-research on spin in systematic review abstracts
+K049,YES,NO,Ethics committees and publication oversight in research governance
+K050,YES,YES,Reference rot in theses citations; scholarly communication
+K051,YES,YES,Bibliometric study of citation concentration
+K052,NO,YES,Pharmacovigilance systems; clinical/regulatory topic
+K053,NO,YES,Research software testing platform; tool development
+K054,NO,YES,Student and faculty academic dishonesty survey
+K055,NO,YES,Reflective piece on AI at academic conference
+K056,NO,UNCLEAR,Obituary
+K057,NO,YES,Interview with creative writer
+K058,NO,YES,Contract cheating in courses; student integrity
+K059,NO,YES,Clinical fellows exchange program report
+K060,NO,YES,Detecting student exam misconduct
+K061,NO,YES,Book reviews; paratext
+K062,YES,YES,Editorial on single versus team authorship in academic careers
+K063,NO,YES,Library collection management
+K064,YES,YES,Journal initiative recognizing peer review
+K065,YES,YES,Personal account of plagiarized journal article
+K066,UNCLEAR,YES,Dataset metadata maturity model; unclear if about research data practice
+K067,YES,YES,Commentary on publishing non-significant findings
+K068,NO,YES,Event dataset release
+K069,NO,YES,Survey on oral communications; no research focus
+K070,NO,YES,Indigenous book clubs in libraries
+K071,UNCLEAR,YES,Twitter circulation of IPCC report; science communication
+K072,YES,YES,Interview on institutional open science commitment
+K073,YES,YES,Citations vs journal quality in academic salaries
+K074,YES,YES,Documenting methods for reproducibility and best practices
+K075,NO,YES,Literary essay
+K076,UNCLEAR,YES,Measurement recommendations for rigor; unclear if study of research
+K077,NO,YES,Student conference reflections
+K078,NO,YES,Generative AI and student academic integrity
+K079,YES,YES,Citation age analysis in mathematics
+K080,YES,YES,Research ethics practice among SoTL researchers
+K081,YES,YES,Persistent identifiers to visualize research collaborations
+K082,UNCLEAR,YES,Writing column in medical education; no abstract
+K083,YES,UNCLEAR,Social network analysis of research network
+K084,NO,YES,Student plagiarism and morality
+K085,UNCLEAR,YES,Column on research funding for librarians; no abstract
+K086,UNCLEAR,YES,Historians research practices in digital age; no abstract
+K087,NO,YES,Institute news and job advertisement
+K088,YES,YES,Journal editorial standards for hardware articles
+K089,NO,YES,Serendipity in information behaviour; LIS topic
+K090,NO,YES,Bioinformatics book
+K091,YES,YES,Bibliometric study of plastic surgery publications and authors
+K092,NO,YES,Smartwatch exam cheating
+K093,YES,YES,"Scholarly publishing relations among publishers, librarians, authors"
+K094,NO,YES,Issue at a glance editorial; paratext
+K095,UNCLEAR,YES,Measuring R&D investment in national accounts
+K096,YES,YES,Co-authorship network analysis of cardiovascular research
+K097,UNCLEAR,YES,Geoethics statement; research ethics partly
+K098,NO,YES,Lab member profile blog post
+K099,UNCLEAR,YES,Review of records management research; no abstract
+K100,UNCLEAR,YES,No title or abstract
+K101,UNCLEAR,YES,Knowledge interactions in life sciences; no abstract
+K102,YES,YES,Principles for genetic sequence data governance and sharing
+K103,YES,YES,Insights for successful research programs
+K104,YES,YES,Bibliometric methods: rank and size approaches
+K105,YES,YES,Intervention study on open science practices
+K106,NO,YES,Student AI disclosure in coursework
+K107,UNCLEAR,YES,Nursing informatics chapter; no abstract
+K108,UNCLEAR,YES,Cochrane contribution to evidence-based journals; no abstract
+K109,YES,YES,Bibliometric analysis of interdisciplinarity in MOOC research
+K110,UNCLEAR,YES,Theses database software selection at archives
+K111,YES,YES,Open access advocacy for library associations
+K112,NO,YES,Editor-in-chief message; paratext
+K113,NO,YES,Reviewer acknowledgement; paratext
+K114,UNCLEAR,YES,Journal publishing workshop; practical tips
+K115,YES,YES,Systematic review of predatory journal checklists
+K116,NO,YES,Call against chiropractic pseudoscience claim
+K117,YES,YES,Google Scholar in systematic review searching
+K118,YES,YES,Editorial board and reviewer diversity networks
+K119,YES,UNCLEAR,Open access citation advantage
+K120,YES,YES,Bibliometric analysis of citation life expectancy
+K121,NO,YES,Pharma-funded events for health professionals; not research
+K122,YES,YES,ResearchGate collaboration and citation patterns
+K123,NO,YES,Conference chairs welcome; paratext
+K124,NO,YES,Student academic integrity in engineering schools
+K125,YES,YES,Peer review report of study on post-publication peer review

@@ -1,0 +1,126 @@
+key,is_metaresearch,is_canadian,notes
+K001,YES,YES,Supporting mothers in proteomics: equity/diversity in the scientific workforce
+K002,NO,YES,Conference welcome message; paratext
+K003,YES,YES,Teaching materials on responsible research assessment (research evaluation)
+K004,NO,YES,Governance of open source EHR software; not about research
+K005,NO,YES,Student academic integrity handbook introduction
+K006,YES,YES,Industry-academia links and ethical frameworks; research conflicts of interest
+K007,NO,YES,Author style guide for geological maps; paratext/publisher guidance
+K008,NO,YES,Tribute to a scientist as mentor; biographical
+K009,NO,YES,Special section editorial; paratext
+K010,NO,YES,Journal editorial on future directions; paratext
+K011,NO,YES,Computational music analysis infrastructure; not study of research
+K012,YES,YES,Reply about replications and scientific inference; reproducibility debate
+K013,YES,YES,Comparative analysis of open science consortia governance
+K014,NO,YES,Software reuse repositories panel; software engineering
+K015,NO,YES,Economics history essay on Adam Smith
+K016,YES,YES,Dataset from study of research data management services
+K017,YES,YES,Electronic journal publishing and peer review
+K018,YES,YES,Predatory publishing concept and assessment
+K019,NO,YES,Academic integrity handbook intro; student/classroom integrity focus
+K020,YES,YES,Peer review guidance and practices at a journal
+K021,YES,YES,Survey of librarian research data services skills (RDM)
+K022,YES,YES,Methodological study of peer review of search strategies in reviews
+K023,UNCLEAR,YES,"IRB ethics planning for autoethnography; research ethics guidance, not clearly metaresearch"
+K024,NO,YES,University academic integrity websites aimed at students
+K025,YES,YES,Call for preservation and sharing of research data/media; data repository
+K026,YES,YES,Developing an institutional research data management service
+K027,YES,YES,Scholarly journal publishing in Canada
+K028,YES,YES,Citation context analysis of in-text references (bibliometrics)
+K029,NO,YES,Issue introduction; paratext
+K030,YES,YES,De-identification framework to enable research data sharing
+K031,YES,YES,Open access in conservation research
+K032,NO,YES,Proceedings peer-review statement; paratext
+K033,NO,YES,Special issue introduction; paratext
+K034,NO,YES,Special section introduction; paratext
+K035,NO,YES,Library catalogue search behaviour; information retrieval
+K036,YES,YES,"Recognizing data/software in hiring, promotion and tenure"
+K037,UNCLEAR,YES,Possibly citation-source analysis of tourism research; no abstract
+K038,YES,YES,Comparison of research literature across global vs international health journals
+K039,YES,YES,Metrics of journals discontinued from Scopus; predatory journals
+K040,NO,YES,Software app for co-authorship network visualization; tool development
+K041,NO,YES,History of electron microscopy in Canada
+K042,YES,YES,Peer review/refereeing practices guidance
+K043,NO,YES,Exam item reuse and student cheating in medical education
+K044,YES,NO,Open innovation in science framework for science of science
+K045,UNCLEAR,YES,Conflict of interest policies in drug regulators; regulation rather than research
+K046,YES,YES,Editorial on journal supplemental materials policy
+K047,NO,YES,Student plagiarism and academic integrity in higher education
+K048,YES,YES,Meta-research on spin in systematic review abstracts
+K049,YES,NO,Ethics committees and research governance framework
+K050,YES,YES,Reference rot in theses citations; scholarly communication
+K051,YES,YES,Citation concentration analysis (bibliometrics)
+K052,NO,YES,Pharmacovigilance systems; clinical/regulatory
+K053,NO,YES,Research software testing; software engineering
+K054,NO,YES,Student academic dishonesty survey
+K055,NO,YES,Early career academics conference reflection; not study of research
+K056,NO,UNCLEAR,Obituary of physicist; Canadian affiliation looks erroneous
+K057,NO,YES,Interview with creative writer
+K058,NO,YES,Contract cheating by students
+K059,NO,YES,Fellows exchange program report
+K060,NO,YES,Detecting student exam misconduct
+K061,NO,YES,Book reviews; paratext
+K062,YES,YES,Editorial on single vs team authorship in research careers
+K063,NO,YES,Library collection management
+K064,YES,YES,Journal initiative recognizing peer reviewers
+K065,YES,YES,Plagiarism of a published research article; research misconduct
+K066,UNCLEAR,YES,Metadata maturity for urban datasets; unclear if research data focus
+K067,YES,YES,Publishing nonsignificant findings; publication bias
+K068,NO,YES,Event dataset release; not about research
+K069,NO,YES,Oral communication teaching survey; pedagogy
+K070,NO,YES,Indigenous book clubs
+K071,UNCLEAR,YES,"Twitter circulation of IPCC report; science communication, borderline"
+K072,YES,YES,Institutional open science commitment
+K073,YES,YES,Citations vs journal quality in academic labour market
+K074,YES,YES,Documenting research methods as shared best practices
+K075,NO,YES,Literary piece; no research focus
+K076,UNCLEAR,YES,Sex/gender measurement for rigor and harmonization; no abstract
+K077,NO,YES,Student conference reflections
+K078,NO,YES,Generative AI and student academic integrity
+K079,YES,YES,Citation age analysis in mathematics
+K080,YES,YES,Research ethics review awareness among SoTL researchers
+K081,YES,YES,Persistent identifiers to visualize research collaborations
+K082,UNCLEAR,YES,"Writing craft piece; no abstract, may be scholarly writing advice"
+K083,YES,UNCLEAR,Social network analysis of a research network
+K084,NO,YES,Student plagiarism and morality
+K085,UNCLEAR,YES,Column on research funding; no abstract
+K086,UNCLEAR,YES,Historians research practices in digital age; unclear if empirical study of research
+K087,NO,YES,Institute news/job announcement; paratext
+K088,YES,YES,Journal editorial policy for hardware articles
+K089,NO,YES,Serendipity in information behaviour research
+K090,NO,YES,Bioinformatics book; computational tools
+K091,YES,YES,Bibliometric analysis of plastic surgery journal authorship
+K092,NO,YES,Smartwatch exam cheating
+K093,YES,YES,Publisher-librarian-author relations in scholarly publishing
+K094,NO,YES,Issue at a glance; paratext
+K095,NO,YES,R&D accounting in GDP; economic statistics
+K096,YES,YES,Co-authorship network analysis of cardiovascular research
+K097,YES,YES,Geoethics statement covering research integrity
+K098,NO,YES,Lab blog member profile
+K099,UNCLEAR,YES,State of records management research; no abstract
+K100,UNCLEAR,YES,No title or abstract
+K101,UNCLEAR,YES,"Knowledge interactions in life sciences; innovation studies, no abstract"
+K102,YES,YES,Genetic sequence data governance principles; data sharing
+K103,YES,YES,Building successful research programs; research careers
+K104,YES,YES,Rank and size methods in bibliometrics
+K105,YES,YES,Educational intervention on open science practices
+K106,NO,YES,Student AI disclosure and academic integrity
+K107,UNCLEAR,YES,Vague chapter title; no abstract
+K108,YES,YES,Cochrane Library contribution to evidence-based journals
+K109,YES,YES,Bibliometric study of MOOC research interdisciplinarity
+K110,UNCLEAR,YES,Theses repository software selection; borderline repository infrastructure
+K111,YES,YES,Open access advocacy for library associations
+K112,NO,YES,Editor-in-chief message; paratext
+K113,NO,YES,Reviewer acknowledgement; paratext
+K114,YES,YES,Publishing and peer review process workshop
+K115,YES,YES,Systematic review of predatory journal checklists
+K116,NO,YES,Call against pseudoscientific chiropractic claim
+K117,YES,YES,Google Scholar use in systematic review searching
+K118,YES,YES,Editorial board and reviewer diversity networks
+K119,YES,UNCLEAR,Open access citation advantage
+K120,YES,YES,Citation life expectancy of papers
+K121,NO,YES,Disclosure of pharma-funded professional events; not research COI
+K122,YES,YES,ResearchGate collaboration and usage patterns
+K123,NO,YES,Program chairs welcome; paratext
+K124,NO,YES,Managing student academic integrity in engineering schools
+K125,YES,YES,Researchers use of post-publication peer review platforms
